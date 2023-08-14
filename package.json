@@ -15,6 +15,9 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "@vueuse/core": "^10.3.0",
+    "axios": "^1.4.0",
+    "compound-interest": "file:../compound-interest",
     "pinia": "^2.0.32",
     "vue": "^3.2.47",
     "vue-router": "^4.1.6"

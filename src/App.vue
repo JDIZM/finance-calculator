@@ -1,6 +1,18 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+import {compoundInterestPerPeriod} from 'compound-interest'
+
+// example interest only payment
+const valueOfHome = compoundInterestPerPeriod({
+  principal: 150_000,
+  rate: 4,
+  years: 5,
+  paymentsPerAnnum: 12,
+  amountPerAnnum: 12_000,
+  debtRepayment: true
+});
+console.log("valueOfHome", valueOfHome);
+
 </script>
 
 <template>
@@ -8,11 +20,10 @@ import HelloWorld from './components/HelloWorld.vue'
     <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
 
     <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
       <nav>
         <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
+        <RouterLink to="/mortgage-calculator">Mortgage</RouterLink>
+        <RouterLink to="/compound-interest-calculator">Compound Interest</RouterLink>
       </nav>
     </div>
   </header>
@@ -21,6 +32,11 @@ import HelloWorld from './components/HelloWorld.vue'
 </template>
 
 <style scoped>
+
+.wrapper {
+  padding-bottom: 1rem;
+}
+
 header {
   line-height: 1.5;
   max-height: 100vh;
