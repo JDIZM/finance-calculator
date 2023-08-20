@@ -41,6 +41,7 @@ const handleFormSubmit = (event: Event, submission: FormSubmission) => {
     event,
     submission
   })
+  // TODO save to local storage?
 }
 </script>
 
@@ -113,7 +114,7 @@ const handleFormSubmit = (event: Event, submission: FormSubmission) => {
 
 <style lang="scss" scoped>
 .compound-interest-form {
-  border: 1px solid var(--secondary);
+  border: 1px solid var(--color-secondary);
   padding: 1rem;
 
   form {
@@ -128,33 +129,9 @@ const handleFormSubmit = (event: Event, submission: FormSubmission) => {
     gap: 0.5rem;
 
     span {
-      color: var(--secondary);
+      color: var(--color-secondary);
       font-weight: bold;
     }
-  }
-
-  input {
-    padding: 0.5rem 1rem;
-    border-radius: 0.25rem;
-    border: 1px solid var(--secondary);
-    background-color: var(--secondary);
-    color: white;
-    font-size: 1rem;
-    font-weight: bold;
-    width: 150px;
-  }
-
-  button {
-    margin-top: 1rem;
-    padding: 0.5rem 1rem;
-    border-radius: 0.25rem;
-    border: 1px solid var(--secondary);
-    background-color: var(--secondary);
-    color: white;
-    font-size: 1rem;
-    font-weight: bold;
-    cursor: pointer;
-    width: 200px;
   }
 }
 </style>
