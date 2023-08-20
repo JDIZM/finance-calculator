@@ -2,7 +2,10 @@
 import { computed } from 'vue'
 import { useTheme } from '@/composables/useTheme'
 const theme = useTheme()
+// TODO carbon icon type declarations
+// @ts-ignore
 import Moon from '@carbon/icons-vue/es/moon/16'
+// @ts-ignore
 import Sun from '@carbon/icons-vue/es/sun/16'
 
 const icon = computed(() => (theme.mode.value === 'dark' ? Moon : Sun))
