@@ -15,6 +15,7 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "@carbon/icons-vue": "^10.72.1",
     "@vueuse/core": "^10.3.0",
     "axios": "^1.4.0",
     "compound-interest": "file:../compound-interest",

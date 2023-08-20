@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
-import { useTheme } from '@/composables/useTheme'
-const theme = useTheme()
+import ToggleTheme from '@/components/theme/ToggleTheme.vue'
 </script>
 
 <template>
   <header>
+    <ToggleTheme />
     <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
 
     <div class="wrapper">
@@ -14,7 +14,6 @@ const theme = useTheme()
         <RouterLink to="/mortgage-calculator">Mortgage</RouterLink>
         <RouterLink to="/compound-interest-calculator">Compound Interest</RouterLink>
       </nav>
-      <button @click="theme.toggleTheme">toggle theme: {{ theme.mode.value }}</button>
     </div>
   </header>
 
