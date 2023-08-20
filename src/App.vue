@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
-
+import { useTheme } from '@/composables/useTheme'
+const theme = useTheme()
 </script>
 
 <template>
@@ -13,6 +14,7 @@ import { RouterLink, RouterView } from 'vue-router'
         <RouterLink to="/mortgage-calculator">Mortgage</RouterLink>
         <RouterLink to="/compound-interest-calculator">Compound Interest</RouterLink>
       </nav>
+      <button @click="theme.toggleTheme">toggle theme: {{ theme.mode.value }}</button>
     </div>
   </header>
 
@@ -20,7 +22,6 @@ import { RouterLink, RouterView } from 'vue-router'
 </template>
 
 <style scoped>
-
 .wrapper {
   padding-bottom: 1rem;
 }
