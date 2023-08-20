@@ -2,6 +2,7 @@
 import { computed } from 'vue'
 import { useCompoundInterestStore } from '@/stores/compound'
 import CompoundInterestCalc from '@/components/calculator/compound-interest/CompoundInterestCalc.vue'
+import { formattedNumber } from '@/helpers/numbers'
 
 const store = useCompoundInterestStore()
 
@@ -37,10 +38,17 @@ const results = computed(() => {
 
       <div class="results-breakdown" v-if="results">
         <h4>Investment Type: {{ results.investmentType }}</h4>
-        <p>Total Investment: {{ results.totalInvestment }}</p>
+        <p>Total Investment: {{ formattedNumber(results.totalInvestment) }}</p>
         <p>Total Payments: {{ results.totalPayments }}</p>
-        <p>Total Payments: {{ results.totalInterest }}</p>
-        <p>End Balance: {{ results.endBalance }}</p>
+
+        <hr />
+        <p>Total Interest: {{ formattedNumber(results.totalInterest) }}</p>
+        <p>End Balance: {{ formattedNumber(results.endBalance) }}</p>
+        <p>
+          In the final year of the investment you will be earning
+          {{ formattedNumber(results.interestPerAnnum[results.interestPerAnnum.length - 1]) }}
+          interest per annum.
+        </p>
       </div>
     </div>
   </main>
@@ -53,6 +61,10 @@ const results = computed(() => {
   &-breakdown {
     h4,
     p {
+      margin-bottom: 1rem;
+    }
+
+    hr {
       margin-bottom: 1rem;
     }
   }

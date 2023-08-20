@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import { formattedNumber } from '@/helpers/numbers'
 
 const emit = defineEmits<{
   (event: 'submit', payload: { event: Event; submission: FormSubmission }): void
@@ -23,18 +24,6 @@ const paymentsPerAnnum = ref(12)
 const amountPerAnnum = ref(0)
 // const isInterestAccruedOnPayments = ref(false)
 // const debtRepayment = ref(0)
-
-const formattedNumber = (num: number) => {
-  return new Intl.NumberFormat('en-GB', {
-    style: 'currency',
-    currency: 'GBP'
-  }).format(num)
-}
-// const formattedPercentage = (num: number) => {
-//   return new Intl.NumberFormat('en-GB', {
-//     style: 'percent'
-//   }).format(num)
-// }
 
 const handleFormSubmit = (event: Event, submission: FormSubmission) => {
   emit('submit', {
