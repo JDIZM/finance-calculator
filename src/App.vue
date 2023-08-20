@@ -1,17 +1,5 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
-import {compoundInterestPerPeriod} from 'compound-interest'
-
-// example interest only payment
-const valueOfHome = compoundInterestPerPeriod({
-  principal: 150_000,
-  rate: 4,
-  years: 5,
-  paymentsPerAnnum: 12,
-  amountPerAnnum: 12_000,
-  debtRepayment: true
-});
-console.log("valueOfHome", valueOfHome);
 
 </script>
 
