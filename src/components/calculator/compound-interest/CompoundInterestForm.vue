@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { formattedNumber } from '@/helpers/numbers'
+import DebtRepaymentOption from '@/components/calculator/compound-interest/DebtRepaymentOption.vue'
 
 const emit = defineEmits<{
   (event: 'submit', payload: { event: Event; submission: FormSubmission }): void
@@ -14,7 +15,10 @@ export interface FormSubmission {
   // isInterestAccruedOnPayments: boolean
   accrualOfPaymentsPerAnnum: boolean
   amountPerAnnum: number
-  // debtRepayment: number
+  debtRepayment?: {
+    interestRate: number
+    type: 'interestOnly' | 'repayment'
+  }
 }
 
 const principal = ref(10_000)
@@ -23,9 +27,13 @@ const years = ref(5)
 const paymentsPerAnnum = ref(12)
 const amountPerAnnum = ref(0)
 // const isInterestAccruedOnPayments = ref(false)
-// const debtRepayment = ref(0)
+
+const isDebtRepayment = ref(false)
+const debtType = ref<'interestOnly' | 'repayment'>('interestOnly')
+const debtInterestRate = ref(6)
 
 const handleFormSubmit = (event: Event, submission: FormSubmission) => {
+  console.log('submit', submission)
   emit('submit', {
     event,
     submission
@@ -46,7 +54,13 @@ const handleFormSubmit = (event: Event, submission: FormSubmission) => {
           years,
           paymentsPerAnnum,
           amountPerAnnum,
-          accrualOfPaymentsPerAnnum: amountPerAnnum > 0 ? true : false
+          accrualOfPaymentsPerAnnum: amountPerAnnum > 0 ? true : false,
+          debtRepayment: isDebtRepayment
+            ? {
+                type: debtType,
+                interestRate: debtInterestRate
+              }
+            : undefined
         })
       "
     >
@@ -63,7 +77,6 @@ const handleFormSubmit = (event: Event, submission: FormSubmission) => {
           Interest Rate (per annum)
           <input type="number" name="rate" id="rate" v-model="rate" />
         </label>
-        <!-- <span>{{ formattedPercentage(rate) }}</span> -->
         <span>{{ rate }}%</span>
       </div>
 
@@ -89,11 +102,22 @@ const handleFormSubmit = (event: Event, submission: FormSubmission) => {
       </div>
 
       <div class="form-input">
+        <h3>Contributions</h3>
         <label>
-          Amount to invest per year
+          How much do you want to invest per year?
           <input type="number" name="amountPerAnnum" id="amountPerAnnum" v-model="amountPerAnnum" />
         </label>
         <span>{{ formattedNumber(amountPerAnnum) }}</span>
+      </div>
+
+      <div class="form-input">
+        <DebtRepaymentOption
+          :type="debtType"
+          :rate="debtInterestRate"
+          @rate="debtInterestRate = $event"
+          @type="debtType = $event"
+          @is-debt-repayment="isDebtRepayment = $event"
+        />
       </div>
 
       <button type="submit">submit</button>
@@ -113,9 +137,14 @@ const handleFormSubmit = (event: Event, submission: FormSubmission) => {
   }
 
   .form-input {
-    display: flex;
-    flex-direction: row;
-    gap: 0.5rem;
+    input {
+      display: block;
+      margin: 0.5rem 0.5rem 0.5rem 0;
+    }
+
+    label {
+      display: block;
+    }
 
     span {
       color: var(--color-secondary);

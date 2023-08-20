@@ -1,4 +1,4 @@
-import { ref, computed } from 'vue'
+import { ref } from 'vue'
 import { defineStore } from 'pinia'
 import type { FormSubmission } from '@/components/calculator/compound-interest/CompoundInterestForm.vue'
 import type { CompoundInterestResult } from 'compound-interest/types/calculator'
@@ -16,7 +16,7 @@ export const useCompoundInterestStore = defineStore('compound', () => {
     options.value = submission
   }
 
-  function setResults(submission: any) {
+  function setResults(submission: CompoundInterestResult) {
     results.value = submission
   }
 
