@@ -1,13 +1,17 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-const emit = defineEmits(['inFocus', 'submit'])
+
+const emit = defineEmits<{
+  (event: 'submit', payload: { event: Event; submission: FormSubmission }): void
+}>()
 
 export interface FormSubmission {
   principal: number
   rate: number
   years: number
   paymentsPerAnnum: number
-  isInterestAccruedOnPayments: boolean
+  // isInterestAccruedOnPayments: boolean
+  accrualOfPaymentsPerAnnum: boolean
   amountPerAnnum: number
   // debtRepayment: number
 }
@@ -17,7 +21,7 @@ const rate = ref(4)
 const years = ref(5)
 const paymentsPerAnnum = ref(12)
 const amountPerAnnum = ref(0)
-const isInterestAccruedOnPayments = ref(false)
+// const isInterestAccruedOnPayments = ref(false)
 // const debtRepayment = ref(0)
 
 const formattedNumber = (num: number) => {
@@ -35,10 +39,7 @@ const formattedNumber = (num: number) => {
 const handleFormSubmit = (event: Event, submission: FormSubmission) => {
   emit('submit', {
     event,
-    submission: {
-      ...submission,
-      accrualOfPaymentsPerAnnum: submission.amountPerAnnum > 0 ? true : false
-    }
+    submission
   })
 }
 </script>
@@ -55,7 +56,7 @@ const handleFormSubmit = (event: Event, submission: FormSubmission) => {
           years,
           paymentsPerAnnum,
           amountPerAnnum,
-          isInterestAccruedOnPayments
+          accrualOfPaymentsPerAnnum: amountPerAnnum > 0 ? true : false
         })
       "
     >
