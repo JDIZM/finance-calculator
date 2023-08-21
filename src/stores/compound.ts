@@ -10,6 +10,7 @@ export const useCompoundInterestStore = defineStore('compound', () => {
   // State
   const options = ref<FormSubmission | null>(null)
   const results = ref<CompoundInterestResult | null>(null)
+  const error = ref<Error | null>(null)
 
   // Actions
   function setOptions(submission: FormSubmission) {
@@ -20,5 +21,9 @@ export const useCompoundInterestStore = defineStore('compound', () => {
     results.value = submission
   }
 
-  return { options, results, setOptions, setResults }
+  function setError(err: Error | null) {
+    error.value = err
+  }
+
+  return { options, results, setOptions, setResults, error, setError }
 })
