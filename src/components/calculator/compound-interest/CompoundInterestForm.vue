@@ -75,7 +75,7 @@ const handleFormSubmit = (event: Event, submission: FormSubmission) => {
       <div class="form-input">
         <label>
           Interest Rate (per annum)
-          <input type="number" name="rate" id="rate" v-model="rate" />
+          <input type="number" name="rate" id="rate" v-model="rate" min="0" />
         </label>
         <span>{{ rate }}%</span>
       </div>
