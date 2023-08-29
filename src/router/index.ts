@@ -18,7 +18,7 @@ const router = createRouter({
       path: '/compound-interest-calculator',
       name: 'compound-interest-calculator',
       component: () => import('../views/CompoundInterestView.vue')
-    },
+    }
   ]
 })
 
