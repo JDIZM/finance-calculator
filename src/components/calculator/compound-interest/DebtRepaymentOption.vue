@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+
 const emit = defineEmits<{
   (event: 'rate', payload: number): void
   (event: 'type', payload: 'interestOnly' | 'repayment'): void
   (event: 'isDebtRepayment', payload: boolean): void
 }>()
+
 const props = defineProps<{
   type: 'interestOnly' | 'repayment'
   rate: number
@@ -16,6 +18,7 @@ const handleInterestChange = (event: Event) => {
   const target = event.target as HTMLInputElement
   emit('rate', Number(target.value))
 }
+
 const handleTypeChange = (type: 'interestOnly' | 'repayment') => {
   emit('type', type)
 }
