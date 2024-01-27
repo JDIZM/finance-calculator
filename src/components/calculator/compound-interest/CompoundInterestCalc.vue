@@ -1,3 +1,14 @@
+<template>
+  <div class="compound-interest-calc">
+    <h2>Compound Interest Calculator</h2>
+    <p>a simple compound interest calculator</p>
+    <CompoundInterestForm @submit="calculateInterest" />
+    <p class="error" v-if="store.error">
+      {{ store.error }}
+    </p>
+  </div>
+</template>
+
 <script setup lang="ts">
 import CompoundInterestForm, {
   type FormSubmission
@@ -23,19 +34,9 @@ const calculateInterest = (e: { event: Event; submission: FormSubmission }) => {
 }
 </script>
 
-<template>
-  <div class="compound-interest-calc">
-    <h2>Compound Interest Calculator</h2>
-    <p>a simple compound interest calculator</p>
-    <CompoundInterestForm @submit="calculateInterest" />
-    <p class="error" v-if="store.error">
-      {{ store.error }}
-    </p>
-  </div>
-</template>
-
 <style scoped lang="scss">
 .compound-interest-calc {
+
   h2,
   p {
     padding: 1rem;

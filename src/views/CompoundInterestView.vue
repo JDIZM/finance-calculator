@@ -1,32 +1,3 @@
-<script setup lang="ts">
-import { computed } from 'vue'
-import { useCompoundInterestStore } from '@/stores/compound'
-import CompoundInterestCalc from '@/components/calculator/compound-interest/CompoundInterestCalc.vue'
-import { formattedNumber } from '@/helpers/numbers'
-
-const store = useCompoundInterestStore()
-
-// Subscription to store actions
-store.$onAction((action) => {
-  console.log('action', action)
-  if (action.name === 'setOptions') {
-    console.log('setOptions', action)
-  }
-  if (action.name === 'setResults') {
-    console.log('setResults', action)
-  }
-})
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const options = computed(() => {
-  return store.options
-})
-
-const results = computed(() => {
-  return store.results
-})
-</script>
-
 <template>
   <main>
     <CompoundInterestCalc />
@@ -78,6 +49,35 @@ const results = computed(() => {
     </div>
   </main>
 </template>
+
+<script setup lang="ts">
+import { computed } from 'vue'
+import { useCompoundInterestStore } from '@/stores/compound'
+import CompoundInterestCalc from '@/components/calculator/compound-interest/CompoundInterestCalc.vue'
+import { formattedNumber } from '@/helpers/numbers'
+
+const store = useCompoundInterestStore()
+
+// Subscription to store actions
+store.$onAction((action) => {
+  console.log('action', action)
+  if (action.name === 'setOptions') {
+    console.log('setOptions', action)
+  }
+  if (action.name === 'setResults') {
+    console.log('setResults', action)
+  }
+})
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const options = computed(() => {
+  return store.options
+})
+
+const results = computed(() => {
+  return store.results
+})
+</script>
 
 <style lang="scss" scoped>
 .results {

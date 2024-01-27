@@ -1,3 +1,74 @@
+<template>
+  <div class="compound-interest-form">
+    <h2>Compound Interest Form</h2>
+
+    <form @submit.prevent="
+      handleFormSubmit($event, {
+        principal,
+        rate,
+        years,
+        paymentsPerAnnum,
+        amountPerAnnum,
+        accrualOfPaymentsPerAnnum: amountPerAnnum > 0 ? true : false,
+        debtRepayment: isDebtRepayment
+          ? {
+            type: debtType,
+            interestRate: debtInterestRate
+          }
+          : undefined
+      })
+      ">
+      <div class="form-input">
+        <label>
+          Principal
+          <input type="number" name="principal" id="principal" v-model="principal" />
+        </label>
+        <span>{{ formattedNumber(principal) }}</span>
+      </div>
+
+      <div class="form-input">
+        <label>
+          Interest Rate (per annum)
+          <input type="number" name="rate" id="rate" v-model="rate" min="0" />
+        </label>
+        <span>{{ rate }}%</span>
+      </div>
+
+      <div class="form-input">
+        <label>
+          # of years to compound
+          <input type="number" name="years" id="years" v-model="years" />
+        </label>
+        <span>{{ years }}</span>
+      </div>
+
+      <div class="form-input">
+        <label>
+          payments per year (12 for monthly)
+          <input type="number" name="paymentsPerAnnum" id="paymentsPerAnnum" v-model="paymentsPerAnnum" />
+        </label>
+        <span>{{ paymentsPerAnnum }}</span>
+      </div>
+
+      <div class="form-input">
+        <h3>Contributions</h3>
+        <label>
+          How much do you want to invest per year?
+          <input type="number" name="amountPerAnnum" id="amountPerAnnum" v-model="amountPerAnnum" />
+        </label>
+        <span>{{ formattedNumber(amountPerAnnum) }}</span>
+      </div>
+
+      <div class="form-input">
+        <DebtRepaymentOption :type="debtType" :rate="debtInterestRate" @rate="debtInterestRate = $event"
+          @type="debtType = $event" @is-debt-repayment="isDebtRepayment = $event" />
+      </div>
+
+      <button type="submit">submit</button>
+    </form>
+  </div>
+</template>
+
 <script setup lang="ts">
 import { ref } from 'vue'
 import { formattedNumber } from '@/helpers/numbers'
@@ -41,89 +112,6 @@ const handleFormSubmit = (event: Event, submission: FormSubmission) => {
   // TODO save to local storage?
 }
 </script>
-
-<template>
-  <div class="compound-interest-form">
-    <h2>Compound Interest Form</h2>
-
-    <form
-      @submit.prevent="
-        handleFormSubmit($event, {
-          principal,
-          rate,
-          years,
-          paymentsPerAnnum,
-          amountPerAnnum,
-          accrualOfPaymentsPerAnnum: amountPerAnnum > 0 ? true : false,
-          debtRepayment: isDebtRepayment
-            ? {
-                type: debtType,
-                interestRate: debtInterestRate
-              }
-            : undefined
-        })
-      "
-    >
-      <div class="form-input">
-        <label>
-          Principal
-          <input type="number" name="principal" id="principal" v-model="principal" />
-        </label>
-        <span>{{ formattedNumber(principal) }}</span>
-      </div>
-
-      <div class="form-input">
-        <label>
-          Interest Rate (per annum)
-          <input type="number" name="rate" id="rate" v-model="rate" min="0" />
-        </label>
-        <span>{{ rate }}%</span>
-      </div>
-
-      <div class="form-input">
-        <label>
-          # of years to compound
-          <input type="number" name="years" id="years" v-model="years" />
-        </label>
-        <span>{{ years }}</span>
-      </div>
-
-      <div class="form-input">
-        <label>
-          payments per year (12 for monthly)
-          <input
-            type="number"
-            name="paymentsPerAnnum"
-            id="paymentsPerAnnum"
-            v-model="paymentsPerAnnum"
-          />
-        </label>
-        <span>{{ paymentsPerAnnum }}</span>
-      </div>
-
-      <div class="form-input">
-        <h3>Contributions</h3>
-        <label>
-          How much do you want to invest per year?
-          <input type="number" name="amountPerAnnum" id="amountPerAnnum" v-model="amountPerAnnum" />
-        </label>
-        <span>{{ formattedNumber(amountPerAnnum) }}</span>
-      </div>
-
-      <div class="form-input">
-        <DebtRepaymentOption
-          :type="debtType"
-          :rate="debtInterestRate"
-          @rate="debtInterestRate = $event"
-          @type="debtType = $event"
-          @is-debt-repayment="isDebtRepayment = $event"
-        />
-      </div>
-
-      <button type="submit">submit</button>
-    </form>
-  </div>
-</template>
 
 <style lang="scss" scoped>
 .compound-interest-form {

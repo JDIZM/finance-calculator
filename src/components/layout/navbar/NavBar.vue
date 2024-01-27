@@ -1,8 +1,3 @@
-<script setup lang="ts">
-import { RouterLink } from 'vue-router'
-import ToggleTheme from '@/components/theme/toggle-theme/ToggleTheme.vue'
-</script>
-
 <template>
   <header>
     <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="100" height="100" />
@@ -18,6 +13,11 @@ import ToggleTheme from '@/components/theme/toggle-theme/ToggleTheme.vue'
     <ToggleTheme />
   </header>
 </template>
+
+<script setup lang="ts">
+import { RouterLink } from 'vue-router'
+import ToggleTheme from '@/components/theme/toggle-theme/ToggleTheme.vue'
+</script>
 
 <style scoped>
 .wrapper {

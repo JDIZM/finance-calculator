@@ -1,24 +1,24 @@
-<script setup lang="ts">
-// import FinanceOptions from '@/components/FinanceOptions.vue'
-// import { ref } from 'vue'
-
-// const financeOptions = ref([
-//   {
-//     text: 'Compound Interest',
-//     value: 'compound-interest'
-//   },
-//   {
-//     text: 'Mortgage',
-//     value: 'mortgage'
-//   }
-// ])
-</script>
-
 <template>
   <main>
     <h2>Mortgage Calculator</h2>
     <p>a simple mortgage calculator</p>
     <h4>Coming soon...</h4>
-    <!-- <FinanceOptions :options="financeOptions" /> -->
+    <FinanceOptions :options="financeOptions" />
   </main>
 </template>
+
+<script setup lang="ts">
+import FinanceOptions from '@/components/FinanceOptions.vue'
+import { ref } from 'vue'
+
+const financeOptions = ref([
+  {
+    text: 'Compound Interest',
+    value: 'compound-interest'
+  },
+  {
+    text: 'Mortgage',
+    value: 'mortgage'
+  }
+])
+</script>
