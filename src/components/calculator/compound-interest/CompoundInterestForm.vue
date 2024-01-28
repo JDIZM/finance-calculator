@@ -2,22 +2,7 @@
   <div class="compound-interest-form">
     <h2>Compound Interest Form</h2>
 
-    <form @submit.prevent="
-      handleFormSubmit($event, {
-        principal,
-        rate,
-        years,
-        paymentsPerAnnum,
-        amountPerAnnum,
-        accrualOfPaymentsPerAnnum: amountPerAnnum > 0 ? true : false,
-        debtRepayment: isDebtRepayment
-          ? {
-            type: debtType,
-            interestRate: debtInterestRate
-          }
-          : undefined
-      })
-      ">
+    <form @submit.prevent="handleFormSubmit($event)">
       <div class="form-input">
         <label>
           Principal
@@ -83,7 +68,6 @@ export interface FormSubmission {
   rate: number
   years: number
   paymentsPerAnnum: number
-  // isInterestAccruedOnPayments: boolean
   accrualOfPaymentsPerAnnum: boolean
   amountPerAnnum: number
   debtRepayment?: {
@@ -97,17 +81,29 @@ const rate = ref(4)
 const years = ref(5)
 const paymentsPerAnnum = ref(12)
 const amountPerAnnum = ref(0)
-// const isInterestAccruedOnPayments = ref(false)
-
 const isDebtRepayment = ref(false)
 const debtType = ref<'interestOnly' | 'repayment'>('interestOnly')
 const debtInterestRate = ref(6)
 
-const handleFormSubmit = (event: Event, submission: FormSubmission) => {
-  console.log('submit', submission)
+const submissionPayload: FormSubmission = {
+  principal: principal.value,
+  rate: rate.value,
+  years: years.value,
+  paymentsPerAnnum: paymentsPerAnnum.value,
+  amountPerAnnum: amountPerAnnum.value,
+  accrualOfPaymentsPerAnnum: amountPerAnnum.value > 0 ? true : false,
+  debtRepayment: isDebtRepayment.value
+    ? {
+      type: debtType.value,
+      interestRate: debtInterestRate.value
+    }
+    : undefined
+}
+
+const handleFormSubmit = (event: Event) => {
   emit('submit', {
     event,
-    submission
+    submission: submissionPayload
   })
   // TODO save to local storage?
 }
