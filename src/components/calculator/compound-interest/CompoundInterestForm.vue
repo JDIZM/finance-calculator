@@ -95,16 +95,16 @@ const isDebtRepayment = ref(false)
 const debtType = ref<'interestOnly' | 'repayment'>('interestOnly')
 const debtInterestRate = ref(6)
 
-const submissionPayload: FormSubmission = {
-  principal: principal.value,
-  rate: rate.value,
-  years: years.value,
-  paymentsPerAnnum: paymentsPerAnnum.value,
-  amountPerAnnum: amountPerAnnum.value,
-  accrualOfPaymentsPerAnnum: amountPerAnnum.value > 0 ? true : false
-}
-
 const handleFormSubmit = (event: Event) => {
+  const submissionPayload: FormSubmission = {
+    principal: principal.value,
+    rate: rate.value,
+    years: years.value,
+    paymentsPerAnnum: paymentsPerAnnum.value,
+    amountPerAnnum: amountPerAnnum.value,
+    accrualOfPaymentsPerAnnum: amountPerAnnum.value > 0 ? true : false
+  }
+
   if (isDebtRepayment.value) {
     submissionPayload.debtRepayment = {
       type: debtType.value,
