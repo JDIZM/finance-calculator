@@ -30,7 +30,12 @@
       <div class="form-input">
         <label>
           payments per year (12 for monthly)
-          <input type="number" name="paymentsPerAnnum" id="paymentsPerAnnum" v-model="paymentsPerAnnum" />
+          <input
+            type="number"
+            name="paymentsPerAnnum"
+            id="paymentsPerAnnum"
+            v-model="paymentsPerAnnum"
+          />
         </label>
         <span>{{ paymentsPerAnnum }}</span>
       </div>
@@ -45,8 +50,13 @@
       </div>
 
       <div class="form-input">
-        <DebtRepaymentOption :type="debtType" :rate="debtInterestRate" @rate="debtInterestRate = $event"
-          @type="debtType = $event" @is-debt-repayment="isDebtRepayment = $event" />
+        <DebtRepaymentOption
+          :type="debtType"
+          :rate="debtInterestRate"
+          @rate="debtInterestRate = $event"
+          @type="debtType = $event"
+          @is-debt-repayment="isDebtRepayment = $event"
+        />
       </div>
 
       <button type="submit">submit</button>
@@ -91,16 +101,17 @@ const submissionPayload: FormSubmission = {
   years: years.value,
   paymentsPerAnnum: paymentsPerAnnum.value,
   amountPerAnnum: amountPerAnnum.value,
-  accrualOfPaymentsPerAnnum: amountPerAnnum.value > 0 ? true : false,
-  debtRepayment: isDebtRepayment.value
-    ? {
-      type: debtType.value,
-      interestRate: debtInterestRate.value
-    }
-    : undefined
+  accrualOfPaymentsPerAnnum: amountPerAnnum.value > 0 ? true : false
 }
 
 const handleFormSubmit = (event: Event) => {
+  if (isDebtRepayment.value) {
+    submissionPayload.debtRepayment = {
+      type: debtType.value,
+      interestRate: debtInterestRate.value
+    }
+  }
+
   emit('submit', {
     event,
     submission: submissionPayload

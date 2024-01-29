@@ -1,7 +1,7 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
 import type { FormSubmission } from '@/components/calculator/compound-interest/CompoundInterestForm.vue'
-import type { CompoundInterestResult } from 'compound-interest/types/calculator'
+import type { CompoundInterestResult } from '@jdizm/finance-calculator/types/calculator'
 
 export const useCompoundInterestStore = defineStore('compound', () => {
   // Setup stores

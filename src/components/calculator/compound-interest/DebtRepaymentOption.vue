@@ -3,25 +3,48 @@
     <h3>Debt Repayment</h3>
     <label>
       Is the principal borrowed?
-      <input type="checkbox" name="debt-repayment" id="debt-repayment" :checked="isDebtRepayment"
-        v-model="isDebtRepayment" @change="$emit('isDebtRepayment', isDebtRepayment)" />
+      <input
+        type="checkbox"
+        name="debt-repayment"
+        id="debt-repayment"
+        :checked="isDebtRepayment"
+        v-model="isDebtRepayment"
+        @change="$emit('isDebtRepayment', isDebtRepayment)"
+      />
     </label>
 
     <div class="debt-repayment-options" v-if="isDebtRepayment">
       <label>
         Interest Rate of the loaned principal
-        <input type="number" placeholder="0" min="0" step="1" :value="props.rate" @input="handleInterestChange" />
+        <input
+          type="number"
+          placeholder="0"
+          min="0"
+          step="1"
+          :value="props.rate"
+          @input="handleInterestChange"
+        />
       </label>
       <div class="select-type">
         <p>Choose the type of debt. Do you want to pay back the principal or only the interest?</p>
         <label>
-          <input type="radio" name="type" value="interestOnly" :checked="props.type === 'interestOnly'"
-            @change="handleTypeChange('interestOnly')" />
+          <input
+            type="radio"
+            name="type"
+            value="interestOnly"
+            :checked="props.type === 'interestOnly'"
+            @change="handleTypeChange('interestOnly')"
+          />
           Interest Only
         </label>
         <label>
-          <input type="radio" name="type" value="repayment" @change="handleTypeChange('repayment')"
-            :checked="props.type === 'repayment'" />
+          <input
+            type="radio"
+            name="type"
+            value="repayment"
+            @change="handleTypeChange('repayment')"
+            :checked="props.type === 'repayment'"
+          />
           Repayment
         </label>
       </div>

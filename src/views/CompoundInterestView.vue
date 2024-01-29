@@ -3,7 +3,6 @@
     <CompoundInterestCalc />
 
     <div class="results">
-      <!-- results from store-->
       <h2>Results</h2>
       <p v-if="!results">Submit the form to calculate the compound interest.</p>
 

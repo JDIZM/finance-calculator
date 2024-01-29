@@ -13,7 +13,7 @@
 import CompoundInterestForm, {
   type FormSubmission
 } from '@/components/calculator/compound-interest/CompoundInterestForm.vue'
-import { compoundInterestPerPeriod } from 'compound-interest'
+import { compoundInterestPerPeriod } from '@jdizm/finance-calculator'
 
 import { useCompoundInterestStore } from '@/stores/compound'
 
@@ -27,6 +27,7 @@ const calculateInterest = (e: { event: Event; submission: FormSubmission }) => {
     store.setOptions(e.submission)
     store.setResults(result)
   } catch (error) {
+    console.error(error)
     if (error instanceof Error) {
       store.setError(error)
     }
@@ -36,7 +37,6 @@ const calculateInterest = (e: { event: Event; submission: FormSubmission }) => {
 
 <style scoped lang="scss">
 .compound-interest-calc {
-
   h2,
   p {
     padding: 1rem;
