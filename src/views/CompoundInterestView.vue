@@ -52,7 +52,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useCompoundInterestStore } from '@/stores/compound'
-import CompoundInterestCalc from '@/components/calculator/compound-interest/CompoundInterestCalc.vue'
+import CompoundInterestCalc from '@/components/calculator/compound-interest/calc/CompoundInterestCalc.vue'
 import { formattedNumber } from '@/helpers/numbers'
 
 const store = useCompoundInterestStore()

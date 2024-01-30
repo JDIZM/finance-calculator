@@ -67,7 +67,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { formattedNumber } from '@/helpers/numbers'
-import DebtRepaymentOption from '@/components/calculator/compound-interest/DebtRepaymentOption.vue'
+import DebtRepaymentOption from '@/components/calculator/compound-interest/debt-repayment/DebtRepaymentOption.vue'
 
 const emit = defineEmits<{
   (event: 'submit', payload: { event: Event; submission: FormSubmission }): void

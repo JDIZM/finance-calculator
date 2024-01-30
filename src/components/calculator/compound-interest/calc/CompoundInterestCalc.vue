@@ -12,7 +12,7 @@
 <script setup lang="ts">
 import CompoundInterestForm, {
   type FormSubmission
-} from '@/components/calculator/compound-interest/CompoundInterestForm.vue'
+} from '@/components/calculator/compound-interest/form/CompoundInterestForm.vue'
 import { compoundInterestPerPeriod } from '@jdizm/finance-calculator'
 
 import { useCompoundInterestStore } from '@/stores/compound'
@@ -22,12 +22,10 @@ const store = useCompoundInterestStore()
 const calculateInterest = (e: { event: Event; submission: FormSubmission }) => {
   try {
     const result = compoundInterestPerPeriod(e.submission)
-    console.log('result', result)
     store.setError(null)
     store.setOptions(e.submission)
     store.setResults(result)
   } catch (error) {
-    console.error(error)
     if (error instanceof Error) {
       store.setError(error)
     }
