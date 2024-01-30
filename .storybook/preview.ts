@@ -12,9 +12,6 @@ setup((app: App) => {
 
 const preview: Preview = {
   parameters: {
-    backgrounds: {
-      default: 'clear'
-    },
     actions: { argTypesRegex: '^on[A-Z].*' },
     controls: {
       matchers: {
