@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import NotFound from '../views/NotFound.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -18,6 +19,10 @@ const router = createRouter({
       path: '/compound-interest-calculator',
       name: 'compound-interest-calculator',
       component: () => import('../views/CompoundInterestView.vue')
+    },
+    {
+      path: '/:notFound',
+      component: NotFound
     }
   ]
 })
