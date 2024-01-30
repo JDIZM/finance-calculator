@@ -19,7 +19,7 @@ import { RouterLink } from 'vue-router'
 import ToggleTheme from '@/components/theme/toggle-theme/ToggleTheme.vue'
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .wrapper {
   padding-bottom: 1rem;
 }
