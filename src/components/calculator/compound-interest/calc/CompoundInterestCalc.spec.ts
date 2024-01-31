@@ -3,7 +3,6 @@ import { mount, VueWrapper } from '@vue/test-utils'
 import CompoundInterestCalc from './CompoundInterestCalc.vue'
 
 // pinia
-// import { setActivePinia, createPinia } from 'pinia'
 import { createTestingPinia } from '@pinia/testing'
 import { useCompoundInterestStore } from '@/stores/compound'
 
@@ -26,6 +25,7 @@ describe('CompoundInterestCalc', () => {
     console.log('wrapper', wrapper.html())
     // setup store
     const store = useCompoundInterestStore()
+    console.log('compound store', store)
     expect(wrapper.exists()).toBe(true)
   })
 })
