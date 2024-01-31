@@ -1,23 +1,22 @@
 <template>
-  <h2>Finance Options</h2>
   <select v-model="selected">
     <option v-for="option in options" :key="option.value" :value="option.value">
       {{ option.text }}
     </option>
   </select>
-
-  <div>Selected: {{ selected }}</div>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
-const { options } = defineProps({
-  options: { type: Array<{ text: string; value: string }>, required: true }
+
+const { options, modelValue } = defineProps({
+  options: { type: Array<{ text: string; value: string }>, required: true },
+  modelValue: { type: String, required: true }
 })
 
-const selected = ref(options[0].value ?? '')
+const selected = ref(modelValue ?? options[0].value ?? '')
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 //
 </style>
