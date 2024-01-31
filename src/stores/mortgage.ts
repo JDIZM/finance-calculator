@@ -32,6 +32,14 @@ export const useMortgageStore = defineStore('mortgage', () => {
 
   function setError(err: Error | null) {
     error.value = err
+    results.value = null
+  }
+
+  function $reset() {
+    options.value = null
+    mortgagetype.value = 'repayment'
+    results.value = null
+    error.value = null
   }
 
   return {
@@ -42,6 +50,7 @@ export const useMortgageStore = defineStore('mortgage', () => {
     setMortgageType,
     setResults,
     error,
-    setError
+    setError,
+    $reset
   }
 })
