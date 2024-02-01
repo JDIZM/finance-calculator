@@ -17,7 +17,6 @@ describe('NavBar', () => {
     })
   })
   it('renders properly', () => {
-    console.log(wrapper.html())
     expect(wrapper.exists()).toBe(true)
     expect(logo().exists()).toBe(true)
     expect(nav().exists()).toBe(true)

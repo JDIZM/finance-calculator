@@ -10,7 +10,6 @@ describe('CompoundInterestForm', () => {
   })
 
   it('renders properly', () => {
-    console.log('wrapper', wrapper.html())
     expect(wrapper.exists()).toBe(true)
   })
 })

@@ -22,10 +22,8 @@ describe('CompoundInterestCalc', () => {
   })
 
   it('renders properly', () => {
-    console.log('wrapper', wrapper.html())
-    // setup store
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const store = useCompoundInterestStore()
-    console.log('compound store', store)
     expect(wrapper.exists()).toBe(true)
   })
 })

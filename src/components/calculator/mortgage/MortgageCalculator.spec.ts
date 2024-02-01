@@ -22,9 +22,8 @@ describe('MortgageCalculator', () => {
   })
 
   it('renders properly', () => {
-    console.log('wrapper', wrapper.html())
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const store = useMortgageStore()
-    console.log('mortgage store', store)
     expect(wrapper.exists()).toBe(true)
   })
 })
