@@ -38,7 +38,7 @@ import { ref } from 'vue'
 import type { MortgageOptions } from '@jdizm/finance-calculator/types/calculator'
 import { mortgageCalculator } from '@jdizm/finance-calculator'
 import { useMortgageStore } from '@/stores/mortgage'
-import MortgageTypeSelect from '@/components/SelectOptions.vue'
+import MortgageTypeSelect from '@/components/common/select-options/SelectOptions.vue'
 
 const store = useMortgageStore()
 
