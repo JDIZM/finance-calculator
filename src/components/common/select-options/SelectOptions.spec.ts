@@ -23,6 +23,6 @@ describe('SelectOptions', () => {
     expect(wrapper.exists()).toBe(true)
   })
 
-  xit('renders with the default option selected', () => {})
-  xit('changes the selected option when clicked', () => {})
+  it('renders with the default option selected', () => {})
+  it('changes the selected option when clicked', () => {})
 })
