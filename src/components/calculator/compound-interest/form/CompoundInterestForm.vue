@@ -63,7 +63,7 @@
           :rate="debtInterestRate"
           @rate="debtInterestRate = $event"
           @type="debtType = $event"
-          @is-debt-repayment="isDebtRepayment = $event"
+          v-model="isDebtRepayment"
         />
       </div>
 

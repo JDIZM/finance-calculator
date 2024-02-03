@@ -55,7 +55,6 @@ const emit = defineEmits<{
 const props = defineProps<{
   type: 'interestOnly' | 'repayment'
   rate: number
-  checked?: boolean
 }>()
 
 const radioButtons = [
@@ -63,7 +62,7 @@ const radioButtons = [
   { value: 'repayment', label: 'Repayment' }
 ] as const
 
-const isDebtRepayment = ref(props.checked ?? false)
+const isDebtRepayment = defineModel({ required: true, default: false })
 
 const handleInterestChange = (event: Event) => {
   const target = event.target as HTMLInputElement

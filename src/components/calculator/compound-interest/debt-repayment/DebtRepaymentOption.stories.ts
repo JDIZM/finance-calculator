@@ -32,6 +32,16 @@ export const Default: Story = {
   }),
   args: {
     type: 'interestOnly',
-    rate: 4
+    rate: 4,
+    modelValue: false
+  }
+}
+
+export const Checked: Story = {
+  ...Default,
+  args: {
+    type: 'repayment',
+    rate: 4,
+    modelValue: true
   }
 }
