@@ -7,14 +7,11 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-
-const { options, modelValue } = defineProps({
-  options: { type: Array<{ text: string; value: string }>, required: true },
-  modelValue: { type: String, required: true }
+const { options } = defineProps({
+  options: { type: Array<{ text: string; value: string }>, required: true }
 })
 
-const selected = ref(modelValue ?? options[0].value ?? '')
+const selected = defineModel({ required: true })
 </script>
 
 <style lang="scss" scoped>
