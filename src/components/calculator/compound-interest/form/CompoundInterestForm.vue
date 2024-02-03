@@ -14,7 +14,7 @@
       <div class="form-input">
         <label>
           Interest Rate (per annum)
-          <input type="number" name="rate" id="rate" v-model="rate" min="0" />
+          <input type="number" name="rate" id="rate" v-model="rate" min="0" max="99" step="any" />
         </label>
         <span>{{ rate }}%</span>
       </div>
@@ -22,7 +22,7 @@
       <div class="form-input">
         <label>
           # of years to compound
-          <input type="number" name="years" id="years" v-model="years" />
+          <input type="number" name="years" id="years" v-model="years" min="0" />
         </label>
         <span>{{ years }}</span>
       </div>
@@ -35,6 +35,8 @@
             name="paymentsPerAnnum"
             id="paymentsPerAnnum"
             v-model="paymentsPerAnnum"
+            min="0"
+            max="12"
           />
         </label>
         <span>{{ paymentsPerAnnum }}</span>
@@ -44,7 +46,13 @@
         <h3>Contributions</h3>
         <label>
           How much do you want to invest per year?
-          <input type="number" name="amountPerAnnum" id="amountPerAnnum" v-model="amountPerAnnum" />
+          <input
+            type="number"
+            name="amountPerAnnum"
+            id="amountPerAnnum"
+            v-model="amountPerAnnum"
+            min="0"
+          />
         </label>
         <span>{{ formattedNumber(amountPerAnnum) }}</span>
       </div>

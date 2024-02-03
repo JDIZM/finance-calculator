@@ -11,19 +11,27 @@
     <form @submit.prevent="calculateMortgage($event)">
       <label>
         Home Value
-        <input type="number" name="homeValue" id="homeValue" v-model="homeValue" />
+        <input type="number" name="homeValue" id="homeValue" v-model="homeValue" min="0" />
       </label>
       <label>
         Deposit
-        <input type="number" name="deposit" id="deposit" v-model="deposit" />
+        <input type="number" name="deposit" id="deposit" v-model="deposit" min="0" />
       </label>
       <label>
         Interest Rate
-        <input type="number" name="interestRate" id="interestRate" v-model="interestRate" />
+        <input
+          type="number"
+          name="interestRate"
+          id="interestRate"
+          v-model="interestRate"
+          min="0"
+          max="99"
+          step="any"
+        />
       </label>
       <label>
         Years
-        <input type="number" name="years" id="years" v-model="years" />
+        <input type="number" name="years" id="years" v-model="years" min="0" />
       </label>
       <button type="submit">Submit</button>
     </form>
