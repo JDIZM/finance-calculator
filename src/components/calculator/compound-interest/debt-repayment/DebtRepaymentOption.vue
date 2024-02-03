@@ -20,32 +20,23 @@
           type="number"
           placeholder="0"
           min="0"
-          step="1"
+          max="99"
+          step="any"
           :value="props.rate"
           @input="handleInterestChange"
         />
       </label>
       <div class="select-type">
         <p>Choose the type of debt. Do you want to pay back the principal or only the interest?</p>
-        <label>
+        <label v-for="{ label, value } in radioButtons" :key="value">
+          {{ label }}
           <input
             type="radio"
             name="type"
-            value="interestOnly"
-            :checked="props.type === 'interestOnly'"
-            @change="handleTypeChange('interestOnly')"
+            :value="value"
+            :checked="props.type === value"
+            @change="handleTypeChange(value)"
           />
-          Interest Only
-        </label>
-        <label>
-          <input
-            type="radio"
-            name="type"
-            value="repayment"
-            @change="handleTypeChange('repayment')"
-            :checked="props.type === 'repayment'"
-          />
-          Repayment
         </label>
       </div>
     </div>
@@ -64,9 +55,15 @@ const emit = defineEmits<{
 const props = defineProps<{
   type: 'interestOnly' | 'repayment'
   rate: number
+  checked?: boolean
 }>()
 
-const isDebtRepayment = ref(false)
+const radioButtons = [
+  { value: 'interestOnly', label: 'Interest Only' },
+  { value: 'repayment', label: 'Repayment' }
+] as const
+
+const isDebtRepayment = ref(props.checked ?? false)
 
 const handleInterestChange = (event: Event) => {
   const target = event.target as HTMLInputElement
