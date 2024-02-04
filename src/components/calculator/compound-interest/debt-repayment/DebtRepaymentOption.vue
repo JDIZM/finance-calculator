@@ -44,8 +44,6 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-
 const emit = defineEmits<{
   (event: 'rate', payload: number): void
   (event: 'type', payload: 'interestOnly' | 'repayment'): void
