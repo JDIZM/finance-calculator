@@ -42,7 +42,7 @@ nav {
 }
 
 nav a.router-link-exact-active {
-  color: var(--color-text);
+  color: var(--color-primary);
 }
 
 nav a.router-link-exact-active:hover {
