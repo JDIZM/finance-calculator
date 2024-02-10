@@ -110,7 +110,7 @@ const handleFormSubmit = (event: Event) => {
     years: years.value,
     paymentsPerAnnum: paymentsPerAnnum.value,
     amountPerAnnum: amountPerAnnum.value,
-    accrualOfPaymentsPerAnnum: amountPerAnnum.value > 0 ? true : false
+    accrualOfPaymentsPerAnnum: amountPerAnnum.value > 0 && !isDebtRepayment.value ? true : false
   }
 
   if (isDebtRepayment.value) {
