@@ -38,6 +38,8 @@ $semantic-colors: (
   color-error: map-get($colors, error),
   color-links: map-get($colors, secondary-light-1),
   color-links-hover: map-get($colors, primary-light),
+  color-disabled: map-get($colors, divider-light-2),
+  color-warning: map-get($colors, error),
   section-gap: 160px
 );
 
