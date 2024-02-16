@@ -9,7 +9,7 @@
 
 <script setup lang="ts">
 import MortgageCalculator from '@/components/calculator/mortgage/MortgageCalculator.vue'
-import MortgageResults from '@/components/calculator/compound-interest/results/mortgage/MortgageResults.vue'
+import MortgageResults from '@/components/calculator/mortgage/results/MortgageResults.vue'
 import { useMortgageStore } from '@/stores/mortgage'
 
 const store = useMortgageStore()

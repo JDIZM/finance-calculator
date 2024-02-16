@@ -1,5 +1,5 @@
 // import { useMortgageStore } from '@/stores/mortgage'
-import { mortgageStore } from '../../../../../../.storybook/preview'
+import { mortgageStore } from '../../../../../.storybook/preview'
 import MortgageResults from './MortgageResults.vue'
 import type { Meta, StoryObj } from '@storybook/vue3'
 import type { ComponentProps } from 'vue-component-type-helpers'
