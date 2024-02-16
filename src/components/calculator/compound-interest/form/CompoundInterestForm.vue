@@ -76,23 +76,11 @@
 import { ref } from 'vue'
 import { formattedNumber } from '@/helpers/numbers'
 import DebtRepaymentOption from '@/components/calculator/compound-interest/debt-repayment/DebtRepaymentOption.vue'
+import type { IOptions } from '@jdizm/finance-calculator/types/calculator'
 
 const emit = defineEmits<{
-  (event: 'submit', payload: { event: Event; submission: FormSubmission }): void
+  (event: 'submit', payload: { event: Event; submission: IOptions }): void
 }>()
-
-export interface FormSubmission {
-  principal: number
-  rate: number
-  years: number
-  paymentsPerAnnum: number
-  accrualOfPaymentsPerAnnum: boolean
-  amountPerAnnum: number
-  debtRepayment?: {
-    interestRate: number
-    type: 'interestOnly' | 'repayment'
-  }
-}
 
 const principal = ref(10_000)
 const rate = ref(4)
@@ -104,19 +92,31 @@ const debtType = ref<'interestOnly' | 'repayment'>('interestOnly')
 const debtInterestRate = ref(6)
 
 const handleFormSubmit = (event: Event) => {
-  const submissionPayload: FormSubmission = {
+  let submissionPayload: IOptions = {
+    type: 'lumpSum',
     principal: principal.value,
     rate: rate.value,
     years: years.value,
-    paymentsPerAnnum: paymentsPerAnnum.value,
-    amountPerAnnum: amountPerAnnum.value,
-    accrualOfPaymentsPerAnnum: amountPerAnnum.value > 0 && !isDebtRepayment.value ? true : false
+    paymentsPerAnnum: paymentsPerAnnum.value
   }
 
   if (isDebtRepayment.value) {
-    submissionPayload.debtRepayment = {
-      type: debtType.value,
-      interestRate: debtInterestRate.value
+    submissionPayload = {
+      ...submissionPayload,
+      type: 'debtRepayment',
+      debtRepayment: {
+        type: debtType.value,
+        interestRate: debtInterestRate.value
+      }
+    }
+  }
+
+  if (amountPerAnnum.value > 0 && !isDebtRepayment.value) {
+    submissionPayload = {
+      ...submissionPayload,
+      type: 'contribution',
+      amountPerAnnum: amountPerAnnum.value,
+      accrualOfPaymentsPerAnnum: true
     }
   }
 
@@ -124,7 +124,6 @@ const handleFormSubmit = (event: Event) => {
     event,
     submission: submissionPayload
   })
-  // TODO save to local storage?
 }
 </script>
 
