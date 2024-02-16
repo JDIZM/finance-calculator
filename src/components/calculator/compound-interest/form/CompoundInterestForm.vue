@@ -44,6 +44,7 @@
 
       <div class="form-input">
         <h3>Contributions</h3>
+        <p v-if="isDebtRepayment" class="warning">Contributions are disabled for debtRepayment</p>
         <label>
           How much do you want to invest per year?
           <input
@@ -52,6 +53,7 @@
             id="amountPerAnnum"
             v-model="amountPerAnnum"
             min="0"
+            :disabled="isDebtRepayment"
           />
         </label>
         <span>{{ formattedNumber(amountPerAnnum) }}</span>
@@ -132,6 +134,10 @@ const handleFormSubmit = (event: Event) => {
   border: 1px solid var(--color-secondary);
   padding: 1rem;
 
+  .warning {
+    color: var(--color-warning);
+  }
+
   form {
     display: flex;
     flex-direction: column;
@@ -142,6 +148,11 @@ const handleFormSubmit = (event: Event) => {
     input {
       display: block;
       margin: 0.5rem 0.5rem 0.5rem 0;
+
+      &:disabled {
+        background-color: var(--color-disabled);
+        color: var(--color-disabled-text);
+      }
     }
 
     label {

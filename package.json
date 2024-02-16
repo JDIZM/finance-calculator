@@ -70,5 +70,11 @@
     "vitest": "^0.34.3",
     "vue-loader": "^17.2.2",
     "vue-tsc": "^1.8.8"
+  },
+  "volta": {
+    "node": "20.11.1"
+  },
+  "optionalDependencies": {
+    "@esbuild/linux-x64": "0.18.20"
   }
 }
