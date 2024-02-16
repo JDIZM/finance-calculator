@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@carbon/icons-vue": "^10.72.1",
-    "@jdizm/finance-calculator": "^0.2.2",
+    "@jdizm/finance-calculator": "^1.0.0",
     "@vueuse/core": "^10.3.0",
     "axios": "^1.4.0",
     "pinia": "^2.1.7",
