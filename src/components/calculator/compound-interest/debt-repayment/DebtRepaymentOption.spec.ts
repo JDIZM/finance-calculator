@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach } from 'vitest'
+import { describe, it, expect, beforeEach, vi } from 'vitest'
 import { render, screen, type RenderResult, fireEvent } from '@testing-library/vue'
 import { composeStories } from '@storybook/testing-vue3'
 import * as stories from './DebtRepaymentOption.stories'
@@ -48,6 +48,35 @@ describe('DebtRepaymentOption', () => {
       expect(radioButtons.length).toBe(2)
       expect(radioButtons[0].outerHTML).toContain('value="interestOnly"')
       expect(radioButtons[1].outerHTML).toContain('value="repayment"')
+    })
+
+    it('emits the type event when the radio buttons are clicked', async () => {
+      const principalCheckbox = screen.getByLabelText('Is the principal borrowed?')
+      await fireEvent.click(principalCheckbox)
+
+      const interestOnlyRadio = screen.getByLabelText('Interest Only')
+      const repaymentRadio = screen.getByLabelText('Repayment')
+
+      await fireEvent.click(repaymentRadio)
+
+      const eventEmitted = wrapper.emitted('change')
+
+      expect(eventEmitted.length).toBe(2)
+      expect(interestOnlyRadio).toBeTruthy()
+      expect(repaymentRadio).toBeTruthy()
+    })
+
+    it('emits the rate event when the interest rate input is changed', async () => {
+      const principalCheckbox = screen.getByLabelText('Is the principal borrowed?')
+      await fireEvent.click(principalCheckbox)
+
+      const interestRateInput = screen.getByLabelText('Interest Rate of the loaned principal')
+
+      await fireEvent.update(interestRateInput, '5')
+
+      const eventEmitted = wrapper.emitted('input')
+
+      expect(eventEmitted.length).toBe(2)
     })
   })
 

@@ -23,7 +23,7 @@
           max="99"
           step="any"
           :value="props.rate"
-          @input="handleInterestChange"
+          @input="handleInterestChange($event, emit)"
         />
       </label>
       <div class="select-type">
@@ -35,7 +35,7 @@
             name="type"
             :value="value"
             :checked="props.type === value"
-            @change="handleTypeChange(value)"
+            @change="handleTypeChange(emit, value)"
           />
         </label>
       </div>
@@ -44,6 +44,9 @@
 </template>
 
 <script setup lang="ts">
+import { useDebtRepaymentOption } from '@/composables/useDebtRepaymentOption'
+const { handleInterestChange, handleTypeChange } = useDebtRepaymentOption()
+
 const emit = defineEmits<{
   (event: 'rate', payload: number): void
   (event: 'type', payload: 'interestOnly' | 'repayment'): void
@@ -61,15 +64,6 @@ const radioButtons = [
 ] as const
 
 const isDebtRepayment = defineModel({ required: true, default: false })
-
-const handleInterestChange = (event: Event) => {
-  const target = event.target as HTMLInputElement
-  emit('rate', Number(target.value))
-}
-
-const handleTypeChange = (type: 'interestOnly' | 'repayment') => {
-  emit('type', type)
-}
 </script>
 
 <style lang="scss" scoped>
