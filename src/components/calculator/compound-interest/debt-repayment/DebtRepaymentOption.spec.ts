@@ -50,7 +50,7 @@ describe('DebtRepaymentOption', () => {
       expect(radioButtons[1].outerHTML).toContain('value="repayment"')
     })
 
-    it('emits the type event when the radio buttons are clicked', async () => {
+    it('emits the change event when the radio buttons are clicked', async () => {
       const principalCheckbox = screen.getByLabelText('Is the principal borrowed?')
       await fireEvent.click(principalCheckbox)
 
@@ -66,7 +66,7 @@ describe('DebtRepaymentOption', () => {
       expect(repaymentRadio).toBeTruthy()
     })
 
-    it('emits the rate event when the interest rate input is changed', async () => {
+    it('emits the input event when the interest rate input is changed', async () => {
       const principalCheckbox = screen.getByLabelText('Is the principal borrowed?')
       await fireEvent.click(principalCheckbox)
 
