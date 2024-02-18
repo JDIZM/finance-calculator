@@ -61,11 +61,9 @@
 
       <div class="form-input">
         <DebtRepaymentOption
-          :type="debtType"
-          :rate="debtInterestRate"
-          @rate="debtInterestRate = $event"
-          @type="debtType = $event"
           v-model="isDebtRepayment"
+          v-model:rate="rate"
+          v-model:type="debtType"
         />
       </div>
 

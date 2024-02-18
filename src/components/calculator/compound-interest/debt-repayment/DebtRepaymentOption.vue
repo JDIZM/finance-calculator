@@ -7,7 +7,6 @@
         type="checkbox"
         name="debt-repayment"
         id="debt-repayment"
-        :checked="isDebtRepayment"
         v-model="isDebtRepayment"
         @change="$emit('isDebtRepayment', isDebtRepayment)"
       />
@@ -48,8 +47,8 @@ import { useDebtRepaymentOption } from '@/composables/useDebtRepaymentOption'
 const { handleInterestChange, handleTypeChange } = useDebtRepaymentOption()
 
 const emit = defineEmits<{
-  (event: 'rate', payload: number): void
-  (event: 'type', payload: 'interestOnly' | 'repayment'): void
+  (event: 'update:rate', payload: number): void
+  (event: 'update:type', payload: 'interestOnly' | 'repayment'): void
   (event: 'isDebtRepayment', payload: boolean): void
 }>()
 
