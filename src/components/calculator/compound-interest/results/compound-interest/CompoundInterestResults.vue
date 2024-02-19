@@ -13,7 +13,7 @@
       <p>End Balance: {{ formattedNumber(results.endBalance) }}</p>
       <p>
         In the final year of the investment you will be earning
-        {{ formattedNumber(results.interestPerAnnum[results.interestPerAnnum.length - 1]) }}
+        {{ formattedNumber(results.endBalance * results.rate) }}
         interest per annum.
       </p>
 
