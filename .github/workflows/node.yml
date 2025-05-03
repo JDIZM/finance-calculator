@@ -14,12 +14,13 @@ jobs:
         node-version: [16, 18, 20]
     steps:
       - uses: actions/checkout@v4
-      - uses: volta-cli/action@v3
+      - run: corepack enable
+      - uses: volta-cli/action@v4
         with:
           node-version: ${{ matrix.node-version }}
-      - run: npm ci
-      - run: npm run lint
-      - run: npm run format:check
-      - run: npm run type-check
-      - run: npm run build
-      - run: npm run test:unit
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm lint
+      - run: pnpm format:check
+      - run: pnpm type-check
+      - run: pnpm build
+      - run: pnpm test:unit
