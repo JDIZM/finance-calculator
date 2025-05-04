@@ -16,10 +16,10 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+      - run: corepack enable
       - uses: volta-cli/action@v3
         with:
           node-version: 18
-      - run: corepack enable
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
       - name: Publish to Chromatic
