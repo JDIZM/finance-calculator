@@ -13,11 +13,11 @@ jobs:
       matrix:
         node-version: [16, 18, 20]
     steps:
+      - run: corepack enable
       - uses: volta-cli/action@v4
         with:
           node-version: ${{ matrix.node-version }}
       - uses: actions/checkout@v4
-      - run: corepack enable
       - run: pnpm install --frozen-lockfile
       - run: pnpm lint
       - run: pnpm format:check
