@@ -113,7 +113,9 @@ const selectedText = computed(() => {
 
 .listbox-button-text {
   display: block;
-  truncate: true;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .listbox-button-icon {
@@ -130,7 +132,7 @@ const selectedText = computed(() => {
   margin-top: 0.5rem;
   max-height: 15rem;
   width: 100%;
-  overflow-auto;
+  overflow: auto;
   border-radius: 8px;
   background: var(--color-background);
   border: 2px solid var(--color-border);

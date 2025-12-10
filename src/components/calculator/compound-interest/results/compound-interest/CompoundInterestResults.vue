@@ -123,6 +123,9 @@ const chartData = computed(() => {
   const res = results.value as CompoundInterestResult
   const years = res.years
 
+  // Return null if interestMatrix is not available (e.g., in Storybook mocks)
+  if (!res.interestMatrix) return null
+
   // Generate data points
   for (let year = 1; year <= years; year++) {
     // Show first year, every 5 years, and final year
