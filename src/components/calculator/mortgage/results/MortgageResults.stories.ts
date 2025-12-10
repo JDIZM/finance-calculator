@@ -1,5 +1,4 @@
-// import { useMortgageStore } from '@/stores/mortgage'
-import { mortgageStore } from '../../../../../.storybook/preview'
+import { useMortgageStore } from '@/stores/mortgage'
 import MortgageResults from './MortgageResults.vue'
 import type { Meta, StoryObj } from '@storybook/vue3'
 import type { ComponentProps } from 'vue-component-type-helpers'
@@ -40,7 +39,8 @@ export const RepaymentResults: Story = {
   render: (args) => ({
     components: { MortgageResults },
     setup() {
-      return { args }
+      const mortgageStore = useMortgageStore()
+      return { args, mortgageStore }
     },
     mounted() {
       if (args.isRepayment) {
@@ -52,8 +52,8 @@ export const RepaymentResults: Story = {
           monthlyRepayment: 712.58,
           principal: 135000
         }
-        mortgageStore.setMortgageType('repayment')
-        mortgageStore.setResults(repaymentResults)
+        this.mortgageStore.setMortgageType('repayment')
+        this.mortgageStore.setResults(repaymentResults)
       } else {
         const interestOnlyResults = {
           interestPayments: { yearly: 5400, monthly: 450, period: 450 },
@@ -63,8 +63,8 @@ export const RepaymentResults: Story = {
           years: 25,
           interestRate: 4
         }
-        mortgageStore.setMortgageType('interestOnly')
-        mortgageStore.setResults(interestOnlyResults)
+        this.mortgageStore.setMortgageType('interestOnly')
+        this.mortgageStore.setResults(interestOnlyResults)
       }
     },
     template: '<mortgage-results v-bind="args" />'
