@@ -1,20 +1,12 @@
 import '../src/sass/main.scss'
 import { type Preview, setup } from '@storybook/vue3'
-import { type App } from 'vue'
-import { useMortgageStore } from '../src/stores/mortgage'
-import { useCompoundInterestStore } from '@/stores/compound'
 import { createPinia } from 'pinia'
 
+// Create and configure Pinia instance for Storybook
 const pinia = createPinia()
-export let mortgageStore: any
-export let compoundStore: any
 
-setup((app: App) => {
+setup((app) => {
   app.use(pinia)
-  // declaring store here
-  // fixes an issue with the store not being available
-  mortgageStore = useMortgageStore()
-  compoundStore = useCompoundInterestStore()
 })
 
 const preview: Preview = {
