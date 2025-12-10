@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [16, 18, 20]
+        node-version: [24]
     steps:
       - run: corepack enable
       - uses: volta-cli/action@v4
