@@ -52,8 +52,8 @@ export function useCompoundProjection(options: Ref<ProjectionOptions> | Projecti
         const endBalanceAtYear = balanceAtYear ? balanceAtYear[11] : 0 // December (index 11)
 
         // Calculate total deposits up to this year
-        const totalDeposits = optionsRef.value.initialDeposit +
-                             (optionsRef.value.monthlyContribution * 12 * year)
+        const totalDeposits =
+          optionsRef.value.initialDeposit + optionsRef.value.monthlyContribution * 12 * year
 
         // Calculate interest earned
         const interestEarned = endBalanceAtYear - totalDeposits

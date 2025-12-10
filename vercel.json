@@ -1,7 +1,5 @@
 {
-  "rewrites": [{ "source": "/(.*)", "destination": "/" }],
   "buildCommand": "pnpm build",
   "installCommand": "pnpm install",
-  "framework": "vite",
-  "outputDirectory": "dist"
+  "outputDirectory": "dist/client"
 }

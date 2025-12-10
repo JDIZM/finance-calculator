@@ -34,20 +34,23 @@ ChartJS.register(
   Filler
 )
 
-const props = withDefaults(defineProps<{
-  labels?: string[]
-  deposits: number[]
-  interest?: number[]
-  projection: number[]
-  height?: number
-  showLegend?: boolean
-  currency?: string
-}>(), {
-  labels: () => ['1Y', '10Y', '20Y', '25Y'],
-  height: 300,
-  showLegend: true,
-  currency: '£'
-})
+const props = withDefaults(
+  defineProps<{
+    labels?: string[]
+    deposits: number[]
+    interest?: number[]
+    projection: number[]
+    height?: number
+    showLegend?: boolean
+    currency?: string
+  }>(),
+  {
+    labels: () => ['1Y', '10Y', '20Y', '25Y'],
+    height: 300,
+    showLegend: true,
+    currency: '£'
+  }
+)
 
 const chartKey = ref(0)
 
@@ -169,9 +172,13 @@ const chartOptions = computed<ChartOptions<'line'>>(() => ({
 }))
 
 // Force chart update when data changes
-watch(() => [props.deposits, props.projection, props.interest], () => {
-  chartKey.value++
-}, { deep: true })
+watch(
+  () => [props.deposits, props.projection, props.interest],
+  () => {
+    chartKey.value++
+  },
+  { deep: true }
+)
 </script>
 
 <style scoped lang="scss">

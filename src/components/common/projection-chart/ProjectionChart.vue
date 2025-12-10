@@ -8,15 +8,21 @@
     <div class="projection-summary">
       <div class="summary-card">
         <span class="summary-label">Total deposits</span>
-        <span class="summary-value">{{ currency }}{{ summary.totalDeposits.toLocaleString() }}</span>
+        <span class="summary-value"
+          >{{ currency }}{{ summary.totalDeposits.toLocaleString() }}</span
+        >
       </div>
       <div class="summary-card highlight">
         <span class="summary-label">Interest earned</span>
-        <span class="summary-value interest">{{ currency }}{{ summary.totalInterest.toLocaleString() }}</span>
+        <span class="summary-value interest"
+          >{{ currency }}{{ summary.totalInterest.toLocaleString() }}</span
+        >
       </div>
       <div class="summary-card primary">
         <span class="summary-label">Projected total</span>
-        <span class="summary-value projection">{{ currency }}{{ summary.endBalance.toLocaleString() }}</span>
+        <span class="summary-value projection"
+          >{{ currency }}{{ summary.endBalance.toLocaleString() }}</span
+        >
       </div>
     </div>
 
@@ -65,25 +71,28 @@ const currencies = {
   EUR: '€'
 }
 
-const props = withDefaults(defineProps<{
-  title?: string
-  subtitle?: string
-  currency?: Currency
-  chartHeight?: number
-  defaultInitialDeposit?: number
-  defaultMonthlyContribution?: number
-  defaultYears?: number
-  defaultInterestRate?: number
-}>(), {
-  title: 'How much your money could grow',
-  subtitle: 'Adjust the sliders below to see your potential returns',
-  currency: 'GBP',
-  chartHeight: 350,
-  defaultInitialDeposit: 5000,
-  defaultMonthlyContribution: 500,
-  defaultYears: 25,
-  defaultInterestRate: 5.0
-})
+const props = withDefaults(
+  defineProps<{
+    title?: string
+    subtitle?: string
+    currency?: Currency
+    chartHeight?: number
+    defaultInitialDeposit?: number
+    defaultMonthlyContribution?: number
+    defaultYears?: number
+    defaultInterestRate?: number
+  }>(),
+  {
+    title: 'How much your money could grow',
+    subtitle: 'Adjust the sliders below to see your potential returns',
+    currency: 'GBP',
+    chartHeight: 350,
+    defaultInitialDeposit: 5000,
+    defaultMonthlyContribution: 500,
+    defaultYears: 25,
+    defaultInterestRate: 5.0
+  }
+)
 
 const options = reactive({
   initialDeposit: props.defaultInitialDeposit,

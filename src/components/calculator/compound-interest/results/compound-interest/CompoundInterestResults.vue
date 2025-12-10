@@ -83,11 +83,13 @@
         <div v-if="results.interestPayments" class="debt-breakdown">
           <div class="detail-item">
             <span class="detail-label">Monthly Payment:</span>
-            <span class="detail-value">{{ formattedNumber(results.interestPayments?.monthly) }}</span>
+            <span class="detail-value">{{
+              formattedNumber(results.interestPayments?.monthly)
+            }}</span>
           </div>
           <div class="detail-item">
             <span class="detail-label">Total Payments:</span>
-            <span class="detail-value">{{ results.totalPayments}} months</span>
+            <span class="detail-value">{{ results.totalPayments }} months</span>
           </div>
           <div class="detail-item">
             <span class="detail-label">Total Interest Paid:</span>
@@ -137,7 +139,7 @@ const chartData = computed(() => {
       let totalDeposits = res.principal
       if (res.investmentType === 'contribution' && store.options) {
         const monthlyContribution = (store.options.amountPerAnnum || 0) / 12
-        totalDeposits = res.principal + (monthlyContribution * 12 * year)
+        totalDeposits = res.principal + monthlyContribution * 12 * year
       }
 
       // Calculate interest earned

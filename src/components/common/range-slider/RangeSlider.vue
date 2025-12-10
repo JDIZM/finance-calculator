@@ -87,39 +87,42 @@ const currencies = {
   EUR: '€'
 }
 
-withDefaults(defineProps<{
-  currency?: Currency
-  // Initial deposit range
-  initialDepositMin?: number
-  initialDepositMax?: number
-  initialDepositStep?: number
-  // Monthly contribution range
-  monthlyMin?: number
-  monthlyMax?: number
-  monthlyStep?: number
-  // Years range
-  yearsMin?: number
-  yearsMax?: number
-  yearsStep?: number
-  // Interest rate range
-  interestMin?: number
-  interestMax?: number
-  interestStep?: number
-}>(), {
-  currency: 'GBP',
-  initialDepositMin: 0,
-  initialDepositMax: 50000,
-  initialDepositStep: 500,
-  monthlyMin: 0,
-  monthlyMax: 5000,
-  monthlyStep: 50,
-  yearsMin: 1,
-  yearsMax: 40,
-  yearsStep: 1,
-  interestMin: 0,
-  interestMax: 15,
-  interestStep: 0.1
-})
+withDefaults(
+  defineProps<{
+    currency?: Currency
+    // Initial deposit range
+    initialDepositMin?: number
+    initialDepositMax?: number
+    initialDepositStep?: number
+    // Monthly contribution range
+    monthlyMin?: number
+    monthlyMax?: number
+    monthlyStep?: number
+    // Years range
+    yearsMin?: number
+    yearsMax?: number
+    yearsStep?: number
+    // Interest rate range
+    interestMin?: number
+    interestMax?: number
+    interestStep?: number
+  }>(),
+  {
+    currency: 'GBP',
+    initialDepositMin: 0,
+    initialDepositMax: 50000,
+    initialDepositStep: 500,
+    monthlyMin: 0,
+    monthlyMax: 5000,
+    monthlyStep: 50,
+    yearsMin: 1,
+    yearsMax: 40,
+    yearsStep: 1,
+    interestMin: 0,
+    interestMax: 15,
+    interestStep: 0.1
+  }
+)
 
 const initialDeposit = defineModel<number>('initialDeposit', { required: true })
 const monthlyContribution = defineModel<number>('monthlyContribution', { required: true })

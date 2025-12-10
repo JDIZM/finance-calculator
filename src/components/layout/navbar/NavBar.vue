@@ -7,21 +7,27 @@
       </div>
 
       <nav class="navbar-nav">
-        <RouterLink to="/" class="nav-link">Home</RouterLink>
-        <RouterLink to="/compound-interest-calculator" class="nav-link">Compound Interest</RouterLink>
-        <RouterLink to="/mortgage-calculator" class="nav-link">Mortgage</RouterLink>
+        <a href="/" class="nav-link">Home</a>
+        <a href="/compound-interest" class="nav-link">Compound Interest</a>
+        <a href="/mortgage" class="nav-link">Mortgage</a>
       </nav>
 
       <div class="navbar-actions">
-        <ToggleTheme />
+        <ToggleTheme v-if="isClient" />
       </div>
     </div>
   </header>
 </template>
 
 <script setup lang="ts">
-import { RouterLink } from 'vue-router'
+import { onMounted, ref } from 'vue'
 import ToggleTheme from '@/components/theme/toggle-theme/ToggleTheme.vue'
+
+// Prevent hydration mismatch - only render theme toggle on client
+const isClient = ref(false)
+onMounted(() => {
+  isClient.value = true
+})
 </script>
 
 <style lang="scss" scoped>

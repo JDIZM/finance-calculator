@@ -1,25 +1,23 @@
 <template>
   <main class="calculator-view">
     <div class="page-header">
-      <h1>Mortgage Calculator</h1>
-      <p>Calculate your monthly mortgage repayments for interest-only or repayment mortgages</p>
+      <h1>Compound Interest Calculator</h1>
+      <p>Calculate your investment growth over time with compound interest</p>
     </div>
 
     <div class="calculator-layout">
       <div class="calculator-form">
-        <mortgage-calculator />
+        <compound-interest-form @submit="calculateInterest" />
       </div>
 
       <div class="calculator-results">
         <div v-if="store.results" class="results-content">
-          <mortgage-results />
+          <compound-interest-results />
         </div>
         <div v-else class="empty-state">
           <div class="empty-state-content">
             <h3>Ready to calculate</h3>
-            <p>
-              Fill in the form and select your mortgage type to see your monthly repayment estimate
-            </p>
+            <p>Fill in the form and click submit to see your compound interest projection</p>
           </div>
         </div>
       </div>
@@ -28,11 +26,26 @@
 </template>
 
 <script setup lang="ts">
-import MortgageCalculator from '@/components/calculator/mortgage/MortgageCalculator.vue'
-import MortgageResults from '@/components/calculator/mortgage/results/MortgageResults.vue'
-import { useMortgageStore } from '@/stores/mortgage'
+import { useCompoundInterestStore } from '@/stores/compound'
+import CompoundInterestForm from '@/components/calculator/compound-interest/form/CompoundInterestForm.vue'
+import CompoundInterestResults from '@/components/calculator/compound-interest/results/compound-interest/CompoundInterestResults.vue'
+import { compoundInterestPerPeriod } from '@jdizm/finance-calculator'
+import type { IOptions } from '@jdizm/finance-calculator/types/calculator'
 
-const store = useMortgageStore()
+const store = useCompoundInterestStore()
+
+const calculateInterest = (e: { event: Event; submission: IOptions }) => {
+  try {
+    const result = compoundInterestPerPeriod(e.submission)
+    store.setError(null)
+    store.setOptions(e.submission)
+    store.setResults(result)
+  } catch (error) {
+    if (error instanceof Error) {
+      store.setError(error)
+    }
+  }
+}
 
 // Subscription to store actions
 store.$onAction((action) => {
