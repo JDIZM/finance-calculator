@@ -1,16 +1,21 @@
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="100" height="100" />
+  <header class="navbar">
+    <div class="navbar-container">
+      <div class="navbar-brand">
+        <img alt="Finance Calculator" class="logo" src="@/assets/logo.svg" width="40" height="40" />
+        <span class="brand-name">Finance Tools</span>
+      </div>
 
-    <div class="wrapper">
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/mortgage-calculator">Mortgage</RouterLink>
-        <RouterLink to="/compound-interest-calculator">Compound Interest</RouterLink>
+      <nav class="navbar-nav">
+        <RouterLink to="/" class="nav-link">Home</RouterLink>
+        <RouterLink to="/compound-interest-calculator" class="nav-link">Compound Interest</RouterLink>
+        <RouterLink to="/mortgage-calculator" class="nav-link">Mortgage</RouterLink>
       </nav>
-    </div>
 
-    <ToggleTheme />
+      <div class="navbar-actions">
+        <ToggleTheme />
+      </div>
+    </div>
   </header>
 </template>
 
@@ -20,69 +25,121 @@ import ToggleTheme from '@/components/theme/toggle-theme/ToggleTheme.vue'
 </script>
 
 <style lang="scss" scoped>
-.wrapper {
-  padding-bottom: 1rem;
+.navbar {
+  background: var(--color-background);
+  border-bottom: 1px solid var(--color-border);
+  padding: 0.75rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
-header {
-  line-height: 1.5;
-  max-height: 100vh;
-}
+.navbar-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
-}
-
-nav a.router-link-exact-active {
-  color: var(--color-primary);
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
-
-/* @media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
+  @media (max-width: 768px) {
+    padding: 0 1rem;
+    gap: 1rem;
   }
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  color: var(--color-heading);
+  flex-shrink: 0;
 
   .logo {
-    margin: 0 2rem 0 0;
+    display: block;
+    width: 40px;
+    height: 40px;
+
+    @media (max-width: 768px) {
+      width: 32px;
+      height: 32px;
+    }
   }
 
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
+  .brand-name {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-heading);
+
+    @media (max-width: 768px) {
+      display: none;
+    }
+  }
+}
+
+.navbar-nav {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 1;
+  justify-content: center;
+
+  @media (max-width: 768px) {
+    gap: 0.25rem;
+    justify-content: flex-start;
+  }
+}
+
+.nav-link {
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  text-decoration: none;
+  color: var(--color-text);
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+  position: relative;
+
+  @media (max-width: 768px) {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
   }
 
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
+  &:hover {
+    background: var(--color-background-soft);
+    color: var(--color-heading);
   }
-} */
+
+  &.router-link-active,
+  &.router-link-exact-active {
+    color: var(--color-primary);
+    font-weight: 600;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -0.75rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 70%;
+      height: 2px;
+      background: var(--color-primary);
+      border-radius: 2px;
+
+      @media (max-width: 768px) {
+        bottom: 0;
+      }
+    }
+  }
+}
+
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-shrink: 0;
+}
 </style>
