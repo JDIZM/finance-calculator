@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach, vi } from 'vitest'
+import { describe, it, expect, beforeEach } from 'vitest'
 import { render, screen, type RenderResult, fireEvent } from '@testing-library/vue'
 import { composeStories } from '@storybook/testing-vue3'
 import * as stories from './DebtRepaymentOption.stories'
@@ -8,7 +8,6 @@ const { Default, Checked } = composeStories(stories)
 describe('DebtRepaymentOption', () => {
   describe('Default', () => {
     let wrapper: RenderResult
-    const { args } = Default
 
     beforeEach(() => {
       wrapper = render(Default())
@@ -82,7 +81,6 @@ describe('DebtRepaymentOption', () => {
 
   describe('Checked', () => {
     let wrapper: RenderResult
-    const { args } = Checked
 
     beforeEach(() => {
       wrapper = render(Checked())

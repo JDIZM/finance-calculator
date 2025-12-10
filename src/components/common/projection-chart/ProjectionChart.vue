@@ -65,12 +65,6 @@ import { useCompoundProjection } from '@/composables/useCompoundProjection'
 
 type Currency = 'GBP' | 'USD' | 'EUR'
 
-const currencies = {
-  GBP: '£',
-  USD: '$',
-  EUR: '€'
-}
-
 const props = withDefaults(
   defineProps<{
     title?: string

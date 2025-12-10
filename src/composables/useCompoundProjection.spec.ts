@@ -11,7 +11,7 @@ describe('useCompoundProjection', () => {
       interestRate: 5.0
     })
 
-    const { projectionData, summary } = useCompoundProjection(options)
+    const { projectionData } = useCompoundProjection(options)
 
     // Check that projection data is generated
     expect(projectionData.value.labels).toBeDefined()

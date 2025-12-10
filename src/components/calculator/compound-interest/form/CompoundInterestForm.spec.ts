@@ -7,7 +7,6 @@ const { Default } = composeStories(stories)
 
 describe('CompoundInterestForm', () => {
   let wrapper: RenderResult
-  const { args } = Default
 
   beforeEach(() => {
     wrapper = render(Default())

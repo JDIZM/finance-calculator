@@ -81,12 +81,6 @@
 <script setup lang="ts">
 type Currency = 'GBP' | 'USD' | 'EUR'
 
-const currencies = {
-  GBP: '£',
-  USD: '$',
-  EUR: '€'
-}
-
 withDefaults(
   defineProps<{
     currency?: Currency
