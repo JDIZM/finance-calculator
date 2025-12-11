@@ -17,23 +17,23 @@
     </section>
 
     <section class="calculators-grid">
-      <router-link to="/compound-interest-calculator" class="calculator-card">
+      <a href="/compound-interest" class="calculator-card">
         <div class="card-icon">💰</div>
         <h3 class="card-title">Compound Interest Calculator</h3>
         <p class="card-description">
           Calculate returns on your investments with compound interest over time
         </p>
         <span class="card-cta">Try it now →</span>
-      </router-link>
+      </a>
 
-      <router-link to="/mortgage-calculator" class="calculator-card">
+      <a href="/mortgage" class="calculator-card">
         <div class="card-icon">🏠</div>
         <h3 class="card-title">Mortgage Calculator</h3>
         <p class="card-description">
           Plan your property purchase with detailed mortgage calculations
         </p>
         <span class="card-cta">Try it now →</span>
-      </router-link>
+      </a>
     </section>
 
     <section class="info-section">
@@ -56,7 +56,6 @@
 </template>
 
 <script setup lang="ts">
-import { RouterLink } from 'vue-router'
 import ProjectionChart from '@/components/common/projection-chart/ProjectionChart.vue'
 </script>
 

@@ -129,37 +129,113 @@ const handleFormSubmit = (event: Event) => {
 
 <style lang="scss" scoped>
 .compound-interest-form {
-  border: 1px solid var(--color-secondary);
-  padding: 1rem;
+  background: var(--color-background);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+
+  @media (max-width: 768px) {
+    padding: 1.5rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-heading);
+    margin-bottom: 0.5rem;
+    padding: 0;
+  }
 
   .warning {
     color: var(--color-warning);
+    font-size: 0.875rem;
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+    background: rgba(231, 101, 81, 0.1);
+    border-radius: 6px;
   }
 
   form {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
   }
 
   .form-input {
-    input {
-      display: block;
-      margin: 0.5rem 0.5rem 0.5rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 
-      &:disabled {
-        background-color: var(--color-disabled);
-        color: var(--color-disabled-text);
-      }
+    h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--color-heading);
+      margin: 1rem 0 0.5rem 0;
+      padding: 0;
     }
 
     label {
       display: block;
+      font-weight: 500;
+      font-size: 0.9rem;
+      color: var(--color-text);
+      margin-bottom: 0.25rem;
+    }
+
+    input {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 2px solid var(--color-border);
+      border-radius: 8px;
+      font-size: 1rem;
+      color: var(--color-heading);
+      background: var(--color-background);
+      transition: all 0.2s ease;
+      margin: 0;
+
+      &:focus {
+        border-color: var(--color-primary);
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(123, 79, 199, 0.1);
+      }
+
+      &:disabled {
+        background-color: var(--color-background-soft);
+        color: var(--color-text);
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
     }
 
     span {
-      color: var(--color-secondary);
-      font-weight: bold;
+      color: var(--color-primary);
+      font-weight: 600;
+      font-size: 0.875rem;
+      padding: 0.25rem 0;
+    }
+  }
+
+  button[type='submit'] {
+    width: 100%;
+    padding: 1rem;
+    background: var(--color-primary);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(123, 79, 199, 0.3);
+    }
+
+    &:active {
+      transform: translateY(0);
     }
   }
 }

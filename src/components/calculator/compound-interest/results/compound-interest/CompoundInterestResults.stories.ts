@@ -1,4 +1,4 @@
-import { compoundStore } from '../../../../../../.storybook/preview'
+import { useCompoundInterestStore } from '@/stores/compound'
 import CompoundInterestResults from './CompoundInterestResults.vue'
 import type { Meta, StoryObj } from '@storybook/vue3'
 import type { ComponentProps } from 'vue-component-type-helpers'
@@ -42,10 +42,11 @@ export const LumpSumpResults: Story = {
   render: (args) => ({
     components: { CompoundInterestResults },
     setup() {
-      return { args }
+      const compoundStore = useCompoundInterestStore()
+      return { args, compoundStore }
     },
     mounted() {
-      compoundStore.setResults({
+      this.compoundStore.setResults({
         principal: 10000,
         rate: 0.04,
         years: 5,

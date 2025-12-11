@@ -13,7 +13,8 @@ module.exports = {
           implementation: require('sass')
         }
       }
-    }
+    },
+    '@chromatic-com/storybook'
   ],
 
   framework: {
@@ -26,6 +27,6 @@ module.exports = {
   // },
 
   docs: {
-    autodocs: 'tag'
+    autodocs: true
   }
 }
