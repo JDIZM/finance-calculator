@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach } from 'vitest'
 import { render, screen, type RenderResult, fireEvent } from '@testing-library/vue'
-import { composeStories } from '@storybook/testing-vue3'
+import { composeStories } from '@storybook/vue3'
 import * as stories from './DebtRepaymentOption.stories'
 
 const { Default, Checked } = composeStories(stories)
