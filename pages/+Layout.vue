@@ -6,6 +6,7 @@
 </template>
 
 <script setup lang="ts">
+import '@/styles/tailwind.css'
 import NavBar from '@/components/layout/navbar/NavBar.vue'
 </script>
 
