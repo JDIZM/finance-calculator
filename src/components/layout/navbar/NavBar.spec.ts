@@ -7,7 +7,7 @@ describe('NavBar', () => {
   let wrapper: VueWrapper<any>
 
   const nav = () => wrapper.find('nav')
-  const logo = () => wrapper.find('svg')
+  const logo = () => wrapper.find('img')
 
   beforeEach(() => {
     wrapper = mount(NavBar, {

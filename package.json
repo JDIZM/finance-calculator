@@ -22,7 +22,7 @@
     "@fontsource-variable/montserrat": "^5.2.8",
     "@fontsource/poppins": "^5.2.7",
     "@headlessui/vue": "^1.7.23",
-    "@jdizm/finance-calculator": "^1.2.0",
+    "@jdizm/finance-calculator": "^1.5.0",
     "@vueuse/core": "^10.3.0",
     "axios": "^1.4.0",
     "chart.js": "^4.4.3",
