@@ -9,12 +9,12 @@
   <meta property="og:site_name" content="Finance Calculator" />
   <meta property="og:url" content="https://www.financecalculator.dev/early-payoff" />
   <meta property="og:title" content="Early Mortgage Payoff Calculator" />
-  <meta property="og:description" content="Extra monthly or lump sum payments — how many years you cut off and how much interest you save." />
+  <meta property="og:description" content="Extra monthly or lump sum payments: how many years you cut off and how much interest you save." />
   <meta property="og:image" content="https://www.financecalculator.dev/og-image.png" />
   <meta property="twitter:card" content="summary_large_image" />
   <meta property="twitter:url" content="https://www.financecalculator.dev/early-payoff" />
   <meta property="twitter:title" content="Early Mortgage Payoff Calculator" />
-  <meta property="twitter:description" content="Extra monthly or lump sum payments — how many years you cut off and how much interest you save." />
+  <meta property="twitter:description" content="Extra monthly or lump sum payments: how many years you cut off and how much interest you save." />
   <meta property="twitter:image" content="https://www.financecalculator.dev/og-image.png" />
 
   <script type="application/ld+json">

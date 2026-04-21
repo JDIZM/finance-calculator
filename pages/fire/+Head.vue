@@ -1,6 +1,6 @@
 <template>
-  <title>FIRE Number Calculator — Financial Independence | Finance Calculator</title>
-  <meta name="title" content="FIRE Number Calculator — Financial Independence | Finance Calculator" />
+  <title>FIRE Number Calculator UK - 4% Rule & Years to FIRE</title>
+  <meta name="title" content="FIRE Number Calculator UK - 4% Rule & Years to FIRE" />
   <meta name="description" content="FIRE number calculator: work out your financial independence target from annual spend and a safe withdrawal rate, plus years to reach it." />
   <meta name="keywords" content="FIRE calculator, FIRE number, financial independence calculator, retire early calculator, safe withdrawal rate, 4 percent rule" />
   <meta name="author" content="Finance Calculator" />

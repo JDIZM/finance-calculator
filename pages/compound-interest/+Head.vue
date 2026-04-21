@@ -2,7 +2,7 @@
   <!-- Primary Meta Tags -->
   <title>Compound Interest Calculator UK - Investment Growth Tool</title>
   <meta name="title" content="Compound Interest Calculator UK - Investment Growth Tool">
-  <meta name="description" content="Calculate how your investments grow with our compound interest calculator. See detailed projections with interactive charts for savings, contributions, and debt repayment strategies.">
+  <meta name="description" content="Free UK compound interest calculator. Project investment growth with regular monthly contributions, annual rate, and term. Interactive chart included.">
   <meta name="keywords" content="compound interest calculator, investment calculator, savings calculator, interest calculator, compound growth, investment projections">
   <meta name="author" content="Finance Calculator">
   <link rel="canonical" href="https://www.financecalculator.dev/compound-interest">
@@ -11,7 +11,7 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.financecalculator.dev/compound-interest">
   <meta property="og:title" content="Compound Interest Calculator UK - Investment Growth Tool">
-  <meta property="og:description" content="Calculate how your investments grow with our compound interest calculator. See detailed projections with interactive charts.">
+  <meta property="og:description" content="Free UK compound interest calculator. Project investment growth with regular monthly contributions and an interactive chart.">
   <meta property="og:image" content="https://www.financecalculator.dev/og-image.png">
   <meta property="og:site_name" content="Finance Calculator">
 
@@ -19,7 +19,7 @@
   <meta property="twitter:card" content="summary_large_image">
   <meta property="twitter:url" content="https://www.financecalculator.dev/compound-interest">
   <meta property="twitter:title" content="Compound Interest Calculator UK - Investment Growth Tool">
-  <meta property="twitter:description" content="Calculate how your investments grow with our compound interest calculator. See detailed projections with interactive charts.">
+  <meta property="twitter:description" content="Free UK compound interest calculator. Project investment growth with regular monthly contributions and an interactive chart.">
   <meta property="twitter:image" content="https://www.financecalculator.dev/og-image.png">
 
   <script type="application/ld+json">
