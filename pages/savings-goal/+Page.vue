@@ -18,11 +18,12 @@
         <Card tone="accent-indigo" padding="p-8">
           <h2 class="font-display text-xl font-black tracking-tight">Your inputs</h2>
 
-          <div class="mt-6 flex gap-2 rounded-slab bg-white/5 p-1">
+          <div role="group" aria-label="Solve for" class="mt-6 flex gap-2 rounded-slab bg-white/5 p-1">
             <button
               type="button"
+              :aria-pressed="mode === 'contribution'"
               :class="[
-                'flex-1 rounded-slab px-4 py-2 font-display text-sm font-bold transition',
+                'flex-1 rounded-slab px-4 py-2 font-display text-sm font-bold transition focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500',
                 mode === 'contribution' ? 'bg-emerald-500 text-emerald-950' : 'text-surface-off-white/80 hover:text-surface-off-white',
               ]"
               @click="mode = 'contribution'"
@@ -31,8 +32,9 @@
             </button>
             <button
               type="button"
+              :aria-pressed="mode === 'years'"
               :class="[
-                'flex-1 rounded-slab px-4 py-2 font-display text-sm font-bold transition',
+                'flex-1 rounded-slab px-4 py-2 font-display text-sm font-bold transition focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500',
                 mode === 'years' ? 'bg-emerald-500 text-emerald-950' : 'text-surface-off-white/80 hover:text-surface-off-white',
               ]"
               @click="mode = 'years'"
