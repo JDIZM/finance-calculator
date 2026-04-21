@@ -17,7 +17,7 @@
     <Section tone="transparent">
       <div class="grid gap-6 lg:grid-cols-[minmax(0,400px)_minmax(0,1fr)]">
         <Card tone="cream">
-          <h2 class="font-display text-sm font-black uppercase tracking-widest text-ink-900/70">Your inputs</h2>
+          <SectionLabel tag="h2">Your inputs</SectionLabel>
           <div class="mt-5 grid gap-4">
             <NumberInput v-model="form.annualSpend" label="Annual spend" prefix="£" :min="1" :step="1000" />
             <NumberInput v-model="form.withdrawalRate" label="Withdrawal rate" prefix="%" :min="0.1" :max="10" :step="0.1" />
@@ -28,7 +28,7 @@
         </Card>
 
         <div class="flex flex-col gap-5">
-          <div v-if="fire" class="grid gap-4 sm:grid-cols-3">
+          <div v-if="fire" class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             <Card tone="emerald-950" padding="p-5">
               <ResultTile label="FIRE number" :value="fire.target" prefix="£" />
             </Card>
@@ -41,7 +41,7 @@
           </div>
 
           <Card tone="cream">
-            <h3 class="font-display text-sm font-black uppercase tracking-widest text-ink-900/70">What this means</h3>
+            <SectionLabel>What this means</SectionLabel>
             <p v-if="error" class="mt-3 leading-relaxed text-red-700">{{ error }}</p>
             <p v-else-if="fire" class="mt-3 leading-relaxed">
               Live on £{{ (form.annualSpend ?? 0).toLocaleString('en-GB') }} a year and you need
@@ -62,6 +62,7 @@ import Card from '@/components/ui/Card.vue'
 import Pill from '@/components/ui/Pill.vue'
 import NumberInput from '@/components/ui/NumberInput.vue'
 import ResultTile from '@/components/ui/ResultTile.vue'
+import SectionLabel from '@/components/ui/SectionLabel.vue'
 import { fireNumber, yearsToFire } from '@jdizm/finance-calculator'
 
 const form = reactive({

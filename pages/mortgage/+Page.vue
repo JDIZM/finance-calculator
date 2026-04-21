@@ -16,32 +16,14 @@
     <Section tone="transparent">
       <div class="grid gap-6 lg:grid-cols-[minmax(0,400px)_minmax(0,1fr)]">
         <Card tone="cream">
-          <h2 class="font-display text-sm font-black uppercase tracking-widest text-ink-900/70">Your inputs</h2>
+          <SectionLabel tag="h2">Your inputs</SectionLabel>
 
-          <div role="group" aria-label="Mortgage type" class="mt-4 flex gap-1 rounded-slab border border-surface-rule bg-surface-cream p-1">
-            <button
-              type="button"
-              :aria-pressed="type === 'repayment'"
-              :class="[
-                'flex-1 rounded-slab px-3 py-2 font-display text-xs font-bold uppercase tracking-widest transition focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500',
-                type === 'repayment' ? 'bg-emerald-950 text-surface-off-white shadow-soft' : 'text-ink-900/70 hover:text-ink-900',
-              ]"
-              @click="type = 'repayment'"
-            >
-              Repayment
-            </button>
-            <button
-              type="button"
-              :aria-pressed="type === 'interestOnly'"
-              :class="[
-                'flex-1 rounded-slab px-3 py-2 font-display text-xs font-bold uppercase tracking-widest transition focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500',
-                type === 'interestOnly' ? 'bg-emerald-950 text-surface-off-white shadow-soft' : 'text-ink-900/70 hover:text-ink-900',
-              ]"
-              @click="type = 'interestOnly'"
-            >
-              Interest-only
-            </button>
-          </div>
+          <SegmentedToggle
+            v-model="type"
+            class="mt-4"
+            aria-label="Mortgage type"
+            :options="mortgageTypeOptions"
+          />
 
           <div class="mt-5 grid gap-4">
             <NumberInput v-model="form.homeValue" label="Home value" prefix="£" :min="0" :step="5000" />
@@ -52,7 +34,7 @@
         </Card>
 
         <div class="flex flex-col gap-5">
-          <div v-if="result" class="grid gap-4 sm:grid-cols-3">
+          <div v-if="result" class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             <Card tone="subtle" padding="p-5">
               <ResultTile label="Loan amount" :value="result.principal" prefix="£" />
             </Card>
@@ -89,7 +71,7 @@
           </div>
 
           <Card tone="cream">
-            <h3 class="font-display text-sm font-black uppercase tracking-widest text-ink-900/70">What this means</h3>
+            <SectionLabel>What this means</SectionLabel>
             <p v-if="error" class="mt-3 leading-relaxed text-red-700">{{ error }}</p>
             <p v-else-if="type === 'repayment'" class="mt-3 leading-relaxed">
               Over {{ form.years }} years at {{ form.interestRate }}% you'd pay back the full
@@ -115,6 +97,8 @@ import Card from '@/components/ui/Card.vue'
 import Pill from '@/components/ui/Pill.vue'
 import NumberInput from '@/components/ui/NumberInput.vue'
 import ResultTile from '@/components/ui/ResultTile.vue'
+import SectionLabel from '@/components/ui/SectionLabel.vue'
+import SegmentedToggle from '@/components/ui/SegmentedToggle.vue'
 import { mortgageCalculator } from '@jdizm/finance-calculator'
 import type {
   MortgageResult,
@@ -123,6 +107,10 @@ import type {
 } from '@jdizm/finance-calculator/types/calculator'
 
 const type = ref<MortgageType>('repayment')
+const mortgageTypeOptions: ReadonlyArray<{ value: MortgageType; label: string }> = [
+  { value: 'repayment', label: 'Repayment' },
+  { value: 'interestOnly', label: 'Interest-only' },
+]
 const form = reactive({
   homeValue: 300_000 as number | null,
   deposit: 30_000 as number | null,

@@ -19,10 +19,8 @@
         :max="max"
         :step="step"
         :class="[
-          'w-full rounded-slab border font-display text-xl font-bold tabular-nums outline-none transition focus:ring-2 focus:ring-emerald-500',
-          surfaceClasses,
+          'w-full rounded-slab border border-surface-rule bg-white py-3 pr-4 font-display text-xl font-bold tabular-nums text-ink-900 outline-none transition focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500',
           prefix ? 'pl-9' : 'pl-4',
-          'pr-4 py-3',
         ]"
         @input="onInput"
       />
@@ -32,29 +30,15 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
-
-const props = withDefaults(
-  defineProps<{
-    label: string
-    modelValue: number | null
-    prefix?: string
-    hint?: string
-    min?: number
-    max?: number
-    step?: number | string
-    dark?: boolean
-  }>(),
-  {
-    dark: false,
-  }
-)
-
-const surfaceClasses = computed(() =>
-  props.dark
-    ? 'border-white/20 bg-white/5 text-current focus:border-emerald-500'
-    : 'border-surface-rule bg-white text-ink-900 focus:border-emerald-500'
-)
+defineProps<{
+  label: string
+  modelValue: number | null
+  prefix?: string
+  hint?: string
+  min?: number
+  max?: number
+  step?: number | string
+}>()
 
 const emit = defineEmits<{
   (e: 'update:modelValue', value: number | null): void

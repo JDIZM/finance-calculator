@@ -16,7 +16,7 @@
     <Section tone="transparent">
       <div class="grid gap-6 lg:grid-cols-[minmax(0,400px)_minmax(0,1fr)]">
         <Card tone="cream">
-          <h2 class="font-display text-sm font-black uppercase tracking-widest text-ink-900/70">Your mortgage</h2>
+          <SectionLabel tag="h2">Your mortgage</SectionLabel>
           <div class="mt-5 grid gap-4">
             <NumberInput v-model="form.homeValue" label="Home value" prefix="£" :min="0" :step="5000" />
             <NumberInput v-model="form.deposit" label="Deposit" prefix="£" :min="0" :step="1000" />
@@ -27,7 +27,7 @@
         </Card>
 
         <div class="flex flex-col gap-5">
-          <div v-if="result" class="grid gap-4 sm:grid-cols-3">
+          <div v-if="result" class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             <Card tone="emerald-950" padding="p-5">
               <ResultTile
                 label="Months saved"
@@ -52,7 +52,7 @@
           </div>
 
           <Card tone="cream">
-            <h3 class="font-display text-sm font-black uppercase tracking-widest text-ink-900/70">Baseline vs new</h3>
+            <SectionLabel>Baseline vs new</SectionLabel>
             <p v-if="error" class="mt-3 leading-relaxed text-red-700">{{ error }}</p>
             <div v-else-if="result" class="mt-4 grid gap-4 sm:grid-cols-2">
               <div class="rounded-slab border border-surface-rule bg-surface-cream p-5">
@@ -80,6 +80,7 @@ import Card from '@/components/ui/Card.vue'
 import Pill from '@/components/ui/Pill.vue'
 import NumberInput from '@/components/ui/NumberInput.vue'
 import ResultTile from '@/components/ui/ResultTile.vue'
+import SectionLabel from '@/components/ui/SectionLabel.vue'
 import { earlyMortgagePayoff } from '@jdizm/finance-calculator'
 
 const form = reactive({

@@ -20,7 +20,7 @@ export const Currency: Story = {
       return { args, value }
     },
     template: `
-      <div class="bg-emerald-950 p-8 text-surface-off-white" style="width: 340px;">
+      <div class="bg-surface-off-white p-8" style="width: 340px;">
         <NumberInput v-bind="args" v-model="value" />
       </div>
     `,

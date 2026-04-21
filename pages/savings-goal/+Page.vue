@@ -16,32 +16,14 @@
     <Section tone="transparent">
       <div class="grid gap-6 lg:grid-cols-[minmax(0,400px)_minmax(0,1fr)]">
         <Card tone="cream">
-          <h2 class="font-display text-sm font-black uppercase tracking-widest text-ink-900/70">Your inputs</h2>
+          <SectionLabel tag="h2">Your inputs</SectionLabel>
 
-          <div role="group" aria-label="Solve for" class="mt-4 flex gap-1 rounded-slab border border-surface-rule bg-surface-cream p-1">
-            <button
-              type="button"
-              :aria-pressed="mode === 'contribution'"
-              :class="[
-                'flex-1 rounded-slab px-3 py-2 font-display text-xs font-bold uppercase tracking-widest transition focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500',
-                mode === 'contribution' ? 'bg-emerald-950 text-surface-off-white shadow-soft' : 'text-ink-900/70 hover:text-ink-900',
-              ]"
-              @click="mode = 'contribution'"
-            >
-              Monthly amount
-            </button>
-            <button
-              type="button"
-              :aria-pressed="mode === 'years'"
-              :class="[
-                'flex-1 rounded-slab px-3 py-2 font-display text-xs font-bold uppercase tracking-widest transition focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500',
-                mode === 'years' ? 'bg-emerald-950 text-surface-off-white shadow-soft' : 'text-ink-900/70 hover:text-ink-900',
-              ]"
-              @click="mode = 'years'"
-            >
-              Years
-            </button>
-          </div>
+          <SegmentedToggle
+            v-model="mode"
+            class="mt-4"
+            aria-label="Solve for"
+            :options="modeOptions"
+          />
 
           <div class="mt-5 grid gap-4">
             <NumberInput v-model="form.target" label="Target" prefix="£" :min="1" :step="1000" />
@@ -67,7 +49,7 @@
         </Card>
 
         <div class="flex flex-col gap-5">
-          <div v-if="contributionResult" class="grid gap-4 sm:grid-cols-3">
+          <div v-if="contributionResult" class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             <Card tone="emerald-950" padding="p-5">
               <ResultTile
                 label="Per month"
@@ -106,7 +88,7 @@
           </div>
 
           <Card tone="cream">
-            <h3 class="font-display text-sm font-black uppercase tracking-widest text-ink-900/70">The maths</h3>
+            <SectionLabel>The maths</SectionLabel>
             <p v-if="error" class="mt-3 leading-relaxed text-red-700">{{ error }}</p>
             <p v-else class="mt-3 leading-relaxed">
               Assumes compounding {{ form.compoundingPerYear }} times per year.
@@ -127,10 +109,16 @@ import Card from '@/components/ui/Card.vue'
 import Pill from '@/components/ui/Pill.vue'
 import NumberInput from '@/components/ui/NumberInput.vue'
 import ResultTile from '@/components/ui/ResultTile.vue'
+import SectionLabel from '@/components/ui/SectionLabel.vue'
+import SegmentedToggle from '@/components/ui/SegmentedToggle.vue'
 import { solveContributionForGoal, solveYearsToGoal } from '@jdizm/finance-calculator'
 
 type Mode = 'contribution' | 'years'
 const mode = ref<Mode>('contribution')
+const modeOptions: ReadonlyArray<{ value: Mode; label: string }> = [
+  { value: 'contribution', label: 'Monthly amount' },
+  { value: 'years', label: 'Years' },
+]
 
 const form = reactive({
   target: 100_000 as number | null,

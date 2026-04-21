@@ -16,7 +16,7 @@
     <Section tone="transparent">
       <div class="grid gap-6 lg:grid-cols-[minmax(0,400px)_minmax(0,1fr)]">
         <Card tone="cream">
-          <h2 class="font-display text-lg font-black uppercase tracking-widest text-ink-900/70">Your inputs</h2>
+          <SectionLabel tag="h2" size="lg">Your inputs</SectionLabel>
           <div class="mt-5 grid gap-4">
             <NumberInput v-model="form.principal" label="Starting balance" prefix="£" :min="0" :step="100" />
             <NumberInput v-model="form.monthlyContribution" label="Monthly contribution" prefix="£" :min="0" :step="50" />
@@ -26,7 +26,7 @@
         </Card>
 
         <div class="flex flex-col gap-5">
-          <div class="grid gap-4 sm:grid-cols-3">
+          <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             <Card tone="subtle" padding="p-5">
               <ResultTile label="Total contributions" :value="summary.totalContributions" prefix="£" />
             </Card>
@@ -39,7 +39,7 @@
           </div>
 
           <Card tone="cream">
-            <h3 class="font-display text-sm font-black uppercase tracking-widest text-ink-900/70">Projection</h3>
+            <SectionLabel>Projection</SectionLabel>
             <div v-if="isClient" class="mt-4 h-72 md:h-80">
               <ChartCmp
                 :labels="chartData.labels"
@@ -65,6 +65,7 @@ import Card from '@/components/ui/Card.vue'
 import Pill from '@/components/ui/Pill.vue'
 import NumberInput from '@/components/ui/NumberInput.vue'
 import ResultTile from '@/components/ui/ResultTile.vue'
+import SectionLabel from '@/components/ui/SectionLabel.vue'
 import ChartCmp from '@/components/common/chart/ChartCmp.vue'
 import { compoundInterestPerPeriod } from '@jdizm/finance-calculator'
 
