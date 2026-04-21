@@ -1,199 +1,108 @@
 <template>
-  <main class="home-view">
-    <div class="hero-section">
-      <h1 class="hero-title">Finance Tools & Calculators</h1>
-      <p class="hero-subtitle">Plan your financial future with our interactive tools</p>
-    </div>
-
-    <section class="projection-section">
-      <projection-chart
-        title="Compound Interest Projection"
-        subtitle="See how your investments could grow over time"
-        :default-initial-deposit="5000"
-        :default-monthly-contribution="500"
-        :default-years="25"
-        :default-interest-rate="5.0"
-      />
-    </section>
-
-    <section class="calculators-grid">
-      <a href="/compound-interest" class="calculator-card">
-        <div class="card-icon">💰</div>
-        <h3 class="card-title">Compound Interest Calculator</h3>
-        <p class="card-description">
-          Calculate returns on your investments with compound interest over time
-        </p>
-        <span class="card-cta">Try it now →</span>
-      </a>
-
-      <a href="/mortgage" class="calculator-card">
-        <div class="card-icon">🏠</div>
-        <h3 class="card-title">Mortgage Calculator</h3>
-        <p class="card-description">
-          Plan your property purchase with detailed mortgage calculations
-        </p>
-        <span class="card-cta">Try it now →</span>
-      </a>
-    </section>
-
-    <section class="info-section">
-      <div class="info-card">
-        <h3>Why use compound interest?</h3>
-        <p>
-          Compound interest allows your investments to grow exponentially over time. The interest
-          you earn is reinvested, generating even more interest in subsequent periods.
-        </p>
+  <main class="font-body">
+    <Section tone="emerald-950" padding="py-20 md:py-28">
+      <Pill tone="light" class="mb-6">Free · No signup · UK-friendly</Pill>
+      <h1 class="font-display text-5xl font-black leading-heading tracking-tightest md:text-7xl">
+        Bold, chunky finance tools for the rest of us.
+      </h1>
+      <p class="mt-6 max-w-2xl text-lg leading-relaxed opacity-80 md:text-xl">
+        Compound interest, mortgage, savings goals, FIRE number, early mortgage payoff.
+        Every calculator runs in your browser. Nothing saved, nothing tracked.
+      </p>
+      <div class="mt-10 flex flex-wrap gap-3">
+        <Button variant="primary" size="lg" to="/compound-interest">Compound interest</Button>
+        <Button variant="secondary" size="lg" to="/mortgage">Mortgage</Button>
       </div>
-      <div class="info-card">
-        <h3>Start investing early</h3>
-        <p>
-          Time is your greatest advantage when investing. Starting early, even with small amounts,
-          can lead to significant growth due to the power of compounding.
-        </p>
+    </Section>
+
+    <Section tone="cream">
+      <div class="flex items-end justify-between gap-8">
+        <div>
+          <Pill tone="cream" class="mb-4">Five calculators</Pill>
+          <h2 class="font-display text-4xl font-black leading-heading tracking-tight md:text-5xl">
+            Pick a tool. Get an answer.
+          </h2>
+        </div>
       </div>
-    </section>
+      <div class="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <CalculatorCard
+          href="/compound-interest"
+          tone="emerald-950"
+          eyebrow="Grow"
+          title="Compound interest"
+          body="Project what regular contributions become over decades."
+        />
+        <CalculatorCard
+          href="/mortgage"
+          tone="ink-950"
+          eyebrow="Borrow"
+          title="Mortgage"
+          body="Monthly repayment and total interest for repayment or interest-only mortgages."
+        />
+        <CalculatorCard
+          href="/savings-goal"
+          tone="accent-indigo"
+          eyebrow="Target"
+          title="Savings goal"
+          body="How much a month to hit a number by a date. Or how long if you save £X."
+          coming-soon
+        />
+        <CalculatorCard
+          href="/early-payoff"
+          tone="emerald-950"
+          eyebrow="Payoff"
+          title="Early mortgage payoff"
+          body="Extra monthly or lump-sum payments and the months + interest saved."
+          coming-soon
+        />
+        <CalculatorCard
+          href="/fire"
+          tone="ink-950"
+          eyebrow="FIRE"
+          title="FIRE number"
+          body="Savings target from your annual spend and a safe withdrawal rate."
+          coming-soon
+        />
+        <CalculatorCard
+          href="#more"
+          tone="cream"
+          eyebrow="Suggest"
+          title="Something missing?"
+          body="These calculators are open source. File an issue or PR."
+          external="https://github.com/JDIZM/compound-interest"
+        />
+      </div>
+    </Section>
+
+    <Section tone="transparent" padding="py-16 md:py-24">
+      <div class="grid gap-6 md:grid-cols-2">
+        <Card tone="cream" padding="p-8 md:p-10">
+          <h3 class="font-display text-2xl font-black tracking-tight">Why compound interest wins</h3>
+          <p class="mt-3 leading-relaxed">
+            Your interest earns interest. Over decades the curve steepens so sharply that
+            time in the market beats nearly every other input you can control. Start early,
+            keep going, don't touch it.
+          </p>
+        </Card>
+        <Card tone="cream" padding="p-8 md:p-10">
+          <h3 class="font-display text-2xl font-black tracking-tight">Built on an open source library</h3>
+          <p class="mt-3 leading-relaxed">
+            Every calculation runs through
+            <a href="https://www.npmjs.com/package/@jdizm/finance-calculator" class="underline decoration-2 underline-offset-4">
+              @jdizm/finance-calculator
+            </a>
+            &nbsp;on npm. Audit the maths, fork it, or use it in your own project.
+          </p>
+        </Card>
+      </div>
+    </Section>
   </main>
 </template>
 
 <script setup lang="ts">
-import ProjectionChart from '@/components/common/projection-chart/ProjectionChart.vue'
+import Section from '@/components/ui/Section.vue'
+import Button from '@/components/ui/Button.vue'
+import Card from '@/components/ui/Card.vue'
+import Pill from '@/components/ui/Pill.vue'
+import CalculatorCard from '@/components/marketing/CalculatorCard.vue'
 </script>
-
-<style scoped lang="scss">
-.home-view {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 2rem;
-
-  @media (max-width: 768px) {
-    padding: 1rem;
-  }
-}
-
-.hero-section {
-  text-align: center;
-  padding: 3rem 1rem;
-  margin-bottom: 3rem;
-
-  .hero-title {
-    font-size: 2.5rem;
-    font-weight: 800;
-    color: var(--color-heading);
-    margin-bottom: 1rem;
-    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-
-    @media (max-width: 768px) {
-      font-size: 2rem;
-    }
-  }
-
-  .hero-subtitle {
-    font-size: 1.25rem;
-    color: var(--color-text);
-    opacity: 0.9;
-
-    @media (max-width: 768px) {
-      font-size: 1rem;
-    }
-  }
-}
-
-.projection-section {
-  margin-bottom: 4rem;
-}
-
-.calculators-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  margin-bottom: 4rem;
-
-  @media (max-width: 768px) {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-}
-
-.calculator-card {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  padding: 2rem;
-  background: var(--color-background);
-  border: 2px solid var(--color-border);
-  border-radius: 16px;
-  text-decoration: none;
-  transition: all 0.3s ease;
-
-  &:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-    border-color: var(--color-primary);
-  }
-
-  .card-icon {
-    font-size: 3rem;
-    margin-bottom: 0.5rem;
-  }
-
-  .card-title {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--color-heading);
-    margin-bottom: 0.5rem;
-  }
-
-  .card-description {
-    font-size: 1rem;
-    color: var(--color-text);
-    line-height: 1.6;
-    flex-grow: 1;
-  }
-
-  .card-cta {
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--color-primary);
-    margin-top: 0.5rem;
-    transition: transform 0.3s ease;
-  }
-
-  &:hover .card-cta {
-    transform: translateX(4px);
-  }
-}
-
-.info-section {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  padding: 2rem 0;
-
-  @media (max-width: 768px) {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-}
-
-.info-card {
-  padding: 2rem;
-  background: var(--color-background-soft);
-  border-radius: 12px;
-
-  h3 {
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: var(--color-heading);
-    margin-bottom: 1rem;
-  }
-
-  p {
-    font-size: 1rem;
-    color: var(--color-text);
-    line-height: 1.7;
-  }
-}
-</style>
