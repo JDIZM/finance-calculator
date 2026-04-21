@@ -40,8 +40,8 @@ describe('Finance Calculator — smoke', () => {
   it('fire page shows the FIRE number and years to FIRE', () => {
     cy.visit('/fire')
     cy.contains('h1', 'When can you stop working?').should('be.visible')
-    // 40k annual spend / 4% WR = £1,000,000 FIRE target on default inputs
-    cy.contains('£1,000,000').should('be.visible')
+    // 40k annual spend / 4% WR = £1M FIRE target on default inputs (abbreviated in ResultTile)
+    cy.contains('£1.00M').should('be.visible')
     cy.contains('Years to FIRE').should('be.visible')
   })
 })

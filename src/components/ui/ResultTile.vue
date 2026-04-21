@@ -28,8 +28,22 @@ const props = withDefaults(
   }
 )
 
+const abbreviate = (n: number): string => {
+  const abs = Math.abs(n)
+  if (abs >= 100_000_000) return `${Math.round(n / 1_000_000)}M`
+  if (abs >= 10_000_000) return `${(n / 1_000_000).toFixed(1)}M`
+  if (abs >= 1_000_000) return `${(n / 1_000_000).toFixed(2)}M`
+  if (abs >= 100_000) return `${Math.round(n / 1_000)}K`
+  if (abs >= 10_000) return `${(n / 1_000).toFixed(1)}K`
+  return ''
+}
+
 const formatted = computed(() => {
   if (typeof props.value === 'string') return props.value
+  if (props.decimals === 0) {
+    const abbr = abbreviate(props.value)
+    if (abbr) return abbr
+  }
   return props.value.toLocaleString(props.locale, {
     minimumFractionDigits: props.decimals,
     maximumFractionDigits: props.decimals,
