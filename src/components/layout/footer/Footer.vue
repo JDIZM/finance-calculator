@@ -29,16 +29,15 @@
     <div class="border-t border-surface-rule bg-surface-rule/30">
       <div class="mx-auto flex max-w-6xl flex-col items-start gap-3 px-4 py-4 text-xs opacity-80 md:flex-row md:items-center md:justify-between md:px-6">
         <p>
-          Built by
+          Built by James Donnelly,
           <a
             href="https://jamesdonnelly.dev/?utm_source=financecalculator.dev&utm_medium=referral&utm_campaign=built-by"
             target="_blank"
             rel="noopener"
             class="font-bold text-emerald-700 underline decoration-2 underline-offset-4 hover:text-emerald-950"
           >
-            James Donnelly
-          </a>
-          — software engineer, Bangkok.
+            freelance web developer in Manchester
+          </a>.
         </p>
         <a
           href="/sitemap.xml"
