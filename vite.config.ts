@@ -5,22 +5,28 @@ import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import vike from 'vike/plugin'
 
-// Check if we're in Storybook mode
-const isStorybook = process.argv.includes('--storybook') ||
-                    process.env.npm_lifecycle_event?.includes('storybook') ||
-                    process.env.STORYBOOK === 'true'
+const isStorybook =
+  process.argv.includes('--storybook') ||
+  process.env.npm_lifecycle_event?.includes('storybook') ||
+  process.env.STORYBOOK === 'true'
 
-// https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [
-    vue(),
-    vueJsx(),
-    // Only load Vike when not in Storybook
-    ...(!isStorybook ? [vike({ prerender: true })] : [])
-  ],
+  plugins: [vue(), vueJsx(), ...(!isStorybook ? [vike()] : [])],
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url))
-    }
-  }
+      '@': fileURLToPath(new URL('./src', import.meta.url)),
+    },
+  },
+  server: {
+    watch: {
+      ignored: [
+        '**/coverage/**',
+        '**/storybook-static/**',
+        '**/dist/**',
+        '**/.vike/**',
+        '**/cypress/videos/**',
+        '**/cypress/screenshots/**',
+      ],
+    },
+  },
 })
