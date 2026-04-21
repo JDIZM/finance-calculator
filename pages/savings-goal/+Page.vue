@@ -20,8 +20,8 @@
 
           <SegmentedToggle
             v-model="mode"
-            class="mt-4"
-            aria-label="Solve for"
+            class="mt-5"
+            label="Solve for"
             :options="modeOptions"
           />
 

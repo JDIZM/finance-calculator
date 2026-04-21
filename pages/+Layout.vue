@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" class="flex min-h-screen flex-col">
     <NavBar />
     <slot />
   </div>
@@ -9,13 +9,3 @@
 import '@/styles/tailwind.css'
 import NavBar from '@/components/layout/navbar/NavBar.vue'
 </script>
-
-<style lang="scss">
-@use '@/sass/main.scss';
-
-#app {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-</style>

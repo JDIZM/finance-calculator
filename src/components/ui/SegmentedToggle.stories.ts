@@ -14,7 +14,7 @@ type Story = StoryObj<typeof meta>
 export const TwoOptions: Story = {
   args: {
     modelValue: 'repayment',
-    ariaLabel: 'Mortgage type',
+    label: 'Mortgage type',
     options: [
       { value: 'repayment', label: 'Repayment' },
       { value: 'interestOnly', label: 'Interest-only' },

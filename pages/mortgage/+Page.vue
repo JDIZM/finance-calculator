@@ -20,8 +20,8 @@
 
           <SegmentedToggle
             v-model="type"
-            class="mt-4"
-            aria-label="Mortgage type"
+            class="mt-5"
+            label="Mortgage type"
             :options="mortgageTypeOptions"
           />
 

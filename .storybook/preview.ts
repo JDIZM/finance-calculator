@@ -1,4 +1,3 @@
-import '../src/sass/main.scss'
 import '../src/styles/tailwind.css'
 import { type Preview, setup } from '@storybook/vue3'
 import { createPinia } from 'pinia'

@@ -1,12 +1,12 @@
 <template>
-  <div class="flex min-w-0 flex-col gap-2">
+  <div class="flex min-w-0 flex-col gap-1.5">
     <span v-if="label" class="font-display text-[0.7rem] font-bold uppercase tracking-widest opacity-70">
       {{ label }}
     </span>
-    <span class="block font-display text-3xl font-black leading-none tracking-tight tabular-nums sm:text-4xl lg:text-5xl break-words">
-      <span v-if="prefix" class="mr-0.5 opacity-70">{{ prefix }}</span>{{ formatted }}
+    <span class="block truncate font-display text-2xl font-black leading-none tabular-nums sm:text-[1.75rem] lg:text-3xl xl:text-4xl">
+      <span v-if="prefix" class="opacity-60">{{ prefix }}</span>{{ formatted }}
     </span>
-    <span v-if="hint" class="text-sm font-medium opacity-70">{{ hint }}</span>
+    <span v-if="hint" class="text-xs font-medium opacity-70">{{ hint }}</span>
   </div>
 </template>
 
