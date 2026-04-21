@@ -45,7 +45,6 @@
           eyebrow="Target"
           title="Savings goal"
           body="How much a month to hit a number by a date. Or how long if you save £X."
-          coming-soon
         />
         <CalculatorCard
           href="/early-payoff"
@@ -53,7 +52,6 @@
           eyebrow="Payoff"
           title="Early mortgage payoff"
           body="Extra monthly or lump-sum payments and the months + interest saved."
-          coming-soon
         />
         <CalculatorCard
           href="/fire"
@@ -61,7 +59,6 @@
           eyebrow="FIRE"
           title="FIRE number"
           body="Savings target from your annual spend and a safe withdrawal rate."
-          coming-soon
         />
         <CalculatorCard
           href="#more"

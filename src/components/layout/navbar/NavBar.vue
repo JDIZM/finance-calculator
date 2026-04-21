@@ -8,8 +8,11 @@
 
       <nav class="navbar-nav">
         <a href="/" class="nav-link">Home</a>
-        <a href="/compound-interest" class="nav-link">Compound Interest</a>
+        <a href="/compound-interest" class="nav-link">Compound</a>
         <a href="/mortgage" class="nav-link">Mortgage</a>
+        <a href="/savings-goal" class="nav-link">Savings goal</a>
+        <a href="/early-payoff" class="nav-link">Early payoff</a>
+        <a href="/fire" class="nav-link">FIRE</a>
       </nav>
 
       <div class="navbar-actions">
