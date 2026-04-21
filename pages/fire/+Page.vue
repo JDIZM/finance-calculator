@@ -20,7 +20,15 @@
           <SectionLabel tag="h2">Your inputs</SectionLabel>
           <div class="mt-5 grid gap-4">
             <NumberInput v-model="form.annualSpend" label="Annual spend" prefix="£" :min="1" :step="1000" />
-            <NumberInput v-model="form.withdrawalRate" label="Withdrawal rate" prefix="%" :min="0.1" :max="10" :step="0.1" />
+            <NumberInput
+              v-model="form.withdrawalRate"
+              label="Withdrawal rate"
+              prefix="%"
+              :min="0.1"
+              :max="10"
+              :step="0.1"
+              hint="Lower is safer but needs a bigger pot. 3–4% is standard (the 4% rule)."
+            />
             <NumberInput v-model="form.currentSavings" label="Current savings" prefix="£" :min="0" :step="1000" />
             <NumberInput v-model="form.annualContribution" label="Annual contribution" prefix="£" :min="0" :step="1000" />
             <NumberInput v-model="form.annualReturn" label="Expected return" prefix="%" :min="0" :step="0.1" />
@@ -43,11 +51,19 @@
           <Card tone="cream">
             <SectionLabel>What this means</SectionLabel>
             <p v-if="error" class="mt-3 leading-relaxed text-red-700">{{ error }}</p>
-            <p v-else-if="fire" class="mt-3 leading-relaxed">
-              Live on £{{ (form.annualSpend ?? 0).toLocaleString('en-GB') }} a year and you need
-              £{{ fire.target.toLocaleString('en-GB') }} invested to withdraw that amount indefinitely at
-              {{ form.withdrawalRate }}%. Real-world returns aren't smooth, so sequence-of-returns risk matters.
-            </p>
+            <div v-else-if="fire" class="mt-3 space-y-3 leading-relaxed">
+              <p>
+                Live on £{{ (form.annualSpend ?? 0).toLocaleString('en-GB') }} a year and you need
+                £{{ fire.target.toLocaleString('en-GB') }} invested to withdraw that amount indefinitely at
+                {{ form.withdrawalRate }}%.
+              </p>
+              <p class="text-ink-900/80">
+                A lower withdrawal rate is more conservative, so the pot must be <em>bigger</em> to throw off the same
+                £{{ (form.annualSpend ?? 0).toLocaleString('en-GB') }} a year. The 4% rule (25× your spend) is the
+                common benchmark; going lower buys extra safety against sequence-of-returns risk but takes longer to
+                accumulate.
+              </p>
+            </div>
           </Card>
         </div>
       </div>
