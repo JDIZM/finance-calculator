@@ -1,30 +1,30 @@
 <template>
   <main class="font-body">
-    <Section tone="ink-950" padding="py-16 md:py-20">
-      <Pill tone="light" class="mb-6">Mortgage</Pill>
-      <h1 class="font-display text-5xl font-black leading-heading tracking-tightest md:text-6xl">
+    <Section tone="ink-950" padding="py-12 md:py-16">
+      <Pill tone="light" class="mb-4">Mortgage</Pill>
+      <h1 class="font-display text-4xl font-black leading-heading tracking-tightest sm:text-5xl md:text-6xl">
         What will the repayments be?
       </h1>
-      <h2 class="mt-3 font-display text-lg font-bold opacity-80 md:text-xl">
+      <h2 class="mt-3 font-display text-base font-bold opacity-80 md:text-lg">
         UK mortgage calculator for monthly repayments and total interest.
       </h2>
-      <p class="mt-4 max-w-2xl text-lg leading-relaxed opacity-80">
+      <p class="mt-3 max-w-2xl text-base leading-relaxed opacity-80">
         Repayment or interest-only. See the monthly cost and what it costs you in interest over the full term.
       </p>
     </Section>
 
-    <Section tone="transparent" padding="py-12 md:py-16">
-      <div class="grid gap-8 lg:grid-cols-[440px_1fr]">
-        <Card tone="ink-950" padding="p-8">
-          <h2 class="font-display text-xl font-black tracking-tight">Your inputs</h2>
+    <Section tone="transparent">
+      <div class="grid gap-6 lg:grid-cols-[minmax(0,400px)_minmax(0,1fr)]">
+        <Card tone="cream">
+          <h2 class="font-display text-sm font-black uppercase tracking-widest text-ink-900/70">Your inputs</h2>
 
-          <div role="group" aria-label="Mortgage type" class="mt-6 flex gap-2 rounded-slab bg-white/5 p-1">
+          <div role="group" aria-label="Mortgage type" class="mt-4 flex gap-1 rounded-slab border border-surface-rule bg-surface-cream p-1">
             <button
               type="button"
               :aria-pressed="type === 'repayment'"
               :class="[
-                'flex-1 rounded-slab px-4 py-2 font-display text-sm font-bold transition focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500',
-                type === 'repayment' ? 'bg-emerald-500 text-emerald-950' : 'text-surface-off-white/80 hover:text-surface-off-white',
+                'flex-1 rounded-slab px-3 py-2 font-display text-xs font-bold uppercase tracking-widest transition focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500',
+                type === 'repayment' ? 'bg-emerald-950 text-surface-off-white shadow-soft' : 'text-ink-900/70 hover:text-ink-900',
               ]"
               @click="type = 'repayment'"
             >
@@ -34,8 +34,8 @@
               type="button"
               :aria-pressed="type === 'interestOnly'"
               :class="[
-                'flex-1 rounded-slab px-4 py-2 font-display text-sm font-bold transition focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500',
-                type === 'interestOnly' ? 'bg-emerald-500 text-emerald-950' : 'text-surface-off-white/80 hover:text-surface-off-white',
+                'flex-1 rounded-slab px-3 py-2 font-display text-xs font-bold uppercase tracking-widest transition focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500',
+                type === 'interestOnly' ? 'bg-emerald-950 text-surface-off-white shadow-soft' : 'text-ink-900/70 hover:text-ink-900',
               ]"
               @click="type = 'interestOnly'"
             >
@@ -43,7 +43,7 @@
             </button>
           </div>
 
-          <div class="mt-6 grid gap-5">
+          <div class="mt-5 grid gap-4">
             <NumberInput v-model="form.homeValue" label="Home value" prefix="£" :min="0" :step="5000" />
             <NumberInput v-model="form.deposit" label="Deposit" prefix="£" :min="0" :step="1000" />
             <NumberInput v-model="form.interestRate" label="Interest rate" prefix="%" :min="0" :step="0.1" />
@@ -51,12 +51,12 @@
           </div>
         </Card>
 
-        <div class="flex flex-col gap-6">
+        <div class="flex flex-col gap-5">
           <div v-if="result" class="grid gap-4 sm:grid-cols-3">
-            <Card tone="cream" padding="p-6">
+            <Card tone="subtle" padding="p-5">
               <ResultTile label="Loan amount" :value="result.principal" prefix="£" />
             </Card>
-            <Card tone="cream" padding="p-6">
+            <Card tone="subtle" padding="p-5">
               <ResultTile
                 v-if="type === 'repayment'"
                 label="Monthly payment"
@@ -72,7 +72,7 @@
                 :decimals="2"
               />
             </Card>
-            <Card tone="accent-indigo" padding="p-6">
+            <Card tone="emerald-950" padding="p-5">
               <ResultTile
                 v-if="type === 'repayment'"
                 label="Total interest"
@@ -88,11 +88,9 @@
             </Card>
           </div>
 
-          <Card tone="cream" padding="p-6 md:p-8">
-            <h3 class="font-display text-lg font-black uppercase tracking-widest">What this means</h3>
-            <p v-if="error" class="mt-3 leading-relaxed text-red-700">
-              {{ error }}
-            </p>
+          <Card tone="cream">
+            <h3 class="font-display text-sm font-black uppercase tracking-widest text-ink-900/70">What this means</h3>
+            <p v-if="error" class="mt-3 leading-relaxed text-red-700">{{ error }}</p>
             <p v-else-if="type === 'repayment'" class="mt-3 leading-relaxed">
               Over {{ form.years }} years at {{ form.interestRate }}% you'd pay back the full
               £{{ (result?.principal ?? 0).toLocaleString('en-GB') }}
@@ -126,10 +124,10 @@ import type {
 
 const type = ref<MortgageType>('repayment')
 const form = reactive({
-  homeValue: 300_000,
-  deposit: 30_000,
-  interestRate: 5,
-  years: 25,
+  homeValue: 300_000 as number | null,
+  deposit: 30_000 as number | null,
+  interestRate: 5 as number | null,
+  years: 25 as number | null,
 })
 
 type Outcome = {

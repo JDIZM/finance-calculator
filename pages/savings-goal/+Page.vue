@@ -1,30 +1,30 @@
 <template>
   <main class="font-body">
-    <Section tone="accent-indigo" padding="py-16 md:py-20">
-      <Pill tone="light" class="mb-6">Savings goal</Pill>
-      <h1 class="font-display text-5xl font-black leading-heading tracking-tightest md:text-6xl">
+    <Section tone="accent-indigo" padding="py-12 md:py-16">
+      <Pill tone="light" class="mb-4">Savings goal</Pill>
+      <h1 class="font-display text-4xl font-black leading-heading tracking-tightest sm:text-5xl md:text-6xl">
         Hit your number.
       </h1>
-      <h2 class="mt-3 font-display text-lg font-bold opacity-80 md:text-xl">
+      <h2 class="mt-3 font-display text-base font-bold opacity-80 md:text-lg">
         Savings goal calculator with compound growth.
       </h2>
-      <p class="mt-4 max-w-2xl text-lg leading-relaxed opacity-80">
+      <p class="mt-3 max-w-2xl text-base leading-relaxed opacity-80">
         Pick a target. We'll tell you what to save each month, or how long it'll take at your current rate.
       </p>
     </Section>
 
-    <Section tone="transparent" padding="py-12 md:py-16">
-      <div class="grid gap-8 lg:grid-cols-[440px_1fr]">
-        <Card tone="accent-indigo" padding="p-8">
-          <h2 class="font-display text-xl font-black tracking-tight">Your inputs</h2>
+    <Section tone="transparent">
+      <div class="grid gap-6 lg:grid-cols-[minmax(0,400px)_minmax(0,1fr)]">
+        <Card tone="cream">
+          <h2 class="font-display text-sm font-black uppercase tracking-widest text-ink-900/70">Your inputs</h2>
 
-          <div role="group" aria-label="Solve for" class="mt-6 flex gap-2 rounded-slab bg-white/5 p-1">
+          <div role="group" aria-label="Solve for" class="mt-4 flex gap-1 rounded-slab border border-surface-rule bg-surface-cream p-1">
             <button
               type="button"
               :aria-pressed="mode === 'contribution'"
               :class="[
-                'flex-1 rounded-slab px-4 py-2 font-display text-sm font-bold transition focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500',
-                mode === 'contribution' ? 'bg-emerald-500 text-emerald-950' : 'text-surface-off-white/80 hover:text-surface-off-white',
+                'flex-1 rounded-slab px-3 py-2 font-display text-xs font-bold uppercase tracking-widest transition focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500',
+                mode === 'contribution' ? 'bg-emerald-950 text-surface-off-white shadow-soft' : 'text-ink-900/70 hover:text-ink-900',
               ]"
               @click="mode = 'contribution'"
             >
@@ -34,8 +34,8 @@
               type="button"
               :aria-pressed="mode === 'years'"
               :class="[
-                'flex-1 rounded-slab px-4 py-2 font-display text-sm font-bold transition focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500',
-                mode === 'years' ? 'bg-emerald-500 text-emerald-950' : 'text-surface-off-white/80 hover:text-surface-off-white',
+                'flex-1 rounded-slab px-3 py-2 font-display text-xs font-bold uppercase tracking-widest transition focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500',
+                mode === 'years' ? 'bg-emerald-950 text-surface-off-white shadow-soft' : 'text-ink-900/70 hover:text-ink-900',
               ]"
               @click="mode = 'years'"
             >
@@ -43,7 +43,7 @@
             </button>
           </div>
 
-          <div class="mt-6 grid gap-5">
+          <div class="mt-5 grid gap-4">
             <NumberInput v-model="form.target" label="Target" prefix="£" :min="1" :step="1000" />
             <NumberInput v-model="form.startingBalance" label="Starting balance" prefix="£" :min="0" :step="500" />
             <NumberInput v-model="form.annualRate" label="Annual rate" prefix="%" :min="0" :step="0.1" />
@@ -66,9 +66,9 @@
           </div>
         </Card>
 
-        <div class="flex flex-col gap-6">
+        <div class="flex flex-col gap-5">
           <div v-if="contributionResult" class="grid gap-4 sm:grid-cols-3">
-            <Card tone="cream" padding="p-6">
+            <Card tone="emerald-950" padding="p-5">
               <ResultTile
                 label="Per month"
                 :value="contributionResult.contributionPerMonth"
@@ -76,14 +76,14 @@
                 :decimals="2"
               />
             </Card>
-            <Card tone="cream" padding="p-6">
+            <Card tone="subtle" padding="p-5">
               <ResultTile
                 label="Total contributions"
                 :value="contributionResult.totalContributions"
                 prefix="£"
               />
             </Card>
-            <Card tone="emerald-950" padding="p-6">
+            <Card tone="subtle" padding="p-5">
               <ResultTile
                 label="Interest earned"
                 :value="contributionResult.interestEarned"
@@ -93,10 +93,10 @@
           </div>
 
           <div v-if="yearsResult !== null" class="grid gap-4 sm:grid-cols-2">
-            <Card tone="cream" padding="p-6">
+            <Card tone="emerald-950" padding="p-5">
               <ResultTile label="Years needed" :value="yearsResult" :decimals="1" hint="To reach your target" />
             </Card>
-            <Card tone="emerald-950" padding="p-6">
+            <Card tone="subtle" padding="p-5">
               <ResultTile
                 label="Total contributed"
                 :value="Math.round((form.contributionPerMonth ?? 0) * 12 * yearsResult)"
@@ -105,8 +105,8 @@
             </Card>
           </div>
 
-          <Card tone="cream" padding="p-6 md:p-8">
-            <h3 class="font-display text-lg font-black uppercase tracking-widest">The maths</h3>
+          <Card tone="cream">
+            <h3 class="font-display text-sm font-black uppercase tracking-widest text-ink-900/70">The maths</h3>
             <p v-if="error" class="mt-3 leading-relaxed text-red-700">{{ error }}</p>
             <p v-else class="mt-3 leading-relaxed">
               Assumes compounding {{ form.compoundingPerYear }} times per year.
@@ -133,11 +133,11 @@ type Mode = 'contribution' | 'years'
 const mode = ref<Mode>('contribution')
 
 const form = reactive({
-  target: 100_000,
-  startingBalance: 5_000,
-  annualRate: 7,
-  years: 10,
-  contributionPerMonth: 500,
+  target: 100_000 as number | null,
+  startingBalance: 5_000 as number | null,
+  annualRate: 7 as number | null,
+  years: 10 as number | null,
+  contributionPerMonth: 500 as number | null,
   compoundingPerYear: 12,
 })
 

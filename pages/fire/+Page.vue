@@ -1,24 +1,24 @@
 <template>
   <main class="font-body">
-    <Section tone="ink-950" padding="py-16 md:py-20">
-      <Pill tone="light" class="mb-6">FIRE number</Pill>
-      <h1 class="font-display text-5xl font-black leading-heading tracking-tightest md:text-6xl">
+    <Section tone="ink-950" padding="py-12 md:py-16">
+      <Pill tone="light" class="mb-4">FIRE number</Pill>
+      <h1 class="font-display text-4xl font-black leading-heading tracking-tightest sm:text-5xl md:text-6xl">
         When can you stop working?
       </h1>
-      <h2 class="mt-3 font-display text-lg font-bold opacity-80 md:text-xl">
+      <h2 class="mt-3 font-display text-base font-bold opacity-80 md:text-lg">
         FIRE number calculator for financial independence.
       </h2>
-      <p class="mt-4 max-w-2xl text-lg leading-relaxed opacity-80">
+      <p class="mt-3 max-w-2xl text-base leading-relaxed opacity-80">
         Your FIRE number is the investment pot needed to live off its income forever.
         The classic rule: 25× your annual spend (a 4% safe withdrawal rate).
       </p>
     </Section>
 
-    <Section tone="transparent" padding="py-12 md:py-16">
-      <div class="grid gap-8 lg:grid-cols-[440px_1fr]">
-        <Card tone="ink-950" padding="p-8">
-          <h2 class="font-display text-xl font-black tracking-tight">Your inputs</h2>
-          <div class="mt-6 grid gap-5">
+    <Section tone="transparent">
+      <div class="grid gap-6 lg:grid-cols-[minmax(0,400px)_minmax(0,1fr)]">
+        <Card tone="cream">
+          <h2 class="font-display text-sm font-black uppercase tracking-widest text-ink-900/70">Your inputs</h2>
+          <div class="mt-5 grid gap-4">
             <NumberInput v-model="form.annualSpend" label="Annual spend" prefix="£" :min="1" :step="1000" />
             <NumberInput v-model="form.withdrawalRate" label="Withdrawal rate" prefix="%" :min="0.1" :max="10" :step="0.1" />
             <NumberInput v-model="form.currentSavings" label="Current savings" prefix="£" :min="0" :step="1000" />
@@ -27,25 +27,21 @@
           </div>
         </Card>
 
-        <div class="flex flex-col gap-6">
+        <div class="flex flex-col gap-5">
           <div v-if="fire" class="grid gap-4 sm:grid-cols-3">
-            <Card tone="cream" padding="p-6">
+            <Card tone="emerald-950" padding="p-5">
               <ResultTile label="FIRE number" :value="fire.target" prefix="£" />
             </Card>
-            <Card tone="cream" padding="p-6">
-              <ResultTile label="Monthly income" :value="fire.monthlyIncome" prefix="£" :decimals="0" hint="At your chosen withdrawal rate" />
+            <Card tone="subtle" padding="p-5">
+              <ResultTile label="Monthly income" :value="fire.monthlyIncome" prefix="£" hint="At your chosen withdrawal rate" />
             </Card>
-            <Card tone="accent-indigo" padding="p-6">
-              <ResultTile
-                label="Years to FIRE"
-                :value="years ?? '—'"
-                :decimals="1"
-              />
+            <Card tone="subtle" padding="p-5">
+              <ResultTile label="Years to FIRE" :value="years ?? '—'" :decimals="1" />
             </Card>
           </div>
 
-          <Card tone="cream" padding="p-6 md:p-8">
-            <h3 class="font-display text-lg font-black uppercase tracking-widest">What this means</h3>
+          <Card tone="cream">
+            <h3 class="font-display text-sm font-black uppercase tracking-widest text-ink-900/70">What this means</h3>
             <p v-if="error" class="mt-3 leading-relaxed text-red-700">{{ error }}</p>
             <p v-else-if="fire" class="mt-3 leading-relaxed">
               Live on £{{ (form.annualSpend ?? 0).toLocaleString('en-GB') }} a year and you need
@@ -69,11 +65,11 @@ import ResultTile from '@/components/ui/ResultTile.vue'
 import { fireNumber, yearsToFire } from '@jdizm/finance-calculator'
 
 const form = reactive({
-  annualSpend: 40_000,
-  withdrawalRate: 4,
-  currentSavings: 50_000,
-  annualContribution: 20_000,
-  annualReturn: 7,
+  annualSpend: 40_000 as number | null,
+  withdrawalRate: 4 as number | null,
+  currentSavings: 50_000 as number | null,
+  annualContribution: 20_000 as number | null,
+  annualReturn: 7 as number | null,
 })
 
 const fireOutcome = computed(() => {

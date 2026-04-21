@@ -1,82 +1,46 @@
 <template>
   <main class="font-body">
-    <Section tone="emerald-950" padding="py-16 md:py-20">
-      <Pill tone="light" class="mb-6">Compound interest</Pill>
-      <h1 class="font-display text-5xl font-black leading-heading tracking-tightest md:text-6xl">
+    <Section tone="emerald-950" padding="py-12 md:py-16">
+      <Pill tone="light" class="mb-4">Compound interest</Pill>
+      <h1 class="font-display text-4xl font-black leading-heading tracking-tightest sm:text-5xl md:text-6xl">
         How much will your money grow?
       </h1>
-      <h2 class="mt-3 font-display text-lg font-bold opacity-80 md:text-xl">
+      <h2 class="mt-3 font-display text-base font-bold opacity-80 md:text-lg">
         Compound interest calculator with monthly contributions.
       </h2>
-      <p class="mt-4 max-w-2xl text-lg leading-relaxed opacity-80">
+      <p class="mt-3 max-w-2xl text-base leading-relaxed opacity-80">
         Four inputs: starting balance, monthly contribution, interest rate, and time.
       </p>
     </Section>
 
-    <Section tone="transparent" padding="py-12 md:py-16">
-      <div class="grid gap-8 lg:grid-cols-[440px_1fr]">
-        <Card tone="emerald-950" padding="p-8">
-          <h2 class="font-display text-xl font-black tracking-tight">Your inputs</h2>
-          <div class="mt-6 grid gap-5">
-            <NumberInput
-              v-model="form.principal"
-              label="Starting balance"
-              prefix="£"
-              :min="0"
-              :step="100"
-            />
-            <NumberInput
-              v-model="form.monthlyContribution"
-              label="Monthly contribution"
-              prefix="£"
-              :min="0"
-              :step="50"
-            />
-            <NumberInput
-              v-model="form.rate"
-              label="Annual rate"
-              prefix="%"
-              :min="0"
-              :step="0.1"
-            />
-            <NumberInput
-              v-model="form.years"
-              label="Years"
-              :min="1"
-              :max="60"
-              :step="1"
-            />
+    <Section tone="transparent">
+      <div class="grid gap-6 lg:grid-cols-[minmax(0,400px)_minmax(0,1fr)]">
+        <Card tone="cream">
+          <h2 class="font-display text-lg font-black uppercase tracking-widest text-ink-900/70">Your inputs</h2>
+          <div class="mt-5 grid gap-4">
+            <NumberInput v-model="form.principal" label="Starting balance" prefix="£" :min="0" :step="100" />
+            <NumberInput v-model="form.monthlyContribution" label="Monthly contribution" prefix="£" :min="0" :step="50" />
+            <NumberInput v-model="form.rate" label="Annual rate" prefix="%" :min="0" :step="0.1" />
+            <NumberInput v-model="form.years" label="Years" :min="1" :max="60" :step="1" />
           </div>
         </Card>
 
-        <div class="flex flex-col gap-6">
+        <div class="flex flex-col gap-5">
           <div class="grid gap-4 sm:grid-cols-3">
-            <Card tone="cream" padding="p-6">
-              <ResultTile
-                label="Total contributions"
-                :value="summary.totalContributions"
-                prefix="£"
-              />
+            <Card tone="subtle" padding="p-5">
+              <ResultTile label="Total contributions" :value="summary.totalContributions" prefix="£" />
             </Card>
-            <Card tone="cream" padding="p-6">
-              <ResultTile
-                label="Interest earned"
-                :value="summary.totalInterest"
-                prefix="£"
-              />
+            <Card tone="subtle" padding="p-5">
+              <ResultTile label="Interest earned" :value="summary.totalInterest" prefix="£" />
             </Card>
-            <Card tone="accent-indigo" padding="p-6">
-              <ResultTile
-                label="Final balance"
-                :value="summary.endBalance"
-                prefix="£"
-              />
+            <Card tone="emerald-950" padding="p-5">
+              <ResultTile label="Final balance" :value="summary.endBalance" prefix="£" />
             </Card>
           </div>
 
-          <Card tone="cream" padding="p-6 md:p-8">
-            <h3 class="font-display text-lg font-black uppercase tracking-widest">Projection</h3>
-            <div v-if="isClient" class="mt-4 h-80">
+          <Card tone="cream">
+            <h3 class="font-display text-sm font-black uppercase tracking-widest text-ink-900/70">Projection</h3>
+            <div v-if="isClient" class="mt-4 h-72 md:h-80">
               <ChartCmp
                 :labels="chartData.labels"
                 :deposits="chartData.deposits"
@@ -86,7 +50,7 @@
                 :height="320"
               />
             </div>
-            <div v-else class="mt-4 h-80 animate-pulse rounded-slab bg-surface-rule" />
+            <div v-else class="mt-4 h-72 animate-pulse rounded-slab bg-surface-rule md:h-80" />
           </Card>
         </div>
       </div>
@@ -105,10 +69,10 @@ import ChartCmp from '@/components/common/chart/ChartCmp.vue'
 import { compoundInterestPerPeriod } from '@jdizm/finance-calculator'
 
 const form = reactive({
-  principal: 5_000,
-  monthlyContribution: 500,
-  rate: 7,
-  years: 25,
+  principal: 5_000 as number | null,
+  monthlyContribution: 500 as number | null,
+  rate: 7 as number | null,
+  years: 25 as number | null,
 })
 
 const results = computed(() => {

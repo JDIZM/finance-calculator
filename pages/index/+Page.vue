@@ -1,33 +1,33 @@
 <template>
   <main class="font-body">
-    <Section tone="emerald-950" padding="py-20 md:py-28">
-      <Pill tone="light" class="mb-6">Free · No signup · UK-friendly</Pill>
-      <h1 class="font-display text-5xl font-black leading-heading tracking-tightest md:text-7xl">
+    <Section tone="emerald-950" padding="py-16 md:py-24">
+      <Pill tone="light" class="mb-5">Free · No signup · UK-friendly</Pill>
+      <h1 class="font-display text-4xl font-black leading-heading tracking-tightest sm:text-5xl md:text-6xl lg:text-7xl">
         Bold, chunky finance tools for the rest of us.
       </h1>
-      <h2 class="mt-4 font-display text-xl font-bold opacity-80 md:text-2xl">
+      <h2 class="mt-3 font-display text-lg font-bold opacity-80 md:text-xl">
         Free finance calculators, UK-friendly, no signup.
       </h2>
-      <p class="mt-6 max-w-2xl text-lg leading-relaxed opacity-80 md:text-xl">
+      <p class="mt-5 max-w-2xl text-base leading-relaxed opacity-80 md:text-lg">
         Compound interest, mortgage, savings goals, FIRE number, early mortgage payoff.
         Every calculator runs in your browser. Nothing saved, nothing tracked.
       </p>
-      <div class="mt-10 flex flex-wrap gap-3">
+      <div class="mt-8 flex flex-wrap gap-3">
         <Button variant="primary" size="lg" to="/compound-interest">Compound interest</Button>
-        <Button variant="secondary" size="lg" to="/mortgage">Mortgage</Button>
+        <Button variant="ghost" size="lg" to="/mortgage">Mortgage</Button>
       </div>
     </Section>
 
-    <Section tone="cream">
-      <div class="flex items-end justify-between gap-8">
+    <Section tone="transparent">
+      <div class="flex flex-wrap items-end justify-between gap-6">
         <div>
-          <Pill tone="cream" class="mb-4">Five calculators</Pill>
-          <h2 class="font-display text-4xl font-black leading-heading tracking-tight md:text-5xl">
+          <Pill tone="emerald" class="mb-4">Five calculators</Pill>
+          <h2 class="font-display text-3xl font-black leading-heading tracking-tight md:text-4xl">
             Pick a tool. Get an answer.
           </h2>
         </div>
       </div>
-      <div class="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <div class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         <CalculatorCard
           href="/compound-interest"
           tone="emerald-950"
@@ -64,7 +64,7 @@
           body="The pot you need, based on your annual spend and a safe withdrawal rate."
         />
         <CalculatorCard
-          href="#more"
+          href="https://github.com/JDIZM/compound-interest"
           tone="cream"
           eyebrow="Suggest"
           title="Something missing?"
@@ -74,9 +74,9 @@
       </div>
     </Section>
 
-    <Section tone="transparent" padding="py-16 md:py-24">
-      <div class="grid gap-6 md:grid-cols-2">
-        <Card tone="cream" padding="p-8 md:p-10">
+    <Section tone="cream">
+      <div class="grid gap-5 md:grid-cols-2">
+        <Card tone="subtle">
           <h3 class="font-display text-2xl font-black tracking-tight">Why compound interest wins</h3>
           <p class="mt-3 leading-relaxed">
             Your interest earns interest. Over decades the curve steepens so sharply that
@@ -84,14 +84,14 @@
             keep going, don't touch it.
           </p>
         </Card>
-        <Card tone="cream" padding="p-8 md:p-10">
+        <Card tone="subtle">
           <h3 class="font-display text-2xl font-black tracking-tight">Built on an open source library</h3>
           <p class="mt-3 leading-relaxed">
             Every calculation runs through
-            <a href="https://www.npmjs.com/package/@jdizm/finance-calculator" class="underline decoration-2 underline-offset-4">
+            <a href="https://www.npmjs.com/package/@jdizm/finance-calculator" class="font-semibold text-emerald-700 underline decoration-2 underline-offset-4 hover:text-emerald-500">
               @jdizm/finance-calculator
             </a>
-            &nbsp;on npm. Check the maths, fork it, or use it in your own project.
+            on npm. Check the maths, fork it, or use it in your own project.
           </p>
         </Card>
       </div>

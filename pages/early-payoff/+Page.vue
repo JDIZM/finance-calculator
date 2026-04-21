@@ -1,23 +1,23 @@
 <template>
   <main class="font-body">
-    <Section tone="emerald-950" padding="py-16 md:py-20">
-      <Pill tone="light" class="mb-6">Early mortgage payoff</Pill>
-      <h1 class="font-display text-5xl font-black leading-heading tracking-tightest md:text-6xl">
+    <Section tone="emerald-950" padding="py-12 md:py-16">
+      <Pill tone="light" class="mb-4">Early mortgage payoff</Pill>
+      <h1 class="font-display text-4xl font-black leading-heading tracking-tightest sm:text-5xl md:text-6xl">
         Pay it off faster.
       </h1>
-      <h2 class="mt-3 font-display text-lg font-bold opacity-80 md:text-xl">
+      <h2 class="mt-3 font-display text-base font-bold opacity-80 md:text-lg">
         Early mortgage payoff calculator with overpayment savings.
       </h2>
-      <p class="mt-4 max-w-2xl text-lg leading-relaxed opacity-80">
+      <p class="mt-3 max-w-2xl text-base leading-relaxed opacity-80">
         A little extra each month adds up. See how many months and pounds of interest you save.
       </p>
     </Section>
 
-    <Section tone="transparent" padding="py-12 md:py-16">
-      <div class="grid gap-8 lg:grid-cols-[440px_1fr]">
-        <Card tone="emerald-950" padding="p-8">
-          <h2 class="font-display text-xl font-black tracking-tight">Your mortgage</h2>
-          <div class="mt-6 grid gap-5">
+    <Section tone="transparent">
+      <div class="grid gap-6 lg:grid-cols-[minmax(0,400px)_minmax(0,1fr)]">
+        <Card tone="cream">
+          <h2 class="font-display text-sm font-black uppercase tracking-widest text-ink-900/70">Your mortgage</h2>
+          <div class="mt-5 grid gap-4">
             <NumberInput v-model="form.homeValue" label="Home value" prefix="£" :min="0" :step="5000" />
             <NumberInput v-model="form.deposit" label="Deposit" prefix="£" :min="0" :step="1000" />
             <NumberInput v-model="form.interestRate" label="Interest rate" prefix="%" :min="0" :step="0.1" />
@@ -26,45 +26,44 @@
           </div>
         </Card>
 
-        <div class="flex flex-col gap-6">
+        <div class="flex flex-col gap-5">
           <div v-if="result" class="grid gap-4 sm:grid-cols-3">
-            <Card tone="cream" padding="p-6">
+            <Card tone="emerald-950" padding="p-5">
               <ResultTile
                 label="Months saved"
                 :value="result.monthsSaved"
                 :hint="yearsSavedLabel"
               />
             </Card>
-            <Card tone="cream" padding="p-6">
+            <Card tone="subtle" padding="p-5">
               <ResultTile
                 label="Interest saved"
                 :value="Math.max(0, Math.round(result.interestSaved))"
                 prefix="£"
               />
             </Card>
-            <Card tone="accent-indigo" padding="p-6">
+            <Card tone="subtle" padding="p-5">
               <ResultTile
                 label="New monthly total"
                 :value="Math.round(result.baseMonthlyPayment + (form.extraMonthly ?? 0))"
                 prefix="£"
-                :decimals="0"
               />
             </Card>
           </div>
 
-          <Card tone="cream" padding="p-6 md:p-8">
-            <h3 class="font-display text-lg font-black uppercase tracking-widest">Baseline vs new</h3>
+          <Card tone="cream">
+            <h3 class="font-display text-sm font-black uppercase tracking-widest text-ink-900/70">Baseline vs new</h3>
             <p v-if="error" class="mt-3 leading-relaxed text-red-700">{{ error }}</p>
             <div v-else-if="result" class="mt-4 grid gap-4 sm:grid-cols-2">
-              <div class="rounded-slab bg-surface-rule/40 p-5">
+              <div class="rounded-slab border border-surface-rule bg-surface-cream p-5">
                 <p class="font-display text-xs font-bold uppercase tracking-widest opacity-70">Baseline</p>
                 <p class="mt-2 font-display text-2xl font-black tabular-nums">{{ result.baselineMonths }} mo</p>
-                <p class="mt-1 text-sm">£{{ result.baselineTotalInterest.toLocaleString('en-GB') }} interest</p>
+                <p class="mt-1 text-sm opacity-80">£{{ result.baselineTotalInterest.toLocaleString('en-GB') }} interest</p>
               </div>
               <div class="rounded-slab bg-emerald-950 p-5 text-surface-off-white">
                 <p class="font-display text-xs font-bold uppercase tracking-widest opacity-80">With extras</p>
                 <p class="mt-2 font-display text-2xl font-black tabular-nums">{{ result.newMonths }} mo</p>
-                <p class="mt-1 text-sm">£{{ result.newTotalInterest.toLocaleString('en-GB') }} interest</p>
+                <p class="mt-1 text-sm opacity-90">£{{ result.newTotalInterest.toLocaleString('en-GB') }} interest</p>
               </div>
             </div>
           </Card>
@@ -84,11 +83,11 @@ import ResultTile from '@/components/ui/ResultTile.vue'
 import { earlyMortgagePayoff } from '@jdizm/finance-calculator'
 
 const form = reactive({
-  homeValue: 300_000,
-  deposit: 30_000,
-  interestRate: 5,
-  years: 25,
-  extraMonthly: 200,
+  homeValue: 300_000 as number | null,
+  deposit: 30_000 as number | null,
+  interestRate: 5 as number | null,
+  years: 25 as number | null,
+  extraMonthly: 200 as number | null,
 })
 
 const outcome = computed(() => {
