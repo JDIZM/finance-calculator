@@ -4,7 +4,7 @@ import type { Meta, StoryObj } from '@storybook/vue3'
 const meta = {
   title: 'Layout/NavBar',
   component: NavBar,
-  parameters: { layout: 'fullscreen' },
+  parameters: { layout: 'fullscreen' }
 } satisfies Meta<typeof NavBar>
 
 export default meta
@@ -17,6 +17,6 @@ export const Default: Story = {
       <div class="min-h-[200px] bg-surface-off-white">
         <NavBar />
       </div>
-    `,
-  }),
+    `
+  })
 }

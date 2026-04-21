@@ -6,8 +6,11 @@ const meta = {
   component: Section,
   parameters: { layout: 'fullscreen' },
   argTypes: {
-    tone: { control: 'select', options: ['transparent', 'cream', 'emerald-950', 'ink-950', 'accent-indigo'] },
-  },
+    tone: {
+      control: 'select',
+      options: ['transparent', 'cream', 'emerald-950', 'ink-950', 'accent-indigo']
+    }
+  }
 } satisfies Meta<typeof Section>
 
 export default meta
@@ -26,7 +29,7 @@ const hero = `
 
 export const Transparent: Story = {
   args: { tone: 'transparent' },
-  render: (args) => ({ components: { Section }, setup: () => ({ args }), template: hero }),
+  render: (args) => ({ components: { Section }, setup: () => ({ args }), template: hero })
 }
 
 export const Cream: Story = { ...Transparent, args: { tone: 'cream' } }

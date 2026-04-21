@@ -6,7 +6,7 @@
     :class="[
       'inline-flex items-center justify-center gap-2 rounded-slab font-display font-bold tracking-tight transition-colors duration-200 ease-out-expo focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 focus-visible:ring-offset-surface-off-white',
       sizeClasses,
-      variantClasses,
+      variantClasses
     ]"
   >
     <slot />
@@ -27,7 +27,7 @@ const props = withDefaults(
   }>(),
   {
     variant: 'primary',
-    size: 'md',
+    size: 'md'
   }
 )
 

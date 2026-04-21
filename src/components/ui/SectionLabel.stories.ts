@@ -7,8 +7,8 @@ const meta = {
   parameters: { layout: 'centered' },
   argTypes: {
     tag: { control: 'select', options: ['h2', 'h3', 'h4', 'p'] },
-    size: { control: 'select', options: ['sm', 'lg'] },
-  },
+    size: { control: 'select', options: ['sm', 'lg'] }
+  }
 } satisfies Meta<typeof SectionLabel>
 
 export default meta
@@ -23,8 +23,8 @@ export const Default: Story = {
       <div class="bg-white p-8">
         <SectionLabel v-bind="args">Your inputs</SectionLabel>
       </div>
-    `,
-  }),
+    `
+  })
 }
 
 export const Large: Story = { ...Default, args: { tag: 'h2', size: 'lg' } }

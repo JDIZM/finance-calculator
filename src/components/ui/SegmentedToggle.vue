@@ -1,6 +1,9 @@
 <template>
   <div class="flex flex-col gap-1.5">
-    <span v-if="label" class="font-display text-[0.7rem] font-bold uppercase tracking-widest opacity-70">
+    <span
+      v-if="label"
+      class="font-display text-[0.7rem] font-bold uppercase tracking-widest opacity-70"
+    >
       {{ label }}
     </span>
     <div
@@ -17,7 +20,7 @@
           'flex-1 rounded-[10px] px-4 py-2.5 font-display text-sm font-bold tracking-tight transition focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500',
           modelValue === option.value
             ? 'bg-emerald-950 text-surface-off-white shadow-soft'
-            : 'text-ink-900/70 hover:text-ink-900',
+            : 'text-ink-900/70 hover:text-ink-900'
         ]"
         @click="emit('update:modelValue', option.value)"
       >

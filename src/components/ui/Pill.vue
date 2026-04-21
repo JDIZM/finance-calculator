@@ -2,7 +2,7 @@
   <span
     :class="[
       'inline-flex w-fit items-center gap-2 rounded-pill px-3 py-1 font-display text-[0.7rem] font-bold uppercase tracking-widest',
-      toneClasses,
+      toneClasses
     ]"
   >
     <slot />

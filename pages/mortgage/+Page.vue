@@ -42,16 +42,14 @@
               <ResultTile
                 v-if="type === 'repayment'"
                 label="Monthly payment"
-                :value="(result as MortgageResult).monthlyRepayment"
+                :value="Math.round((result as MortgageResult).monthlyRepayment)"
                 prefix="£"
-                :decimals="2"
               />
               <ResultTile
                 v-else
                 label="Monthly interest"
-                :value="(result as InterestOnlyMortgageResult).interestPayments.monthly"
+                :value="Math.round((result as InterestOnlyMortgageResult).interestPayments.monthly)"
                 prefix="£"
-                :decimals="2"
               />
             </Card>
             <Card tone="emerald-950" padding="p-5">

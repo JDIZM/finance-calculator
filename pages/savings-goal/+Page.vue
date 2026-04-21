@@ -53,9 +53,8 @@
             <Card tone="emerald-950" padding="p-5">
               <ResultTile
                 label="Per month"
-                :value="contributionResult.contributionPerMonth"
+                :value="Math.round(contributionResult.contributionPerMonth)"
                 prefix="£"
-                :decimals="2"
               />
             </Card>
             <Card tone="subtle" padding="p-5">

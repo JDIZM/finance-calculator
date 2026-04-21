@@ -5,7 +5,7 @@ import { ref } from 'vue'
 const meta = {
   title: 'UI/NumberInput',
   component: NumberInput,
-  parameters: { layout: 'centered' },
+  parameters: { layout: 'centered' }
 } satisfies Meta<typeof NumberInput>
 
 export default meta
@@ -23,11 +23,11 @@ export const Currency: Story = {
       <div class="bg-surface-off-white p-8" style="width: 340px;">
         <NumberInput v-bind="args" v-model="value" />
       </div>
-    `,
-  }),
+    `
+  })
 }
 
 export const Percentage: Story = {
   ...Currency,
-  args: { label: 'Annual rate', prefix: '%', hint: 'Expected annual return' },
+  args: { label: 'Annual rate', prefix: '%', hint: 'Expected annual return' }
 }

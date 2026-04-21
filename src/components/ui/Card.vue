@@ -1,6 +1,17 @@
 <template>
-  <article :class="['relative flex min-w-0 flex-col overflow-hidden rounded-slab', surface, padding, props.border]">
-    <div v-if="tone !== 'cream' && tone !== 'subtle'" aria-hidden="true" class="pointer-events-none absolute inset-x-0 top-0 h-px shadow-inner-glow" />
+  <article
+    :class="[
+      'relative flex min-w-0 flex-col overflow-hidden rounded-slab',
+      surface,
+      padding,
+      props.border
+    ]"
+  >
+    <div
+      v-if="tone !== 'cream' && tone !== 'subtle'"
+      aria-hidden="true"
+      class="pointer-events-none absolute inset-x-0 top-0 h-px shadow-inner-glow"
+    />
     <slot />
   </article>
 </template>
@@ -19,7 +30,7 @@ const props = withDefaults(
   {
     tone: 'cream',
     padding: 'p-6 md:p-8',
-    border: '',
+    border: ''
   }
 )
 

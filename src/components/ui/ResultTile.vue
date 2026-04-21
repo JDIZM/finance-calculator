@@ -1,10 +1,16 @@
 <template>
   <div class="flex min-w-0 flex-col gap-1.5">
-    <span v-if="label" class="font-display text-[0.7rem] font-bold uppercase tracking-widest opacity-70">
+    <span
+      v-if="label"
+      class="font-display text-[0.7rem] font-bold uppercase tracking-widest opacity-70"
+    >
       {{ label }}
     </span>
-    <span class="block truncate font-display text-2xl font-black leading-none tabular-nums sm:text-[1.75rem] lg:text-3xl xl:text-4xl">
-      <span v-if="prefix" class="opacity-60">{{ prefix }}</span>{{ formatted }}
+    <span
+      class="block font-display text-2xl font-black leading-none tabular-nums sm:text-[1.75rem] lg:text-3xl xl:text-4xl"
+    >
+      <span v-if="prefix" class="opacity-60">{{ prefix }}</span
+      >{{ formatted }}
     </span>
     <span v-if="hint" class="text-xs font-medium opacity-70">{{ hint }}</span>
   </div>
@@ -24,7 +30,7 @@ const props = withDefaults(
   }>(),
   {
     decimals: 0,
-    locale: 'en-GB',
+    locale: 'en-GB'
   }
 )
 
@@ -47,7 +53,7 @@ const formatted = computed(() => {
   if (abbr) return abbr
   return props.value.toLocaleString(props.locale, {
     minimumFractionDigits: props.decimals,
-    maximumFractionDigits: props.decimals,
+    maximumFractionDigits: props.decimals
   })
 })
 </script>

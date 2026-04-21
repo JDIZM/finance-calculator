@@ -7,13 +7,13 @@ const meta = {
   parameters: { layout: 'centered' },
   argTypes: {
     tone: { control: 'select', options: ['emerald-950', 'ink-950', 'accent-indigo', 'cream'] },
-    comingSoon: { control: 'boolean' },
+    comingSoon: { control: 'boolean' }
   },
   render: (args) => ({
     components: { CalculatorCard },
     setup: () => ({ args }),
-    template: `<div style="width: 340px;"><CalculatorCard v-bind="args" /></div>`,
-  }),
+    template: `<div style="width: 340px;"><CalculatorCard v-bind="args" /></div>`
+  })
 } satisfies Meta<typeof CalculatorCard>
 
 export default meta
@@ -25,8 +25,8 @@ export const Emerald: Story = {
     tone: 'emerald-950',
     eyebrow: 'Grow',
     title: 'Compound interest',
-    body: 'See what regular contributions turn into over decades.',
-  },
+    body: 'See what regular contributions turn into over decades.'
+  }
 }
 
 export const Ink: Story = {
@@ -35,8 +35,8 @@ export const Ink: Story = {
     tone: 'ink-950',
     eyebrow: 'Borrow',
     title: 'Mortgage',
-    body: 'Monthly repayment and total interest for repayment or interest-only mortgages.',
-  },
+    body: 'Monthly repayment and total interest for repayment or interest-only mortgages.'
+  }
 }
 
 export const Indigo: Story = {
@@ -45,8 +45,8 @@ export const Indigo: Story = {
     tone: 'accent-indigo',
     eyebrow: 'Target',
     title: 'Savings goal',
-    body: 'How much a month to hit your number by a date. Or how long at £X a month.',
-  },
+    body: 'How much a month to hit your number by a date. Or how long at £X a month.'
+  }
 }
 
 export const Cream: Story = {
@@ -56,8 +56,8 @@ export const Cream: Story = {
     eyebrow: 'Suggest',
     title: 'Something missing?',
     body: 'These calculators are open source. File an issue or PR.',
-    external: 'https://github.com/JDIZM/compound-interest',
-  },
+    external: 'https://github.com/JDIZM/compound-interest'
+  }
 }
 
 export const ComingSoon: Story = {
@@ -67,6 +67,6 @@ export const ComingSoon: Story = {
     eyebrow: 'Planning',
     title: 'Pension projection',
     body: 'Contributions, employer match, tax relief, growth.',
-    comingSoon: true,
-  },
+    comingSoon: true
+  }
 }

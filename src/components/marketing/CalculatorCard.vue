@@ -7,11 +7,17 @@
     :class="[
       'group relative flex min-w-0 flex-col overflow-hidden rounded-slab p-6 transition-transform duration-300 ease-out-expo md:p-8',
       surfaceClasses,
-      comingSoon ? 'pointer-events-none opacity-70' : 'hover:-translate-y-1',
+      comingSoon ? 'pointer-events-none opacity-70' : 'hover:-translate-y-1'
     ]"
   >
-    <div v-if="tone !== 'cream'" aria-hidden="true" class="pointer-events-none absolute inset-x-0 top-0 h-px shadow-inner-glow" />
-    <p class="flex items-center gap-2 font-display text-[0.65rem] font-bold uppercase tracking-widest opacity-80">
+    <div
+      v-if="tone !== 'cream'"
+      aria-hidden="true"
+      class="pointer-events-none absolute inset-x-0 top-0 h-px shadow-inner-glow"
+    />
+    <p
+      class="flex items-center gap-2 font-display text-[0.65rem] font-bold uppercase tracking-widest opacity-80"
+    >
       <span>{{ eyebrow }}</span>
       <span v-if="comingSoon" class="rounded-pill bg-white/15 px-2 py-0.5">soon</span>
     </p>
@@ -19,9 +25,14 @@
       {{ title }}
     </h3>
     <p class="mt-2 flex-1 text-sm leading-relaxed opacity-85 md:text-base">{{ body }}</p>
-    <span v-if="!comingSoon" class="mt-5 inline-flex items-center gap-2 font-display text-sm font-bold">
+    <span
+      v-if="!comingSoon"
+      class="mt-5 inline-flex items-center gap-2 font-display text-sm font-bold"
+    >
       Open calculator
-      <span aria-hidden="true" class="transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
+      <span aria-hidden="true" class="transition-transform duration-300 group-hover:translate-x-1"
+        >&rarr;</span
+      >
     </span>
   </a>
 </template>
@@ -43,7 +54,7 @@ const props = withDefaults(
   }>(),
   {
     tone: 'emerald-950',
-    comingSoon: false,
+    comingSoon: false
   }
 )
 

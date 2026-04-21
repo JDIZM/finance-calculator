@@ -6,8 +6,8 @@ const meta = {
   component: Pill,
   parameters: { layout: 'centered' },
   argTypes: {
-    tone: { control: 'select', options: ['light', 'emerald', 'indigo', 'cream', 'ink'] },
-  },
+    tone: { control: 'select', options: ['light', 'emerald', 'indigo', 'cream', 'ink'] }
+  }
 } satisfies Meta<typeof Pill>
 
 export default meta
@@ -22,8 +22,8 @@ export const Light: Story = {
       <div class="bg-emerald-950 p-8 text-surface-off-white">
         <Pill v-bind="args">Free · No signup</Pill>
       </div>
-    `,
-  }),
+    `
+  })
 }
 
 export const Cream: Story = { ...Light, args: { tone: 'cream' } }

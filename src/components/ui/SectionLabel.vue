@@ -3,7 +3,7 @@
     :is="tag"
     :class="[
       'font-display font-black uppercase tracking-widest text-ink-900/70',
-      size === 'lg' ? 'text-lg' : 'text-sm',
+      size === 'lg' ? 'text-lg' : 'text-sm'
     ]"
   >
     <slot />
@@ -21,7 +21,7 @@ withDefaults(
   }>(),
   {
     tag: 'h3',
-    size: 'sm',
+    size: 'sm'
   }
 )
 </script>

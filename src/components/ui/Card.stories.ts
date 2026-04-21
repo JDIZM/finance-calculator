@@ -6,8 +6,11 @@ const meta = {
   component: Card,
   parameters: { layout: 'centered' },
   argTypes: {
-    tone: { control: 'select', options: ['cream', 'subtle', 'emerald-950', 'ink-950', 'accent-indigo'] },
-  },
+    tone: {
+      control: 'select',
+      options: ['cream', 'subtle', 'emerald-950', 'ink-950', 'accent-indigo']
+    }
+  }
 } satisfies Meta<typeof Card>
 
 export default meta
@@ -23,7 +26,7 @@ const innerTemplate = `
 
 export const Cream: Story = {
   args: { tone: 'cream' },
-  render: (args) => ({ components: { Card }, setup: () => ({ args }), template: innerTemplate }),
+  render: (args) => ({ components: { Card }, setup: () => ({ args }), template: innerTemplate })
 }
 
 export const Subtle: Story = { ...Cream, args: { tone: 'subtle' } }

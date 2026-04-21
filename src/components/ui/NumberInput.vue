@@ -20,7 +20,7 @@
         :step="step"
         :class="[
           'w-full rounded-slab border border-surface-rule bg-white py-3 pr-4 font-display text-xl font-bold tabular-nums text-ink-900 outline-none transition-colors hover:border-ink-900/40 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500',
-          prefix ? 'pl-9' : 'pl-4',
+          prefix ? 'pl-9' : 'pl-4'
         ]"
         @input="onInput"
       />

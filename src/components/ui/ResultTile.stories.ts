@@ -4,7 +4,7 @@ import type { Meta, StoryObj } from '@storybook/vue3'
 const meta = {
   title: 'UI/ResultTile',
   component: ResultTile,
-  parameters: { layout: 'centered' },
+  parameters: { layout: 'centered' }
 } satisfies Meta<typeof ResultTile>
 
 export default meta
@@ -21,8 +21,8 @@ export const OnCream: Story = {
   render: (args) => ({
     components: { ResultTile },
     setup: () => ({ args }),
-    template: creamWrapper(`<ResultTile v-bind="args" />`),
-  }),
+    template: creamWrapper(`<ResultTile v-bind="args" />`)
+  })
 }
 
 export const OnDark: Story = {
@@ -30,8 +30,8 @@ export const OnDark: Story = {
   render: (args) => ({
     components: { ResultTile },
     setup: () => ({ args }),
-    template: darkWrapper(`<ResultTile v-bind="args" />`),
-  }),
+    template: darkWrapper(`<ResultTile v-bind="args" />`)
+  })
 }
 
 export const PenceDecimals: Story = {
@@ -39,8 +39,8 @@ export const PenceDecimals: Story = {
   render: (args) => ({
     components: { ResultTile },
     setup: () => ({ args }),
-    template: creamWrapper(`<ResultTile v-bind="args" />`),
-  }),
+    template: creamWrapper(`<ResultTile v-bind="args" />`)
+  })
 }
 
 export const AbbreviatesToK: Story = {
@@ -48,8 +48,8 @@ export const AbbreviatesToK: Story = {
   render: (args) => ({
     components: { ResultTile },
     setup: () => ({ args }),
-    template: creamWrapper(`<ResultTile v-bind="args" />`),
-  }),
+    template: creamWrapper(`<ResultTile v-bind="args" />`)
+  })
 }
 
 export const AbbreviatesToM: Story = {
@@ -57,8 +57,8 @@ export const AbbreviatesToM: Story = {
   render: (args) => ({
     components: { ResultTile },
     setup: () => ({ args }),
-    template: darkWrapper(`<ResultTile v-bind="args" />`),
-  }),
+    template: darkWrapper(`<ResultTile v-bind="args" />`)
+  })
 }
 
 export const LargeM: Story = {
@@ -66,8 +66,8 @@ export const LargeM: Story = {
   render: (args) => ({
     components: { ResultTile },
     setup: () => ({ args }),
-    template: darkWrapper(`<ResultTile v-bind="args" />`),
-  }),
+    template: darkWrapper(`<ResultTile v-bind="args" />`)
+  })
 }
 
 export const NonNumericString: Story = {
@@ -75,6 +75,6 @@ export const NonNumericString: Story = {
   render: (args) => ({
     components: { ResultTile },
     setup: () => ({ args }),
-    template: creamWrapper(`<ResultTile v-bind="args" />`),
-  }),
+    template: creamWrapper(`<ResultTile v-bind="args" />`)
+  })
 }

@@ -5,7 +5,7 @@ import { ref } from 'vue'
 const meta = {
   title: 'UI/SegmentedToggle',
   component: SegmentedToggle,
-  parameters: { layout: 'centered' },
+  parameters: { layout: 'centered' }
 } satisfies Meta<typeof SegmentedToggle>
 
 export default meta
@@ -17,8 +17,8 @@ export const TwoOptions: Story = {
     label: 'Mortgage type',
     options: [
       { value: 'repayment', label: 'Repayment' },
-      { value: 'interestOnly', label: 'Interest-only' },
-    ],
+      { value: 'interestOnly', label: 'Interest-only' }
+    ]
   },
   render: (args) => ({
     components: { SegmentedToggle },
@@ -31,6 +31,6 @@ export const TwoOptions: Story = {
         <SegmentedToggle v-bind="args" v-model="value" />
         <p class="mt-3 font-mono text-sm">value: {{ value }}</p>
       </div>
-    `,
-  }),
+    `
+  })
 }

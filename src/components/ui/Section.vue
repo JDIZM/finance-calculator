@@ -18,7 +18,7 @@ const props = withDefaults(
   }>(),
   {
     tone: 'transparent',
-    padding: 'py-12 md:py-16',
+    padding: 'py-12 md:py-16'
   }
 )
 
