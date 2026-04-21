@@ -1,12 +1,12 @@
 <template>
   <div class="flex flex-col gap-2">
-    <span v-if="label" class="font-display text-xs font-bold uppercase tracking-widest text-current/70">
+    <span v-if="label" class="font-display text-xs font-bold uppercase tracking-widest opacity-70">
       {{ label }}
     </span>
     <span class="font-display text-5xl font-black leading-none tracking-tightest tabular-nums md:text-6xl">
-      <span v-if="prefix" class="mr-1 text-current/70">{{ prefix }}</span>{{ formatted }}
+      <span v-if="prefix" class="mr-1 opacity-70">{{ prefix }}</span>{{ formatted }}
     </span>
-    <span v-if="hint" class="text-sm font-medium text-current/70">{{ hint }}</span>
+    <span v-if="hint" class="text-sm font-medium opacity-70">{{ hint }}</span>
   </div>
 </template>
 

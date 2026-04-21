@@ -50,7 +50,7 @@ const variantClasses = computed(() => {
     case 'secondary':
       return 'bg-surface-off-white text-emerald-950 hover:bg-surface-cream'
     case 'ghost':
-      return 'bg-transparent text-current ring-1 ring-current/30 hover:bg-white/5'
+      return 'bg-transparent text-current ring-1 ring-inset ring-white/30 hover:bg-white/5'
     case 'primary':
     default:
       return 'bg-emerald-500 text-emerald-950 hover:bg-surface-off-white'
