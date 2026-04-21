@@ -5,6 +5,9 @@
       <h1 class="font-display text-5xl font-black leading-heading tracking-tightest md:text-6xl">
         Pay it off faster.
       </h1>
+      <h2 class="mt-3 font-display text-lg font-bold opacity-80 md:text-xl">
+        Early mortgage payoff calculator with overpayment savings.
+      </h2>
       <p class="mt-4 max-w-2xl text-lg leading-relaxed opacity-80">
         A little extra each month adds up. See how many months and pounds of interest you save.
       </p>

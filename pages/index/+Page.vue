@@ -5,6 +5,9 @@
       <h1 class="font-display text-5xl font-black leading-heading tracking-tightest md:text-7xl">
         Bold, chunky finance tools for the rest of us.
       </h1>
+      <h2 class="mt-4 font-display text-xl font-bold opacity-80 md:text-2xl">
+        Free finance calculators, UK-friendly, no signup.
+      </h2>
       <p class="mt-6 max-w-2xl text-lg leading-relaxed opacity-80 md:text-xl">
         Compound interest, mortgage, savings goals, FIRE number, early mortgage payoff.
         Every calculator runs in your browser. Nothing saved, nothing tracked.
@@ -30,7 +33,7 @@
           tone="emerald-950"
           eyebrow="Grow"
           title="Compound interest"
-          body="Project what regular contributions become over decades."
+          body="See what regular contributions turn into over decades."
         />
         <CalculatorCard
           href="/mortgage"
@@ -44,21 +47,21 @@
           tone="accent-indigo"
           eyebrow="Target"
           title="Savings goal"
-          body="How much a month to hit a number by a date. Or how long if you save £X."
+          body="How much a month to hit your number by a date. Or how long at £X a month."
         />
         <CalculatorCard
           href="/early-payoff"
           tone="emerald-950"
           eyebrow="Payoff"
           title="Early mortgage payoff"
-          body="Extra monthly or lump-sum payments and the months + interest saved."
+          body="Overpay a bit each month and see the months and interest you save."
         />
         <CalculatorCard
           href="/fire"
           tone="ink-950"
           eyebrow="FIRE"
           title="FIRE number"
-          body="Savings target from your annual spend and a safe withdrawal rate."
+          body="The pot you need, based on your annual spend and a safe withdrawal rate."
         />
         <CalculatorCard
           href="#more"
@@ -88,7 +91,7 @@
             <a href="https://www.npmjs.com/package/@jdizm/finance-calculator" class="underline decoration-2 underline-offset-4">
               @jdizm/finance-calculator
             </a>
-            &nbsp;on npm. Audit the maths, fork it, or use it in your own project.
+            &nbsp;on npm. Check the maths, fork it, or use it in your own project.
           </p>
         </Card>
       </div>

@@ -5,8 +5,11 @@
       <h1 class="font-display text-5xl font-black leading-heading tracking-tightest md:text-6xl">
         What will the repayments be?
       </h1>
+      <h2 class="mt-3 font-display text-lg font-bold opacity-80 md:text-xl">
+        UK mortgage calculator for monthly repayments and total interest.
+      </h2>
       <p class="mt-4 max-w-2xl text-lg leading-relaxed opacity-80">
-        Repayment or interest-only. Monthly cost and total interest over the full term.
+        Repayment or interest-only. See the monthly cost and what it costs you in interest over the full term.
       </p>
     </Section>
 

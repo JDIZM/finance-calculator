@@ -5,8 +5,11 @@
       <h1 class="font-display text-5xl font-black leading-heading tracking-tightest md:text-6xl">
         How much will your money grow?
       </h1>
+      <h2 class="mt-3 font-display text-lg font-bold opacity-80 md:text-xl">
+        Compound interest calculator with monthly contributions.
+      </h2>
       <p class="mt-4 max-w-2xl text-lg leading-relaxed opacity-80">
-        Starting balance, monthly contribution, interest rate, and time. That's it.
+        Four inputs: starting balance, monthly contribution, interest rate, and time.
       </p>
     </Section>
 

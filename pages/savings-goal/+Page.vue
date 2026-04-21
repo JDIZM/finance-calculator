@@ -5,8 +5,11 @@
       <h1 class="font-display text-5xl font-black leading-heading tracking-tightest md:text-6xl">
         Hit your number.
       </h1>
+      <h2 class="mt-3 font-display text-lg font-bold opacity-80 md:text-xl">
+        Savings goal calculator with compound growth.
+      </h2>
       <p class="mt-4 max-w-2xl text-lg leading-relaxed opacity-80">
-        Pick a target and we'll tell you what to save each month — or how long it'll take at your current rate.
+        Pick a target. We'll tell you what to save each month, or how long it'll take at your current rate.
       </p>
     </Section>
 
@@ -105,7 +108,7 @@
             <p v-if="error" class="mt-3 leading-relaxed text-red-700">{{ error }}</p>
             <p v-else class="mt-3 leading-relaxed">
               Assumes compounding {{ form.compoundingPerYear }} times per year.
-              Real-world returns vary — treat this as a planning estimate, not a promise.
+              Real-world returns vary, so treat this as a planning estimate, not a promise.
             </p>
           </Card>
         </div>

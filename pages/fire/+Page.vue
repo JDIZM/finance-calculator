@@ -5,6 +5,9 @@
       <h1 class="font-display text-5xl font-black leading-heading tracking-tightest md:text-6xl">
         When can you stop working?
       </h1>
+      <h2 class="mt-3 font-display text-lg font-bold opacity-80 md:text-xl">
+        FIRE number calculator for financial independence.
+      </h2>
       <p class="mt-4 max-w-2xl text-lg leading-relaxed opacity-80">
         Your FIRE number is the investment pot needed to live off its income forever.
         The classic rule: 25× your annual spend (a 4% safe withdrawal rate).
@@ -47,7 +50,7 @@
             <p v-else-if="fire" class="mt-3 leading-relaxed">
               Live on £{{ (form.annualSpend ?? 0).toLocaleString('en-GB') }} a year and you need
               £{{ fire.target.toLocaleString('en-GB') }} invested to withdraw that amount indefinitely at
-              {{ form.withdrawalRate }}%. Real-world returns aren't smooth — sequence-of-returns risk matters.
+              {{ form.withdrawalRate }}%. Real-world returns aren't smooth, so sequence-of-returns risk matters.
             </p>
           </Card>
         </div>
