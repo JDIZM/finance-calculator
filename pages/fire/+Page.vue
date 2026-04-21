@@ -67,6 +67,8 @@
           </Card>
         </div>
       </div>
+
+      <RelatedCalculators class="mt-12" :slugs="['compound-interest', 'savings-goal', 'early-payoff']" />
     </Section>
   </main>
 </template>
@@ -79,6 +81,7 @@ import Pill from '@/components/ui/Pill.vue'
 import NumberInput from '@/components/ui/NumberInput.vue'
 import ResultTile from '@/components/ui/ResultTile.vue'
 import SectionLabel from '@/components/ui/SectionLabel.vue'
+import RelatedCalculators from '@/components/marketing/RelatedCalculators.vue'
 import { fireNumber, yearsToFire } from '@jdizm/finance-calculator'
 
 const form = reactive({

@@ -69,6 +69,8 @@
           </Card>
         </div>
       </div>
+
+      <RelatedCalculators class="mt-12" :slugs="['mortgage', 'compound-interest', 'savings-goal']" />
     </Section>
   </main>
 </template>
@@ -81,6 +83,7 @@ import Pill from '@/components/ui/Pill.vue'
 import NumberInput from '@/components/ui/NumberInput.vue'
 import ResultTile from '@/components/ui/ResultTile.vue'
 import SectionLabel from '@/components/ui/SectionLabel.vue'
+import RelatedCalculators from '@/components/marketing/RelatedCalculators.vue'
 import { earlyMortgagePayoff } from '@jdizm/finance-calculator'
 
 const form = reactive({

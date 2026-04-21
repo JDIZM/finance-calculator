@@ -40,8 +40,9 @@
 
           <Card tone="cream">
             <SectionLabel>Projection</SectionLabel>
-            <div v-if="isClient" class="mt-4 h-72 md:h-80">
-              <ChartCmp
+            <div v-if="ChartCmp" class="mt-4 h-72 md:h-80">
+              <component
+                :is="ChartCmp"
                 :labels="chartData.labels"
                 :deposits="chartData.deposits"
                 :interest="chartData.interest"
@@ -50,23 +51,26 @@
                 :height="320"
               />
             </div>
-            <div v-else class="mt-4 h-72 animate-pulse rounded-slab bg-surface-rule md:h-80" />
+            <div v-else class="mt-4 h-72 animate-pulse rounded-slab bg-surface-rule md:h-80" aria-label="Loading chart" />
           </Card>
         </div>
       </div>
+
+      <RelatedCalculators class="mt-12" :slugs="['savings-goal', 'fire', 'mortgage']" />
     </Section>
   </main>
 </template>
 
 <script setup lang="ts">
-import { reactive, computed, onMounted, ref } from 'vue'
+import { reactive, computed, onMounted, shallowRef } from 'vue'
+import type { Component } from 'vue'
 import Section from '@/components/ui/Section.vue'
 import Card from '@/components/ui/Card.vue'
 import Pill from '@/components/ui/Pill.vue'
 import NumberInput from '@/components/ui/NumberInput.vue'
 import ResultTile from '@/components/ui/ResultTile.vue'
 import SectionLabel from '@/components/ui/SectionLabel.vue'
-import ChartCmp from '@/components/common/chart/ChartCmp.vue'
+import RelatedCalculators from '@/components/marketing/RelatedCalculators.vue'
 import { compoundInterestPerPeriod } from '@jdizm/finance-calculator'
 
 const form = reactive({
@@ -130,8 +134,9 @@ const chartData = computed(() => {
   return { labels, deposits, interest, projection }
 })
 
-const isClient = ref(false)
-onMounted(() => {
-  isClient.value = true
+const ChartCmp = shallowRef<Component | null>(null)
+onMounted(async () => {
+  const mod = await import('@/components/common/chart/ChartCmp.vue')
+  ChartCmp.value = mod.default
 })
 </script>

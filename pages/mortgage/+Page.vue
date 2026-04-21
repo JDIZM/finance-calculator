@@ -85,6 +85,8 @@
           </Card>
         </div>
       </div>
+
+      <RelatedCalculators class="mt-12" :slugs="['early-payoff', 'compound-interest', 'fire']" />
     </Section>
   </main>
 </template>
@@ -98,6 +100,7 @@ import Pill from '@/components/ui/Pill.vue'
 import NumberInput from '@/components/ui/NumberInput.vue'
 import ResultTile from '@/components/ui/ResultTile.vue'
 import SectionLabel from '@/components/ui/SectionLabel.vue'
+import RelatedCalculators from '@/components/marketing/RelatedCalculators.vue'
 import SegmentedToggle from '@/components/ui/SegmentedToggle.vue'
 import { mortgageCalculator } from '@jdizm/finance-calculator'
 import type {

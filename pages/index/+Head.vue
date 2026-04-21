@@ -26,24 +26,52 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "Finance Calculator",
-    "description": "Free online finance calculators for compound interest, mortgage repayments, and investment planning",
-    "url": "https://www.financecalculator.dev/",
-    "applicationCategory": "FinanceApplication",
-    "operatingSystem": "Any",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "GBP"
-    },
-    "featureList": [
-      "Compound Interest Calculator",
-      "Mortgage Calculator",
-      "Savings Goal Calculator",
-      "Early Mortgage Payoff Calculator",
-      "FIRE Number Calculator",
-      "Interactive Projection Charts"
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://www.financecalculator.dev/#organization",
+        "name": "Finance Calculator",
+        "url": "https://www.financecalculator.dev/",
+        "logo": "https://www.financecalculator.dev/og-image.png",
+        "sameAs": ["https://github.com/JDIZM/compound-interest"]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://www.financecalculator.dev/#website",
+        "url": "https://www.financecalculator.dev/",
+        "name": "Finance Calculator",
+        "description": "Free UK finance calculators for compound interest, mortgages, savings goals, FIRE and early payoff.",
+        "publisher": { "@id": "https://www.financecalculator.dev/#organization" },
+        "inLanguage": "en-GB"
+      },
+      {
+        "@type": "WebApplication",
+        "name": "Finance Calculator",
+        "description": "Free online finance calculators for compound interest, mortgage repayments, savings goals, FIRE, and early mortgage payoff.",
+        "url": "https://www.financecalculator.dev/",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Any",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "GBP"
+        },
+        "featureList": [
+          "Compound Interest Calculator",
+          "Mortgage Calculator",
+          "Savings Goal Calculator",
+          "Early Mortgage Payoff Calculator",
+          "FIRE Number Calculator",
+          "Interactive Projection Charts"
+        ],
+        "hasPart": [
+          { "@type": "WebPage", "name": "Compound Interest Calculator", "url": "https://www.financecalculator.dev/compound-interest" },
+          { "@type": "WebPage", "name": "Mortgage Calculator", "url": "https://www.financecalculator.dev/mortgage" },
+          { "@type": "WebPage", "name": "Savings Goal Calculator", "url": "https://www.financecalculator.dev/savings-goal" },
+          { "@type": "WebPage", "name": "Early Mortgage Payoff Calculator", "url": "https://www.financecalculator.dev/early-payoff" },
+          { "@type": "WebPage", "name": "FIRE Number Calculator", "url": "https://www.financecalculator.dev/fire" }
+        ]
+      }
     ]
   }
   </script>

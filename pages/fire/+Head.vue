@@ -29,4 +29,45 @@
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "GBP" }
   }
   </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is a FIRE number?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Your FIRE number is the size of the investment pot you need to live off its income indefinitely. At a 4% safe withdrawal rate, it's 25 times your annual spend — so £40,000 of annual spend needs a £1,000,000 pot."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does a lower withdrawal rate mean a bigger FIRE number?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The withdrawal rate is the percentage of your pot you take each year. A lower rate means a smaller slice, so the pot must be bigger to yield the same annual income. At 4% WR, £40,000 needs £1M. At 3% WR, £40,000 needs £1.33M. At 1% WR it needs £4M. Lower is more conservative but takes longer to accumulate."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the 4% rule?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The 4% rule is the standard FIRE benchmark: withdraw 4% of your investment pot in year one, adjust for inflation each year after, and historically your money should last at least 30 years. It implies a FIRE number of 25 times your annual spend."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How long does it take to reach FIRE?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Time to FIRE depends on your current savings, annual contribution, expected investment return, and target. At defaults (£50k savings, £20k/yr contribution, 7% return, £1M target) it's about 20 years. Lowering the withdrawal rate raises the target and stretches the timeline; increasing contributions shortens it."
+        }
+      }
+    ]
+  }
+  </script>
 </template>
