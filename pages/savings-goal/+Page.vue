@@ -94,7 +94,7 @@
             <Card tone="emerald-950" padding="p-6">
               <ResultTile
                 label="Total contributed"
-                :value="Math.round(form.contributionPerMonth * 12 * yearsResult)"
+                :value="Math.round((form.contributionPerMonth ?? 0) * 12 * yearsResult)"
                 prefix="£"
               />
             </Card>

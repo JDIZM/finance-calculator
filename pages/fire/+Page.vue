@@ -44,9 +44,9 @@
           <Card tone="cream" padding="p-6 md:p-8">
             <h3 class="font-display text-lg font-black uppercase tracking-widest">What this means</h3>
             <p v-if="error" class="mt-3 leading-relaxed text-red-700">{{ error }}</p>
-            <p v-else class="mt-3 leading-relaxed">
-              Live on £{{ form.annualSpend.toLocaleString('en-GB') }} a year and you need
-              £{{ fire?.target.toLocaleString('en-GB') }} invested to withdraw that amount indefinitely at
+            <p v-else-if="fire" class="mt-3 leading-relaxed">
+              Live on £{{ (form.annualSpend ?? 0).toLocaleString('en-GB') }} a year and you need
+              £{{ fire.target.toLocaleString('en-GB') }} invested to withdraw that amount indefinitely at
               {{ form.withdrawalRate }}%. Real-world returns aren't smooth — sequence-of-returns risk matters.
             </p>
           </Card>
