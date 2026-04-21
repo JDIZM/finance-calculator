@@ -6,7 +6,7 @@ const meta = {
   component: Pill,
   parameters: { layout: 'centered' },
   argTypes: {
-    tone: { control: 'select', options: ['light', 'emerald', 'indigo', 'cream'] },
+    tone: { control: 'select', options: ['light', 'emerald', 'indigo', 'cream', 'ink'] },
   },
 } satisfies Meta<typeof Pill>
 
@@ -29,3 +29,4 @@ export const Light: Story = {
 export const Cream: Story = { ...Light, args: { tone: 'cream' } }
 export const Emerald: Story = { ...Light, args: { tone: 'emerald' } }
 export const Indigo: Story = { ...Light, args: { tone: 'indigo' } }
+export const Ink: Story = { ...Light, args: { tone: 'ink' } }

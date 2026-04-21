@@ -28,19 +28,22 @@ const props = withDefaults(
   }
 )
 
-const abbreviate = (n: number): string | null => {
+const abbreviate = (n: number, keepPrecisionUnder: number): string | null => {
   const abs = Math.abs(n)
   if (abs >= 100_000_000) return `${Math.round(n / 1_000_000)}M`
   if (abs >= 10_000_000) return `${(n / 1_000_000).toFixed(1)}M`
   if (abs >= 1_000_000) return `${(n / 1_000_000).toFixed(2)}M`
+  if (abs < keepPrecisionUnder) return null
   if (abs >= 100_000) return `${Math.round(n / 1_000)}K`
-  if (abs >= 10_000) return `${(n / 1_000).toFixed(1)}K`
-  return null
+  return `${(n / 1_000).toFixed(1)}K`
 }
 
 const formatted = computed(() => {
   if (typeof props.value === 'string') return props.value
-  const abbr = abbreviate(props.value)
+  // decimals > 0 means pence/exact precision matters (Monthly payment, Per month) —
+  // keep full number until the value is big enough that decimals are noise anyway.
+  const keepPrecisionUnder = props.decimals > 0 ? 1_000_000 : 10_000
+  const abbr = abbreviate(props.value, keepPrecisionUnder)
   if (abbr) return abbr
   return props.value.toLocaleString(props.locale, {
     minimumFractionDigits: props.decimals,

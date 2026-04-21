@@ -14,7 +14,7 @@
         aria-label="Calculators"
       >
         <a
-          v-for="item in nav"
+          v-for="item in links"
           :key="item.href"
           :href="item.href"
           :aria-current="isActive(item.href) ? 'page' : undefined"
@@ -35,7 +35,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 
-const nav = [
+const links = [
   { href: '/compound-interest', label: 'Compound' },
   { href: '/mortgage', label: 'Mortgage' },
   { href: '/savings-goal', label: 'Savings goal' },
