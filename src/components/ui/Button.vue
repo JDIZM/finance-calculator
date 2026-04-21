@@ -4,7 +4,7 @@
     :href="to"
     :type="!to ? 'button' : undefined"
     :class="[
-      'inline-flex items-center justify-center gap-2 rounded-slab font-display font-bold tracking-tight transition-colors ease-out-expo',
+      'inline-flex items-center justify-center gap-2 rounded-slab font-display font-bold tracking-tight transition-colors duration-200 ease-out-expo focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 focus-visible:ring-offset-surface-off-white',
       sizeClasses,
       variantClasses,
     ]"
@@ -38,22 +38,22 @@ const sizeClasses = computed(() => {
     case 'sm':
       return 'px-4 py-2 text-xs'
     case 'lg':
-      return 'px-8 py-4 text-base'
+      return 'px-7 py-3.5 text-base'
     case 'md':
     default:
-      return 'px-6 py-3 text-sm'
+      return 'px-5 py-2.5 text-sm'
   }
 })
 
 const variantClasses = computed(() => {
   switch (props.variant) {
     case 'secondary':
-      return 'bg-surface-off-white text-emerald-950 hover:bg-surface-cream'
+      return 'bg-white text-ink-900 hover:bg-surface-cream'
     case 'ghost':
       return 'bg-transparent text-current ring-1 ring-inset ring-white/30 hover:bg-white/5'
     case 'primary':
     default:
-      return 'bg-emerald-500 text-emerald-950 hover:bg-surface-off-white'
+      return 'bg-emerald-500 text-emerald-950 hover:bg-emerald-700 hover:text-surface-off-white'
   }
 })
 </script>
