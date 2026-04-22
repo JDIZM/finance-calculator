@@ -88,7 +88,12 @@
           <h3 class="font-display text-2xl font-black tracking-tight">Built on an open source library</h3>
           <p class="mt-3 leading-relaxed">
             Every calculation runs through
-            <a href="https://www.npmjs.com/package/@jdizm/finance-calculator" class="font-semibold text-emerald-700 underline decoration-2 underline-offset-4 hover:text-emerald-500">
+            <a
+              href="https://www.npmjs.com/package/@jdizm/finance-calculator"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="font-semibold text-emerald-700 underline decoration-2 underline-offset-4 hover:text-emerald-500"
+            >
               @jdizm/finance-calculator
             </a>
             on npm. Check the maths, fork it, or use it in your own project.

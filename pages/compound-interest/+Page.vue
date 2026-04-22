@@ -80,12 +80,17 @@ const form = reactive({
   years: 25 as number | null,
 })
 
-const results = computed(() => {
-  const principal = form.principal ?? 0
-  const monthlyContribution = form.monthlyContribution ?? 0
-  const rate = form.rate ?? 0
-  const years = Math.max(1, form.years ?? 1)
+// Single source of truth for the "effective" form values so the result tiles,
+// total-contributions tile, and chart all agree when inputs are cleared/null.
+const normalised = computed(() => ({
+  principal: form.principal ?? 0,
+  monthlyContribution: form.monthlyContribution ?? 0,
+  rate: form.rate ?? 0,
+  years: Math.max(1, form.years ?? 1),
+}))
 
+const results = computed(() => {
+  const { principal, monthlyContribution, rate, years } = normalised.value
   try {
     return compoundInterestPerPeriod({
       type: 'contribution',
@@ -104,9 +109,10 @@ const results = computed(() => {
 const summary = computed(() => {
   const r = results.value
   if (!r) return { totalContributions: 0, totalInterest: 0, endBalance: 0 }
-  const totalContributions = (form.monthlyContribution ?? 0) * 12 * (form.years ?? 0)
+  const { principal, monthlyContribution, years } = normalised.value
+  const totalContributions = monthlyContribution * 12 * years
   return {
-    totalContributions: Math.round(totalContributions + (form.principal ?? 0)),
+    totalContributions: Math.round(totalContributions + principal),
     totalInterest: Math.round(r.totalInterest),
     endBalance: Math.round(r.endBalance),
   }
@@ -115,15 +121,16 @@ const summary = computed(() => {
 const chartData = computed(() => {
   const r = results.value
   if (!r) return { labels: [], deposits: [], interest: [], projection: [] }
+  const { principal, monthlyContribution, years } = normalised.value
   const labels: string[] = []
   const deposits: number[] = []
   const interest: number[] = []
   const projection: number[] = []
   let runningInterest = 0
 
-  for (let y = 1; y <= (form.years ?? 0); y += 1) {
+  for (let y = 1; y <= years; y += 1) {
     labels.push(`${y}y`)
-    const contributed = (form.principal ?? 0) + (form.monthlyContribution ?? 0) * 12 * y
+    const contributed = principal + monthlyContribution * 12 * y
     deposits.push(Math.round(contributed))
     runningInterest += r.interestPerAnnum[y - 1] ?? 0
     interest.push(Math.round(runningInterest))

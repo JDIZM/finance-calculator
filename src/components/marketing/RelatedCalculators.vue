@@ -26,6 +26,7 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
 import SectionLabel from '@/components/ui/SectionLabel.vue'
 
 type CalculatorSlug = 'compound-interest' | 'mortgage' | 'savings-goal' | 'early-payoff' | 'fire'
@@ -68,5 +69,6 @@ const CATALOGUE: Record<
 
 const props = defineProps<{ slugs: ReadonlyArray<CalculatorSlug> }>()
 
-const links = props.slugs.map((slug) => CATALOGUE[slug])
+// computed so the list stays in sync if a parent swaps the slugs array
+const links = computed(() => props.slugs.map((slug) => CATALOGUE[slug]))
 </script>

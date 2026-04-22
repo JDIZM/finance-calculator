@@ -1,9 +1,12 @@
 <template>
   <a
-    :href="external ?? href"
-    :target="external ? '_blank' : undefined"
-    :rel="external ? 'noopener noreferrer' : undefined"
+    :href="comingSoon ? undefined : (external ?? href)"
+    :target="!comingSoon && external ? '_blank' : undefined"
+    :rel="!comingSoon && external ? 'noopener noreferrer' : undefined"
     :aria-disabled="comingSoon ? 'true' : undefined"
+    :tabindex="comingSoon ? -1 : undefined"
+    @click="comingSoon && $event.preventDefault()"
+    @keydown.enter="comingSoon && $event.preventDefault()"
     :class="[
       'group relative flex min-w-0 flex-col overflow-hidden rounded-slab p-6 transition-transform duration-300 ease-out-expo md:p-8',
       surfaceClasses,

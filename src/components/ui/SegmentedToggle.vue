@@ -31,12 +31,18 @@
 </template>
 
 <script setup lang="ts" generic="T extends string">
-defineProps<{
+const props = defineProps<{
   modelValue: T
   options: ReadonlyArray<{ value: T; label: string }>
   ariaLabel?: string
   label?: string
 }>()
+
+// Accessibility: the <div role="group"> needs a name. At least one of
+// `label` (visible) or `ariaLabel` (screen-reader-only) must be supplied.
+if (import.meta.env.DEV && !props.label && !props.ariaLabel) {
+  console.warn('[SegmentedToggle] requires either a `label` or `ariaLabel` prop for a11y')
+}
 
 const emit = defineEmits<{
   (e: 'update:modelValue', value: T): void
