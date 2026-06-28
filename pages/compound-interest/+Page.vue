@@ -86,7 +86,9 @@ const normalised = computed(() => ({
   principal: form.principal ?? 0,
   monthlyContribution: form.monthlyContribution ?? 0,
   rate: form.rate ?? 0,
-  years: Math.max(1, form.years ?? 1),
+  // Floor to a whole year: compoundInterestPerPeriod indexes its yearly interest matrix by
+  // integer keys, so a decimal like 25.5 throws and would blank the whole result.
+  years: Math.max(1, Math.floor(form.years ?? 1)),
 }))
 
 const results = computed(() => {
