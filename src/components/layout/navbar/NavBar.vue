@@ -48,9 +48,18 @@ const links = [
   { href: '/fire', label: 'FIRE' }
 ]
 
-const pageContext = usePageContext()
+// usePageContext() throws when the component renders outside a Vike app (e.g. in
+// Storybook/Chromatic). Fall back to "no active route" so the nav still renders there;
+// inside the app it stays reactive to client-side navigation.
+let pageContext: ReturnType<typeof usePageContext> | null = null
+try {
+  pageContext = usePageContext()
+} catch {
+  pageContext = null
+}
+
 const pathname = computed(() => {
-  const p = pageContext.urlPathname ?? ''
+  const p = pageContext?.urlPathname ?? ''
   return p.length > 1 ? p.replace(/\/$/, '') : p
 })
 
