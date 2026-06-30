@@ -20,6 +20,12 @@ module.exports = {
       rules: {
         'vue/multi-word-component-names': 'off'
       }
+    },
+    {
+      files: ['src/components/ui/**/*.vue', 'src/components/layout/**/*.vue'],
+      rules: {
+        'vue/multi-word-component-names': 'off'
+      }
     }
   ],
   parserOptions: {

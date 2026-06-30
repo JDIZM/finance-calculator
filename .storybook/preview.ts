@@ -1,13 +1,5 @@
-import '../src/sass/main.scss'
-import { type Preview, setup } from '@storybook/vue3'
-import { createPinia } from 'pinia'
-
-// Create and configure Pinia instance for Storybook
-const pinia = createPinia()
-
-setup((app) => {
-  app.use(pinia)
-})
+import '../src/styles/tailwind.css'
+import type { Preview } from '@storybook/vue3'
 
 const preview: Preview = {
   parameters: {

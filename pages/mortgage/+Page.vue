@@ -1,153 +1,154 @@
 <template>
-  <main class="calculator-view">
-    <div class="page-header">
-      <h1>Mortgage Calculator</h1>
-      <p>Calculate your monthly mortgage repayments for interest-only or repayment mortgages</p>
-    </div>
+  <main class="font-body">
+    <Section tone="ink-950" padding="py-12 md:py-16">
+      <Pill tone="light" class="mb-4">Mortgage</Pill>
+      <h1 class="font-display text-4xl font-black leading-heading tracking-tightest sm:text-5xl md:text-6xl">
+        What will the repayments be?
+      </h1>
+      <h2 class="mt-3 font-display text-base font-bold opacity-80 md:text-lg">
+        UK mortgage calculator for monthly repayments and total interest.
+      </h2>
+      <p class="mt-3 max-w-2xl text-base leading-relaxed opacity-80">
+        Repayment or interest-only. See the monthly cost and what it costs you in interest over the full term.
+      </p>
+    </Section>
 
-    <div class="calculator-layout">
-      <div class="calculator-form">
-        <mortgage-calculator />
-      </div>
+    <Section tone="transparent">
+      <div class="grid gap-6 lg:grid-cols-[minmax(0,400px)_minmax(0,1fr)]">
+        <Card tone="cream">
+          <SectionLabel tag="h2">Your inputs</SectionLabel>
 
-      <div class="calculator-results">
-        <div v-if="store.results" class="results-content">
-          <mortgage-results />
-        </div>
-        <div v-else class="empty-state">
-          <div class="empty-state-content">
-            <h3>Ready to calculate</h3>
-            <p>
-              Fill in the form and select your mortgage type to see your monthly repayment estimate
-            </p>
+          <SegmentedToggle
+            v-model="type"
+            class="mt-5"
+            label="Mortgage type"
+            :options="mortgageTypeOptions"
+          />
+
+          <div class="mt-5 grid gap-4">
+            <NumberInput v-model="form.homeValue" label="Home value" prefix="£" :min="0" :step="5000" />
+            <NumberInput v-model="form.deposit" label="Deposit" prefix="£" :min="0" :step="1000" />
+            <NumberInput v-model="form.interestRate" label="Interest rate" prefix="%" :min="0" :step="0.1" />
+            <NumberInput v-model="form.years" label="Term (years)" :min="1" :max="40" :step="1" />
           </div>
+        </Card>
+
+        <div class="flex flex-col gap-5">
+          <div v-if="result" class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <Card tone="subtle" padding="p-5">
+              <ResultTile label="Loan amount" :value="result.principal" prefix="£" />
+            </Card>
+            <Card tone="subtle" padding="p-5">
+              <ResultTile
+                v-if="type === 'repayment'"
+                label="Monthly payment"
+                :value="Math.round((result as MortgageResult).monthlyRepayment)"
+                prefix="£"
+              />
+              <ResultTile
+                v-else
+                label="Monthly interest"
+                :value="Math.round((result as InterestOnlyMortgageResult).interestPayments.monthly)"
+                prefix="£"
+              />
+            </Card>
+            <Card tone="emerald-950" padding="p-5">
+              <ResultTile
+                v-if="type === 'repayment'"
+                label="Total interest"
+                :value="totalInterest"
+                prefix="£"
+              />
+              <ResultTile
+                v-else
+                label="Yearly interest"
+                :value="(result as InterestOnlyMortgageResult).interestPayments.yearly"
+                prefix="£"
+              />
+            </Card>
+          </div>
+
+          <Card tone="cream">
+            <SectionLabel>What this means</SectionLabel>
+            <p v-if="error" class="mt-3 leading-relaxed text-red-700">{{ error }}</p>
+            <p v-else-if="type === 'repayment'" class="mt-3 leading-relaxed">
+              Over {{ form.years }} years at {{ form.interestRate }}% you'd pay back the full
+              £{{ (result?.principal ?? 0).toLocaleString('en-GB') }}
+              plus £{{ totalInterest.toLocaleString('en-GB') }} of interest.
+            </p>
+            <p v-else class="mt-3 leading-relaxed">
+              Interest-only means you never reduce the principal. You'd owe
+              £{{ (result?.principal ?? 0).toLocaleString('en-GB') }} at the end of the term.
+            </p>
+          </Card>
         </div>
       </div>
-    </div>
+
+      <RelatedCalculators class="mt-12" :slugs="['early-payoff', 'compound-interest', 'fire']" />
+    </Section>
   </main>
 </template>
 
 <script setup lang="ts">
-import MortgageCalculator from '@/components/calculator/mortgage/MortgageCalculator.vue'
-import MortgageResults from '@/components/calculator/mortgage/results/MortgageResults.vue'
-import { useMortgageStore } from '@/stores/mortgage'
+import { reactive, ref, computed } from 'vue'
 
-const store = useMortgageStore()
+import Section from '@/components/ui/Section.vue'
+import Card from '@/components/ui/Card.vue'
+import Pill from '@/components/ui/Pill.vue'
+import NumberInput from '@/components/ui/NumberInput.vue'
+import ResultTile from '@/components/ui/ResultTile.vue'
+import SectionLabel from '@/components/ui/SectionLabel.vue'
+import RelatedCalculators from '@/components/marketing/RelatedCalculators.vue'
+import SegmentedToggle from '@/components/ui/SegmentedToggle.vue'
+import { mortgageCalculator } from '@jdizm/finance-calculator'
+import type {
+  MortgageResult,
+  InterestOnlyMortgageResult,
+  MortgageType,
+} from '@jdizm/finance-calculator/types/calculator'
 
-// Subscription to store actions
-store.$onAction((action) => {
-  console.log('action', action)
-  if (action.name === 'setOptions') {
-    console.log('setOptions', action)
-  }
-  if (action.name === 'setResults') {
-    console.log('setResults', action)
+const type = ref<MortgageType>('repayment')
+const mortgageTypeOptions: ReadonlyArray<{ value: MortgageType; label: string }> = [
+  { value: 'repayment', label: 'Repayment' },
+  { value: 'interestOnly', label: 'Interest-only' },
+]
+const form = reactive({
+  homeValue: 300_000 as number | null,
+  deposit: 30_000 as number | null,
+  interestRate: 5 as number | null,
+  years: 25 as number | null,
+})
+
+type Outcome = {
+  result: MortgageResult | InterestOnlyMortgageResult | null
+  error: string | null
+}
+
+const outcome = computed<Outcome>(() => {
+  try {
+    return {
+      result: mortgageCalculator(
+        {
+          homeValue: form.homeValue ?? 0,
+          deposit: form.deposit ?? 0,
+          interestRate: form.interestRate ?? 0,
+          years: form.years ?? 1,
+        },
+        type.value
+      ),
+      error: null,
+    }
+  } catch (e) {
+    return { result: null, error: e instanceof Error ? e.message : 'Invalid inputs' }
   }
 })
+
+const result = computed(() => outcome.value.result)
+const error = computed(() => outcome.value.error)
+
+const totalInterest = computed(() => {
+  if (!result.value || type.value !== 'repayment') return 0
+  const r = result.value as MortgageResult
+  return Math.round(r.monthlyRepayment * r.years * 12 - r.principal)
+})
 </script>
-
-<style lang="scss" scoped>
-.calculator-view {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 2rem;
-  min-height: calc(100vh - 100px);
-
-  @media (max-width: 768px) {
-    padding: 1rem;
-  }
-}
-
-.page-header {
-  text-align: center;
-  margin-bottom: 3rem;
-
-  @media (max-width: 768px) {
-    margin-bottom: 2rem;
-  }
-
-  h1 {
-    font-size: 2rem;
-    font-weight: 800;
-    color: var(--color-heading);
-    margin-bottom: 0.5rem;
-
-    @media (max-width: 768px) {
-      font-size: 1.75rem;
-    }
-  }
-
-  p {
-    font-size: 1.1rem;
-    color: var(--color-text);
-    opacity: 0.9;
-
-    @media (max-width: 768px) {
-      font-size: 1rem;
-    }
-  }
-}
-
-.calculator-layout {
-  display: grid;
-  gap: 2rem;
-  grid-template-columns: 1fr;
-
-  @media (min-width: 768px) {
-    grid-template-columns: 40% 60%;
-    gap: 2.5rem;
-  }
-
-  @media (min-width: 1024px) {
-    gap: 3rem;
-  }
-}
-
-.calculator-form {
-  @media (min-width: 768px) {
-    position: sticky;
-    top: calc(60px + 2rem);
-    align-self: start;
-    max-height: calc(100vh - 60px - 4rem);
-    overflow-y: auto;
-  }
-}
-
-.calculator-results {
-  min-height: 400px;
-
-  .results-content {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-  }
-}
-
-.empty-state {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 400px;
-  background: var(--color-background-soft);
-  border-radius: 12px;
-  padding: 2rem;
-
-  .empty-state-content {
-    text-align: center;
-    max-width: 400px;
-
-    h3 {
-      font-size: 1.5rem;
-      font-weight: 600;
-      color: var(--color-heading);
-      margin-bottom: 0.75rem;
-    }
-
-    p {
-      font-size: 1rem;
-      color: var(--color-text);
-      line-height: 1.6;
-    }
-  }
-}
-</style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="chart-container">
+  <div class="relative h-full w-full">
     <Line :key="chartKey" :data="chartData" :options="chartOptions" />
   </div>
 </template>
@@ -180,13 +180,3 @@ watch(
   { deep: true }
 )
 </script>
-
-<style scoped lang="scss">
-.chart-container {
-  height: v-bind('`${height}px`');
-  position: relative;
-  padding: 1rem;
-  background: var(--color-background);
-  border-radius: 12px;
-}
-</style>

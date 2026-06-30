@@ -1,151 +1,67 @@
 <template>
-  <header class="navbar">
-    <div class="navbar-container">
-      <div class="navbar-brand">
-        <img alt="Finance Calculator" class="logo" src="@/assets/logo.svg" width="40" height="40" />
-        <span class="brand-name">Finance Tools</span>
-      </div>
-
-      <nav class="navbar-nav">
-        <a href="/" class="nav-link">Home</a>
-        <a href="/compound-interest" class="nav-link">Compound Interest</a>
-        <a href="/mortgage" class="nav-link">Mortgage</a>
+  <header
+    class="sticky top-0 z-40 border-b border-surface-rule bg-surface-off-white/90 font-body text-ink-900 backdrop-blur"
+  >
+    <div class="mx-auto flex max-w-6xl items-center gap-3 px-4 py-3 md:px-6">
+      <a
+        href="/"
+        class="flex shrink-0 items-center gap-2 rounded-slab transition hover:opacity-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
+        aria-label="Finance Calculator home"
+      >
+        <img alt="" src="@/assets/logo.svg" width="28" height="28" class="h-7 w-7" />
+        <span class="font-display text-base font-black tracking-tight md:text-lg"
+          >Finance Tools</span
+        >
+      </a>
+      <nav
+        class="-mx-2 flex flex-1 items-center gap-0.5 overflow-x-auto px-2 text-sm font-semibold [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:gap-1 md:overflow-visible"
+        aria-label="Calculators"
+      >
+        <a
+          v-for="item in links"
+          :key="item.href"
+          :href="item.href"
+          :aria-current="isActive(item.href) ? 'page' : undefined"
+          :class="[
+            'shrink-0 rounded-pill px-3 py-1.5 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500',
+            isActive(item.href)
+              ? 'bg-emerald-950 text-surface-off-white'
+              : 'text-ink-900/80 hover:bg-surface-cream hover:text-ink-900'
+          ]"
+        >
+          {{ item.label }}
+        </a>
       </nav>
-
-      <div class="navbar-actions">
-        <ToggleTheme v-if="isClient" />
-      </div>
     </div>
   </header>
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
-import ToggleTheme from '@/components/theme/toggle-theme/ToggleTheme.vue'
+import { computed } from 'vue'
+import { usePageContext } from 'vike-vue/usePageContext'
 
-// Prevent hydration mismatch - only render theme toggle on client
-const isClient = ref(false)
-onMounted(() => {
-  isClient.value = true
+const links = [
+  { href: '/compound-interest', label: 'Compound' },
+  { href: '/mortgage', label: 'Mortgage' },
+  { href: '/savings-goal', label: 'Savings goal' },
+  { href: '/early-payoff', label: 'Early payoff' },
+  { href: '/fire', label: 'FIRE' }
+]
+
+// usePageContext() throws when the component renders outside a Vike app (e.g. in
+// Storybook/Chromatic). Fall back to "no active route" so the nav still renders there;
+// inside the app it stays reactive to client-side navigation.
+let pageContext: ReturnType<typeof usePageContext> | null = null
+try {
+  pageContext = usePageContext()
+} catch {
+  pageContext = null
+}
+
+const pathname = computed(() => {
+  const p = pageContext?.urlPathname ?? ''
+  return p.length > 1 ? p.replace(/\/$/, '') : p
 })
+
+const isActive = (href: string) => pathname.value === href
 </script>
-
-<style lang="scss" scoped>
-.navbar {
-  background: var(--color-background);
-  border-bottom: 1px solid var(--color-border);
-  padding: 0.75rem 0;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-}
-
-.navbar-container {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 0 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 2rem;
-
-  @media (max-width: 768px) {
-    padding: 0 1rem;
-    gap: 1rem;
-  }
-}
-
-.navbar-brand {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  text-decoration: none;
-  color: var(--color-heading);
-  flex-shrink: 0;
-
-  .logo {
-    display: block;
-    width: 40px;
-    height: 40px;
-
-    @media (max-width: 768px) {
-      width: 32px;
-      height: 32px;
-    }
-  }
-
-  .brand-name {
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: var(--color-heading);
-
-    @media (max-width: 768px) {
-      display: none;
-    }
-  }
-}
-
-.navbar-nav {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  flex: 1;
-  justify-content: center;
-
-  @media (max-width: 768px) {
-    gap: 0.25rem;
-    justify-content: flex-start;
-  }
-}
-
-.nav-link {
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
-  text-decoration: none;
-  color: var(--color-text);
-  font-weight: 500;
-  font-size: 0.95rem;
-  transition: all 0.2s ease;
-  position: relative;
-
-  @media (max-width: 768px) {
-    padding: 0.5rem 0.75rem;
-    font-size: 0.875rem;
-  }
-
-  &:hover {
-    background: var(--color-background-soft);
-    color: var(--color-heading);
-  }
-
-  &.router-link-active,
-  &.router-link-exact-active {
-    color: var(--color-primary);
-    font-weight: 600;
-
-    &::after {
-      content: '';
-      position: absolute;
-      bottom: -0.75rem;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 70%;
-      height: 2px;
-      background: var(--color-primary);
-      border-radius: 2px;
-
-      @media (max-width: 768px) {
-        bottom: 0;
-      }
-    }
-  }
-}
-
-.navbar-actions {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  flex-shrink: 0;
-}
-</style>

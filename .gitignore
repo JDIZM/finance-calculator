@@ -30,3 +30,9 @@ coverage
 coverage
 .vercel
 storybook-static
+
+# Local-only marketing/launch notes (kept in personal vault, not this public repo)
+MARKETING.md
+
+# Claude Code local settings, runtime locks, etc. (not for a public repo)
+.claude/
