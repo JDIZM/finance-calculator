@@ -1,20 +1,29 @@
 name: 'Chromatic'
 
+# Snapshot budget: builds run only when asked for, never on every push. That keeps Renovate
+# branches (and every other push) from spending Chromatic credits.
 on:
+  workflow_dispatch:
+  # At most one build per pull request, requested by adding the `visual-review` label.
+  # Re-adding the label is the only way to rebuild.
   pull_request:
-    branches:
-      - main
-    types: [opened, synchronize, reopened]
-  push:
-    branches:
-      - main
+    types: [labeled]
+  release:
+    types: [published]
 
 jobs:
   chromatic-deployment:
+    # Any other label added to the pull request skips the job without spending snapshots.
+    if: github.event_name != 'pull_request' || github.event.label.name == 'visual-review'
+    concurrency:
+      group: chromatic-${{ github.event.pull_request.number || github.ref }}
+      cancel-in-progress: ${{ github.event_name == 'pull_request' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
+          # Build the pull request head, not the merge commit, so baselines follow the branch.
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
           fetch-depth: 0
       - run: corepack enable
       - uses: volta-cli/action@v4
