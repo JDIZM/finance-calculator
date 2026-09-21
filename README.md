@@ -81,7 +81,7 @@ The library auto-publishes on GitHub Release:
 
 1. Open a PR on `JDIZM/compound-interest` with the new calc + version bump.
 2. Merge to main.
-3. Create a GitHub Release tagged `vX.Y.Z`. The `release.yml` workflow runs tests, updates `package.json`, and `npm publish`es.
+3. Create a GitHub Release tagged `vX.Y.Z`. The library's [release workflow](https://github.com/JDIZM/compound-interest/blob/main/.github/workflows/release.yml) runs tests, updates `package.json`, and `npm publish`es.
 4. Bump this repo's `@jdizm/finance-calculator` pin in `package.json` and `pnpm install`.
 
 ## Pages

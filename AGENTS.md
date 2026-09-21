@@ -32,8 +32,9 @@ pnpm build-storybook # static Storybook (also what Chromatic publishes)
 ```
 
 CI (`.github/workflows/node.yml`) runs `lint`, `format:check`, `type-check`, `build`, and
-`test:unit` on Node 24. `chromatic.yml` publishes Storybook for visual regression. Run the
-same locally before pushing.
+`test:unit` on Node 24. `chromatic.yml` publishes Storybook for visual regression, but only on demand: add the
+`visual-review` label to a PR, run it manually, or publish a GitHub release. It never runs on
+plain pushes (Renovate included) to save Chromatic credits. Run the CI checks locally before pushing.
 
 ## Layout
 
